@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#head {
+			width: 100%;
+			height: 30px;
+			background: black;
+			font-size: 13px;
+			line-height: 30px;
+			color: rgb(140, 145, 148);
+		}
+		
+		.headnavi {
+			margin-left: 30px;
+		}
+		
+		.headleft {
+			width: 85%;
+			float: left;
+		}
+		
+		.headright {
+			width: 15%;
+			float: left;
+		}
+		
+		.loginwith,
+		.headright {
+			float: left;
+		}
+		
+		.headnaviright {
+			margin-left: 15px;
+		}
+		
+		.loginwith {
+			color: white;
+		}
+		
+		.headmid {
+			height: 70px;
+			width: 100%;
+			background: rgb(44, 54, 60);
+		}
+		
+		.headbottom {
+			width: 100%;
+			height: 50px;
+			background: rgb(63, 71, 77);
+		}
+		
+		.bzy {
+			display: inline;
+			height: 60px;
+			margin-left: 23px;
+			margin-top: 5px;
+		}
+		
+		.bzyimg {
+			width: auto;
+			height: 100%;
+			float: left;
+		}
+		
+		.pms {
+			line-height: 70px;
+			margin-left: 7px;
+			width: 30%;
+			float: left;
+			color: rgb(248, 248, 248);
+			font-size: 14px;
+		}
+		
+		.mainn {
+			width: 100%;
+			height: 620px;
+			border-bottom-color: rgb(223, 223, 223);
+			border-bottom-style: solid;
+			border-bottom-width: 2px;
+		}
+		
+		.foot {
+			height: 20px;
+			width: 100%;
+			font-size: 12px;
+			line-height: 20px;
+			text-align: center;
+			color: rgb(222, 234, 217);
+		}
+		
+		.mainleft {
+			width: 80%;
+			float: left;
+			height: 100%;
+		}
+		
+		.mainright {
+			width: 19%;
+			float: right;
+			height: 100%;
+			background: rgb(238, 238, 238);
+			border-left-color: rgb(220, 220, 220);
+			border-left-width: 1px;
+			border-left-style: solid;
+			border-bottom-color: rgb(220, 220, 220);
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+		
+		.mycount {
+			margin-left: 320px;
+			margin-top: 60px;
+			font-size: 23px;
+			color: rgb(85, 85, 85);
+			height: auto;
+		}
+		
+		.myaccountdetale {
+			width: 680px;
+			height: 170px;
+			margin-left: 320px;
+			margin-top: 20px;
+			background: rgb(246, 246, 246);
+			border: 1px solid rgb(228, 228, 228);
+		}
+		
+		.tdfirst,
+		.tdsec {
+			padding-top: 13px;
+		}
+		
+		.tdfirst {
+			width: 160px;
+			text-align: right;
+			padding-right: 10px;
+		}
+		
+		.tdsec {
+			width: 465px;
+		}
+		
+		.inputtext {
+			width: 460px;
+		}
+		.submit{
+			margin-left: 950px;
+			margin-top: 16px;
+			padding: 4px 10px;
+		}
+		.messageadd{
+			width: 320px;
+			height: auto;
+			margin-left: 35px;
+			margin-top: 30px;
+		}
+		.messageaddtitle{
+			font-size: 16px;
+			color: rgb(102,102,123);
+		}
+		.righttable{
+			margin-top: 20px;
+			font-size: 12px;
+			color: rgb(72,72,72);
+		}
+		.righttdfirst{
+			width: 60px;
+			text-align: left;
+		}
+		.righttdsec{
+			width: 180px;
+		}
+		.righttdfirst,.righttdsec{
+			padding-top: 8px;
+		}
+		.control{
+			margin-left: 930px;
+			margin-top: 10px;
+		}
+		.controlbut{
+			padding: 4px 10px;
+		}
+	</style>
+
+	<body>
+		<div id="head">
+			<div class="headleft">
+				<a class="headnavi">主页</a>
+				<a class="headnavi">我的工作台</a>
+				<a class="headnavi">项目</a>
+				<a class="headnavi">组</a>
+				<a class="headnavi">关于</a>
+			</div>
+
+			<div class="headright">
+				<span class="loginwith">登录为：</span>
+				<a class="headnaviright">我的账号</a>
+				<a class="headnaviright">退出</a>
+			</div>
+		</div>
+		<div class="headmid">
+			<div class="bzyimg">
+				<img class="bzy" src="img/bzy3.png" />
+			</div>
+			<div class="pms">Project Management System</div>
+		</div>
+		<div class="headbottom">
+
+		</div>
+		<div class="mainn">
+			
+			<form method="post">
+				<div class="mainleft">
+					<div class="mycount">
+						我的账号
+					</div>
+					<div class="myaccountdetale">
+						<table>
+							<tr>
+								<td class="tdfirst">姓氏</td>
+								<td class="tdsec"><input type="text" class="inputtext" /></td>
+							</tr>
+							<tr>
+								<td class="tdfirst">名字</td>
+								<td class="tdsec"><input type="text" class="inputtext" /></td>
+							</tr>
+							<tr>
+								<td class="tdfirst">邮箱地址</td>
+								<td class="tdsec"><input type="text" class="inputtext" /></td>
+							</tr>
+							<tr>
+								<td class="tdfirst">密码</td>
+								<td class="tdsec"><input type="password" class="inputtext" /></td>
+							</tr>
+						</table>
+					</div>
+					
+					<input type="submit" value="提交" class="submit"/>
+					<Div class="control">
+						<input type="button" value="管理其他用户" class="controlbut"/>
+					</Div>
+				</div>
+			</form>
+			<div class="mainright">
+				<div class="messageadd">
+					<div class="messageaddtitle">
+						我的信息
+						<div class="righttable">
+							<table>
+								<tr>
+									<td class="righttdfirst">账户名称:</td>
+									<td class="righttdsec">sdsdsd</td>
+								</tr>
+								<tr>
+									<td class="righttdfirst">所属组别:</td>
+									<td class="righttdsec">sdsdsd</td>
+								</tr>
+								<tr>
+									<td class="righttdfirst">所属等级:</td>
+									<td class="righttdsec">sdsdsd</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="foot">
+			Designed By ZhangHan
+		</div>
+	</body>
+
+</html>

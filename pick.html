@@ -25,12 +25,12 @@
 		}
 		
 		.headleft {
-			width: 80%;
+			width: 85%;
 			float: left;
 		}
 		
 		.headright {
-			width: 20%;
+			width: 15%;
 			float: left;
 		}
 		
@@ -41,7 +41,6 @@
 		
 		.headnaviright {
 			margin-left: 15px;
-			color: rgb(140, 145, 148)
 		}
 		
 		.loginwith {
@@ -145,7 +144,7 @@
 		}
 		
 		.midbox {
-			height: 580px;
+			height: auto;
 			width: 1500px;
 			background: rgb(255, 255, 222);
 			margin-top: 70px;
@@ -175,8 +174,18 @@
 			color: rgb(69, 76, 81);
 		}
 		
-		.tdmain {
+		table {
+			table-layout: fixed;
+		}
+		
+		.tdmain,
+		.tdmain1 {
 			padding-top: 10px;
+		}
+		
+		.tdmain1 {
+			width: 200px;
+			overflow: hidden;
 		}
 		
 		.hr1 {
@@ -187,8 +196,11 @@
 		}
 		
 		.sonMission {
+			margin-top: 40px;
 			margin-left: 30px;
 			color: rgb(69, 76, 81);
+			height: autopx;
+			font-size: 22px;
 		}
 		
 		.sonMission>a {
@@ -203,7 +215,7 @@
 			margin-left: 30px;
 			font-size: 22px;
 			color: rgb(69, 76, 81);
-			overflow: scroll;
+			overflow-y: scroll;
 		}
 		
 		.tableright {
@@ -218,8 +230,15 @@
 			color: rgb(102, 102, 102);
 			margin-top: 30px;
 		}
-		a{
-			text-decoration: none;
+		.test{
+			width: 490px;
+			overflow-x:auto ;
+		}
+		#link{
+			padding-bottom: 30px;
+		}
+		.checklistbut{
+			padding: 4px 90px;
 		}
 	</style>
 
@@ -234,9 +253,9 @@
 			</div>
 
 			<div class="headright">
-				<span class="loginwith" id="loginwith">登录为：</span>
+				<span class="loginwith">登录为：</span>
 				<a class="headnaviright">我的账号</a>
-				<a class="headnaviright" href="login.html" id="quit">退出</a>
+				<a class="headnaviright">退出</a>
 			</div>
 		</div>
 		<div class="headmid">
@@ -254,14 +273,14 @@
 		<div class="mainn">
 			<div class="mainleft">
 				<div class="productNum">
-					成果物编号
+					Review指摘编号
 				</div>
 				<div class="edit">
 					<a class="edittext">编辑</a>
 				</div>
 				<div class="midbox">
 					<div class="midboxtitle">
-						成果物标题
+						Review指摘标题
 					</div>
 					<div class="beizhu">
 						由xx更新于xx日
@@ -274,72 +293,44 @@
 							<th style="width: 490px;"></th>
 						</tr>
 						<tr>
-							<td class="tdmain">状态：</td>
-							<td class="tdmain">New Creation</td>
-							<td class="tdmain">开始日期：</td>
+							<td class="tdmain1">状态：</td>
+							<td class="tdmain">
+								<div class="test"></div>
+							</td>
+							<td class="tdmain1">开始日期：</td>
 							<td class="tdmain">2019-03-05</td>
 						</tr>
 						<tr>
-							<td class="tdmain">优先级：</td>
+							<td class="tdmain1">优先级：</td>
 							<td class="tdmain"></td>
-							<td class="tdmain">计划完成日期：</td>
-							<td class="tdmain"></td>
-						</tr>
-						<tr>
-							<td class="tdmain">指派给：</td>
-							<td class="tdmain"></td>
-							<td class="tdmain">指摘数：</td>
+							<td class="tdmain1">计划完成日期：</td>
 							<td class="tdmain"></td>
 						</tr>
 						<tr>
-							<td class="tdmain">文档页数：</td>
+							<td class="tdmain1">指派给：</td>
 							<td class="tdmain"></td>
-							<td class="tdmain">变更页数：</td>
-							<td class="tdmain"></td>
-						</tr>
-						<tr>
-							<td class="tdmain">预计工数：</td>
-							<td class="tdmain"></td>
-							<td class="tdmain">实际工数：</td>
+							<td class="tdmain1">完成度%：</td>
 							<td class="tdmain"></td>
 						</tr>
 						<tr>
-							<td class="tdmain">Review计划日期：</td>
+							<td class="tdmain1">指摘者：</td>
 							<td class="tdmain"></td>
-							<td class="tdmain">Review最终完成日期：</td>
-							<td class="tdmain"></td>
-						</tr>
-						<tr>
-							<td class="tdmain">成果物版本：</td>
-							<td class="tdmain"></td>
-							<td class="tdmain">成果物链接：</td>
+							<td class="tdmain1">指摘内容：</td>
 							<td class="tdmain"></td>
 						</tr>
 						<tr>
-							<td class="tdmain">NG数：</td>
+							<td class="tdmain1">指摘日期：</td>
 							<td class="tdmain"></td>
-							<td class="tdmain">完成度：</td>
-							<td class="tdmain"></td>
-						</tr>
-						<tr>
-							<td class="tdmain">开始日期：</td>
-							<td class="tdmain"></td>
-							<td class="tdmain">结束日期：</td>
+							<td class="tdmain1">实际工数：</td>
 							<td class="tdmain"></td>
 						</tr>
 						<tr>
-							<td class="tdmain">所属：</td>
-							<td class="tdmain"></td>
-							<td class="tdmain">成果物类别：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain1" id="link">指摘描述：</td>
+							<td class="tdmain"><div class="test"></div></td>
 						</tr>
 					</table>
-					<hr class="hr1" align="center" />
-					<div class="sonMission">
-						子任务&nbsp;&nbsp;&nbsp;
-						<a>新增</a>
-					</div>
 				</div>
+			
 				<div class="history">
 					历史记录
 					<br />
@@ -398,37 +389,7 @@
 		</div>
 		<div class="foot">
 			Designed By ZhangHan
-			<input type="button" value="but" id="testbut" />
 		</div>
 	</body>
-	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-	<script type="application/javascript">
-		window.onload = function(){
-			var tt = getCookie("username");
-			$("#loginwith").append(tt);
-		}
-		function delCookie(name)
-            {
-                var exp = new Date();
-                exp.setTime(exp.getTime() - 1);
-                var cval=getCookie(name);
-                if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
-            }
-
-		function getCookie(name) {
-			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)"); 
-			if(arr = document.cookie.match(reg)) {
-				return unescape(arr[2]);
-			} else {
-				return null;
-			}
-		}
-		var user = getCookie("username");
-		$("#quit").click(function(){
-			alert(user);
-			delCookie(username);
-			
-		})
-	</script>
 
 </html>
