@@ -290,10 +290,11 @@
 					"nickname": $("#nickname").val(),
 					"group": $("#group").val(),
 					"level": $(".level").val()
-				}
+				};
+				// 新建user
 				$.ajax({
 					type: "put",
-					url: "",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/user",
 					contentType: "application/json; charset=UTF-8",
 					data: JSON.stringify(data),
 					success: function(returned) {
