@@ -81,19 +81,46 @@
 				word-wrap: break-word;
 				padding: 15px;
 			}
-			.tableright{
+			
+			.tableright {
 				font-size: 12px;
 				margin-left: 20px;
 				margin-top: 30px;
 			}
-			.td3{
+			
+			.td3 {
 				text-align: right;
 			}
-			.td3,.td4{
+			
+			.td3,
+			.td4 {
 				padding: 4px 2px 4px 0px;
 			}
-			a{
+			
+			a {
 				cursor: pointer;
+			}
+			
+			.resultTable {
+				border-collapse: collapse;
+				text-align: center;
+				font-size: 12px;
+			}
+			
+			.resultid {
+				width: 130px;
+			}
+			
+			.resultstate {
+				width: 220px;
+			}
+			
+			.resultname {
+				width: 600px;
+			}
+			
+			.resultHead {
+				font-weight: 700;
 			}
 		</style>
 	</head>
@@ -121,6 +148,7 @@
 						<tr>
 							<td class="td1">项目名称：</td>
 							<td class="td2" id="projectName"></td>
+							<a href=""></a>
 
 						</tr>
 						<tr>
@@ -136,13 +164,13 @@
 							<td class="td2" id="projectIntro">
 								<table class="resultTable" border="1px solid black">
 									<tr class="resultHead">
-										<th>成果物id</th>
-										<th>成果物状态</th>
-										<th>成果物主题</th>
+										<td class="resultid">成果物id</th>
+											<td class="resultstate">成果物状态</th>
+												<td class="resultname">成果物主题</th>
 									</tr>
-									
+
 								</table>
-							</td>
+								</td>
 						</tr>
 					</table>
 				</div>
@@ -171,11 +199,22 @@
 			loadcookie();
 			quitpage();
 		});
+
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
 		$(document).ready(function() {
+			var pid = getUrlParam("pid");
+			var data = {
+				"pid" : pid
+			}
 			$.ajax({
 				type: "get",
 				url: "",
-				async: false,
+				data: JSON.stringify(data),
 				success: function(returned) {
 					$("#projectid").html(returned.projectid);
 					$("#projectCreateDate").html(returned.projectCreateDate);
@@ -184,23 +223,36 @@
 					$("#projectIntro").html(returned.projectIntro);
 				}
 			});
-			
+
 			$.ajax({
 				type: "get",
 				url: "",
-				async: false,
+				data: JSON.stringify(data),
 				success: function(returned) {
 					$("#creator").html(returned.creator);
 					$("#manager").html(returned.manager);
 					$("#grouper").html(returned.grouper);
 				}
 			});
-		})
-		$(".addnewproject").click(function(){
+			var tempHtml;
+			$.post("", {
+				"fatherid": $("#projectid").val()
+			}, function(result) {
+				var res = $.parseJSON(result);
+				var href = " 'main.html?resultid="
+				$.each(res, function(i, n) {
+					tempHtml += "<tr><td>" + n.resultid + "</td>";
+					tempHtml += "<td>" + n.resultstate + "</td>"
+					tempHtml += "<td><a href=" + href + n.resultid + "'>" + n.resultname + "</a></td></tr>"
+				});
+				$(".resultHead").append(tempHtml);
+			});
+		});
+		$(".addnewproject").click(function() {
 			var id = $("#projectid").html();
 			var href = "addproject.html?projectid=" + id;
 			location.href = href;
-		})
+		});
 	</script>
 
 </html>
