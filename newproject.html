@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
@@ -9,82 +10,96 @@
 			margin: 0px;
 			padding: 0px;
 		}
-		#head{
+		
+		#head {
 			width: 100%;
 			height: 30px;
 			background: black;
 			font-size: 13px;
 			line-height: 30px;
-			color: rgb(140,145,148);
+			color: rgb(140, 145, 148);
 		}
-		.headnavi{
-			
+		
+		.headnavi {
 			margin-left: 30px;
 		}
-		.headleft{
+		
+		.headleft {
 			width: 85%;
 			float: left;
 		}
-		.headright{
+		
+		.headright {
 			width: 15%;
 			float: left;
 		}
-		.loginwith,.headright{
+		
+		.loginwith,
+		.headright {
 			float: left;
 		}
-		.headnaviright{
+		
+		.headnaviright {
 			margin-left: 15px;
 		}
-		.loginwith{
+		
+		.loginwith {
 			color: white;
 		}
-		.headmid{
+		
+		.headmid {
 			height: 70px;
 			width: 100%;
-			background: rgb(44,54,60);
+			background: rgb(44, 54, 60);
 		}
-		.headbottom{
+		
+		.headbottom {
 			width: 100%;
 			height: 50px;
-			background: rgb(63,71,77);
+			background: rgb(63, 71, 77);
 		}
-		.bzy{
+		
+		.bzy {
 			display: inline;
 			height: 60px;
-			margin-left:23px ;
+			margin-left: 23px;
 			margin-top: 5px;
 		}
-		.bzyimg{
+		
+		.bzyimg {
 			width: auto;
 			height: 100%;
 			float: left;
 		}
-		.pms{
+		
+		.pms {
 			line-height: 70px;
 			margin-left: 7px;
 			width: 30%;
 			float: left;
-			color: rgb(248,248,248);
+			color: rgb(248, 248, 248);
 			font-size: 14px;
-			
 		}
-		.mainn{
+		
+		.mainn {
 			width: 100%;
 			height: 700px;
-			border-bottom-color: rgb(223,223,223);
+			border-bottom-color: rgb(223, 223, 223);
 			border-bottom-style: solid;
 			border-bottom-width: 2px;
 			overflow-y: auto;
 		}
-		.foot{
+		
+		.foot {
 			height: 20px;
 			width: 100%;
-			font-size:12px;
+			font-size: 12px;
 			line-height: 20px;
 			text-align: center;
-			color: rgb(222,234,217);
+			color: rgb(222, 234, 217);
 		}
-			.mainleft {
+		
+		.mainleft {
 			height: auto;
 			width: 80%;
 			float: left;
@@ -102,62 +117,70 @@
 			border-bottom-width: 1px;
 			border-bottom-style: solid;
 		}
-		.projecttitle{
+		
+		.projecttitle {
 			font-size: 22px;
 			margin: 20px;
 			width: auto;
-			color: rgb(76,76,76);
+			color: rgb(76, 76, 76);
 			float: left;
 		}
-		.addproject{
-			color: rgb(17,102,153);
+		
+		.addproject {
+			color: rgb(17, 102, 153);
 			float: right;
 			margin: 20px;
 		}
-		a{
+		
+		a {
 			text-decoration: none;
-			
 		}
-		.righttitle{
+		
+		.righttitle {
 			font-size: 18px;
 			margin: 18px;
-			color: rgb(77,77,77);
+			color: rgb(77, 77, 77);
 		}
-		.table2{
+		
+		.table2 {
 			margin-left: 15px;
 			border-collapse: collapse;
 		}
-		td{
+		
+		td {
 			padding: 3px;
 		}
-		.addnewproject{
-			color: rgb(17,102,153);
+		
+		.addnewproject {
+			color: rgb(17, 102, 153);
+		}
+		
+		.maintable {
+			border-collapse: collapse;
+			text-align: center;
+			margin-left: 40px;
+			margin-top: 10px;
+			color: rgb(70, 72, 77);
+			margin-top: 80px;
+		}
+		
+		th {
+			background: rgb(237, 237, 237);
+		}
+		
+		tr:nth-child(odd) {
+			background-color: rgb(246, 247, 248);
+		}
+		
+		tr:nth-child(even) {
+			background-color: rgb(255, 255, 255);
 		}
 	</style>
+
 	<body>
-		<div id="head">
-			<div class="headleft">
-				<a class="headnavi">主页</a>
-				<a class="headnavi">我的工作台</a>
-				<a class="headnavi">项目</a>
-				<a class="headnavi">组</a>
-				<a class="headnavi">关于</a>
-			</div>
-			
-			<div class="headright">
-				<span class="loginwith">登录为：</span>
-				<a class="headnaviright">我的账号</a>
-				<a class="headnaviright">退出</a>
-			</div>
-		</div>
-		<div class="headmid">
-			<div class="bzyimg">
-				<img class="bzy" src="img/bzy3.png" />
-			</div>
-			<div class="pms">Project Management System</div>
-		</div>
+		<div class="public"></div>
 		<div class="headbottom">
-			
+
 		</div>
 		<div class="mainn">
 			<div class="mainleft">
@@ -165,8 +188,35 @@
 					项目
 				</div>
 				<div class="addproject">
-					<a href="addnewproject.html" class="addnewproject">增加项目</a> | <a>查看全部项目</a>
+					<a href="addnewproject.html" class="addnewproject">增加项目</a> |
+					<a>查看全部项目</a>
 				</div>
+				<table class="maintable" border="1">
+					<tr id="maintr">
+						<th width="60">项目编号</th>
+						<th width="170">项目名称</th>
+						<th width="80">创建者</th>
+						<th width="700">标识</th>
+						<th width="200">创建于</th>
+						<th width="150">状态</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+				</table>
 			</div>
 			<div class="mainright">
 				<div class="righttitle">项目</div>
@@ -176,12 +226,55 @@
 						<td>已关闭项目数</td>
 						<td>总项目数</td>
 					</tr>
+					<tr>
+						<td id="openproject"></td>
+						<td id="closeproject"></td>
+						<td id="allproject"></td>
+					</tr>
 				</table>
-				
+
 			</div>
 		</div>
 		<div class="foot">
 			Designed By ZhangHan
 		</div>
 	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="application/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
+
+		$(document).ready(function() {
+			$.ajax({
+				type: "post",
+				url: "",
+				datatype: "json",
+				async: false,
+				success: function(data) {
+					for(var i = 0; i < data.length; i++) {
+						var html = "";
+						var ls = data[i];
+						var href = " href = 'projectmessage.html?pid=" + ls.pid + "'"
+						html += "<tr><td>" + ls.pid + "</td>" + "<td>" + "<a" + href + ">" + ls.projectname + "</td></a>" + "<td>" + ls.createname + "</td>" + "<td>" + ls.groupintro + "</td>" + "<td>" + ls.groupdata + "</td><td>" + ls.state + "</td></tr>"
+					}
+					$(".maintable").append(html);
+				}
+			});
+
+			$.ajax({
+				type: "post",
+				url: "",
+				async: false,
+				success: function(returned) {
+					$("#openproject").html(returned.opennum);
+					$("#closeproject").html(returned.closenum);
+					$("#allproject").html(returned.allnum);
+
+				}
+			});
+		})
+	</script>
+
 </html>

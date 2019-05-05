@@ -151,27 +151,7 @@
 	</style>
 
 	<body>
-		<div id="head">
-			<div class="headleft">
-				<a class="headnavi">主页</a>
-				<a class="headnavi">我的工作台</a>
-				<a class="headnavi">项目</a>
-				<a class="headnavi">组</a>
-				<a class="headnavi">关于</a>
-			</div>
-
-			<div class="headright">
-				<span class="loginwith">登录为：</span>
-				<a class="headnaviright">我的账号</a>
-				<a class="headnaviright">退出</a>
-			</div>
-		</div>
-		<div class="headmid">
-			<div class="bzyimg">
-				<img class="bzy" src="img/bzy3.png" />
-			</div>
-			<div class="pms">Project Management System</div>
-		</div>
+		<div class="public"></div>
 		<div class="headbottom">
 
 		</div>
@@ -223,12 +203,19 @@
 	</body>
 	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 	<script type="application/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
 		$("#submit").click(function() {
+			var myDate = new Date();
+			
 			var data = {
 				"name": $("#name").val(),
 				"describe": $("#describe").val(),
 				"sign": $("#sign").val(),
-				"group": $("#group").val()
+				"group": $("#group").val(),
+				"date" : myDate.toLocaleString()
 			}
 			$.ajax({
 				type: "put",
@@ -250,10 +237,6 @@
 				}
 			});
 		});
-		$("#su").click(function(){
-			var sel = $("#group").val();
-			alert(sel);
-		})
 	</script>
 
 </html>

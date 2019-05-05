@@ -218,13 +218,17 @@
 			color: rgb(102, 102, 102);
 			margin-top: 30px;
 		}
-		a{
+		
+		a {
 			text-decoration: none;
 		}
 	</style>
 
 	<body>
-		<div id="head">
+		<div class="public">
+
+		</div>
+		<!--		<div id="head">
 			<div class="headleft">
 				<a class="headnavi">主页</a>
 				<a class="headnavi">我的工作台</a>
@@ -244,7 +248,7 @@
 				<img class="bzy" src="img/bzy3.png" />
 			</div>
 			<div class="pms">Project Management System</div>
-		</div>
+		</div>-->
 		<div class="headbottom">
 			<span class="sign">+</span>
 			<a class="bottomnavi">概述</a>
@@ -401,33 +405,24 @@
 			<input type="button" value="but" id="testbut" />
 		</div>
 	</body>
+
 	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-	<script type="application/javascript">
-		window.onload = function(){
-			var tt = getCookie("username");
-			$("#loginwith").append(tt);
-		}
-		function delCookie(name)
-            {
-                var exp = new Date();
-                exp.setTime(exp.getTime() - 1);
-                var cval=getCookie(name);
-                if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
-            }
+	<script type="text/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
 
 		function getCookie(name) {
-			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)"); 
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
 			if(arr = document.cookie.match(reg)) {
 				return unescape(arr[2]);
 			} else {
 				return null;
 			}
 		}
-		var user = getCookie("username");
-		$("#quit").click(function(){
-			alert(user);
-			delCookie(username);
-			
+		$("#testbut").click(function() {
+			alert(getCookie("username"));
 		})
 	</script>
 

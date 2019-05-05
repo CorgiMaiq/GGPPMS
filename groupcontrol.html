@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.mainn {
+				width: 100%;
+				height: 1000px;
+			}
+			
+			.mainleft {
+				height: auto;
+				width: 80%;
+				float: left;
+			}
+			
+			.mainright {
+				float: right;
+				width: 19%;
+				height: 1000px;
+				background: rgb(250, 250, 250);
+				border-left-color: rgb(220, 220, 220);
+				border-left-width: 1px;
+				border-left-style: solid;
+				border-bottom-color: rgb(220, 220, 220);
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+			
+			.mainbox {
+				width: 680px;
+				height: 370px;
+				position: absolute;
+				left: 40%;
+				top: 150px;
+				margin-left: -340px;
+				background: rgb(246, 246, 246);
+				border: 1px solid rgb(228, 228, 228);
+				overflow-y: auto;
+			}
+			.messageTitle{
+				font-size: 20px;
+				margin: 18px;
+				
+			}
+			.messageTitle a{
+				font-size: 12px;
+			}
+			#controlmember{
+				margin-left: 410px;
+			}
+			a{
+				cursor: pointer;
+			}
+			td{
+				padding: 8px 3px;
+				
+			}
+			.td1{
+				text-align: right;
+			}
+			.td2{
+				width: 520px;
+			}
+			.table{
+				margin-left: 20px;
+				border-collapse:collapse ;
+			}
+			#controlmember,#addmember{
+				color: rgb(82,167,210);
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="public"></div>
+		<div class="mainn">
+			<div class="mainleft">
+				<div class="mainbox">
+					<div class="messageTitle">组信息
+						<a id="controlmember">管理成员</a>
+						<a id="addmember">增加成员</a>
+					</div>
+					
+					<table class="table" border="1px solid black">
+						<tr>
+							<td class="td1">组id：</td>
+							<td class="td2" id="groupid"></td>
+						</tr>
+						<tr>
+							<td class="td1">建组日期：</td>
+							<td class="td2" id="groupdate"></td>
+						</tr>
+						<tr>
+							<td class="td1">组名：</td>
+							<td class="td2" id="groupname"></td>
+						</tr>
+						<tr>
+							<td class="td1">组简介：</td>
+							<td class="td2" id="groupintro"></td>
+						</tr>
+						<tr>
+							<td class="td1">组长：</td>
+							<td class="td2" id="groupleader"></td>
+						</tr>
+						<tr>
+							<td class="td1">组员：</td>
+							<td class="td2" id="groupmember"></td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+			<div class="mainright"></div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
+
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
+
+		var id = getUrlParam("groupid");
+		$(document).ready(function() {
+			
+			var data = {
+				"groupid": id
+			}
+			$.ajax({
+				type: "put",
+				url: "",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					$("#groupid").html(returned.groupid);
+					$("#groupdate").html(returned.groupdate);
+					$("#groupname").html(returned.groupname);
+					$("#groupleader").html(returned.groupleader);
+					$("#groupmember").html(returned.groupmember);
+					$("#groupintro").html(returned.groupintro);
+				}
+			});
+		});
+		
+		$("#controlmember").click(function(){
+			var href = "controlmember.html?groupid=" + id;
+			location.href = href;
+		})
+		
+		$("#addmember").click(function(){
+			var href = "addmember.html?groupid=" + id;
+			location.href = href;
+		})
+		
+		
+	</script>
+
+</html>

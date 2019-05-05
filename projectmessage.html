@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.mainn {
+				width: 100%;
+				height: 1000px;
+			}
+			
+			.mainleft {
+				height: auto;
+				width: 80%;
+				float: left;
+			}
+			
+			.mainright {
+				float: right;
+				width: 19%;
+				height: 1000px;
+				background: rgb(250, 250, 250);
+				border-left-color: rgb(220, 220, 220);
+				border-left-width: 1px;
+				border-left-style: solid;
+				border-bottom-color: rgb(220, 220, 220);
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+			
+			.projecttitle {
+				font-size: 22px;
+				margin: 20px;
+				width: auto;
+				color: rgb(76, 76, 76);
+				float: left;
+			}
+			
+			.addproject {
+				color: rgb(17, 102, 153);
+				float: right;
+				margin: 20px;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			.righttitle {
+				font-size: 18px;
+				margin: 18px;
+				color: rgb(77, 77, 77);
+			}
+			
+			.addnewproject {
+				color: rgb(17, 102, 153);
+			}
+			
+			.mainbox {
+				margin: 80px 20px 0 20px;
+				width: 1470px;
+				background: rgb(246, 246, 246);
+				height: 600px;
+				border: 1px solid rgb(228, 228, 228);
+			}
+			
+			.tablemain {
+				margin: 40px;
+				border-collapse: collapse;
+			}
+			
+			.td1 {
+				text-align: right;
+				padding: 12px 0px 12px 40px;
+			}
+			
+			.td2 {
+				width: 1100px;
+				word-break: break-all;
+				word-wrap: break-word;
+				padding: 15px;
+			}
+			.tableright{
+				font-size: 12px;
+				margin-left: 20px;
+				margin-top: 30px;
+			}
+			.td3{
+				text-align: right;
+			}
+			.td3,.td4{
+				padding: 4px 2px 4px 0px;
+			}
+			a{
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="public"></div>
+		<div class="mainn">
+			<div class="mainleft">
+				<div class="projecttitle">
+					项目信息
+				</div>
+				<div class="addproject">
+					<a class="addnewproject">增加成果物</a>
+				</div>
+				<div class="mainbox">
+					<table class="tablemain" border="1px solid rgb(221,221,221)">
+						<tr>
+							<td class="td1">项目id：</td>
+							<td class="td2" id="projectid"></td>
+						</tr>
+						<tr>
+							<td class="td1">创建日期：</td>
+							<td class="td2" id="projectCreateDate"></td>
+						</tr>
+						<tr>
+							<td class="td1">项目名称：</td>
+							<td class="td2" id="projectName"></td>
+
+						</tr>
+						<tr>
+							<td class="td1">项目标识：</td>
+							<td class="td2" id="projectSign"></td>
+						</tr>
+						<tr>
+							<td class="td1">项目描述：</td>
+							<td class="td2" id="projectIntro"></td>
+						</tr>
+						<tr>
+							<td class="td1">成果物：</td>
+							<td class="td2" id="projectIntro">
+								<table class="resultTable" border="1px solid black">
+									<tr class="resultHead">
+										<th>成果物id</th>
+										<th>成果物状态</th>
+										<th>成果物主题</th>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="mainright">
+				<table class="tableright">
+					<tr>
+						<td class="td3">创建者：</td>
+						<td class="td4" id="creator"></td>
+					</tr>
+					<tr>
+						<td class="td3">管理员：</td>
+						<td class="td4" id="manager"></td>
+					</tr>
+					<tr>
+						<td class="td3">参与者：</td>
+						<td class="td4" id="grouper"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="application/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
+		$(document).ready(function() {
+			$.ajax({
+				type: "get",
+				url: "",
+				async: false,
+				success: function(returned) {
+					$("#projectid").html(returned.projectid);
+					$("#projectCreateDate").html(returned.projectCreateDate);
+					$("#projectName").html(returned.projectName);
+					$("#projectSign").html(returned.projectSign);
+					$("#projectIntro").html(returned.projectIntro);
+				}
+			});
+			
+			$.ajax({
+				type: "get",
+				url: "",
+				async: false,
+				success: function(returned) {
+					$("#creator").html(returned.creator);
+					$("#manager").html(returned.manager);
+					$("#grouper").html(returned.grouper);
+				}
+			});
+		})
+		$(".addnewproject").click(function(){
+			var id = $("#projectid").html();
+			var href = "addproject.html?projectid=" + id;
+			location.href = href;
+		})
+	</script>
+
+</html>

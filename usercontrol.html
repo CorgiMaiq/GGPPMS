@@ -109,10 +109,12 @@
 		
 		.sizer {
 			background: rgb(246, 246, 246);
-			margin-top: 15px;
+			margin-top: 25px;
 			width: 800px;
 			height: 130px;
-			margin-left: 550px;
+			position: absolute;
+			left: 50%;
+			margin-left: -400px;
 		}
 		
 		.tablefirst {
@@ -138,6 +140,13 @@
 			margin-left: 730px;
 			margin-top: 15px;
 		}
+		.adduser{
+			position: absolute;
+			font-size: 12px;
+			left: 70%;
+			color: rgb(82,167,210);
+		}
+		
 	</style>
 
 	<body>
@@ -168,21 +177,24 @@
 		<div class="mainn">
 			<div class="title">
 				用户管理
+				
 			</div>
+			
+			<a class="adduser">添加用户</a>
 			<form>
 				<div class="sizer">
 					<table>
 						<tr>
 							<td class="tablefirst">工号：</td>
-							<td class="tablesec"><input type="text" class="sizerinput" /></td>
+							<td class="tablesec"><input type="text" class="sizerinput" id="username"/></td>
 							<td class="tablefirst">姓名：</td>
-							<td class="tablesec"><input type="text" class="sizerinput" /></td>
+							<td class="tablesec"><input type="text" class="sizerinput" id="nickname"/></td>
 						</tr>
 						<tr>
 							<td class="tablefirst">组别：</td>
-							<td class="tablesec"><input type="text" class="sizerinput" /></td>
+							<td class="tablesec"><input type="text" class="sizerinput" id="group"/></td>
 							<td class="tablefirst">等级：</td>
-							<td class="tablesec"><input type="text" class="sizerinput" /></td>
+							<td class="tablesec"><input type="text" class="sizerinput" id="level"/></td>
 						</tr>
 					</table>
 					<input type="submit" value="筛选" class="sizersubmit"/>
@@ -194,5 +206,29 @@
 			Designed By ZhangHan
 		</div>
 	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="application/javascript">
+		$(".sizersubmit").click(function(){
+			var data = {
+				"username" : $("#username").val(),
+				"nickname" : $("#nickname").val(),
+				"group" : $("#group").val(),
+				"level" : $("#level").val()
+			};
+			
+		})
+		$.ajax({
+			type:"put",
+			url:"",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify(data),
+			success : function(returned){
+				if(returned.status === 300){
+					
+				}
+			}
+		});
+	</script>
+
 
 </html>

@@ -193,25 +193,26 @@
 			document.cookie = c_name + "=" + escape(value) +
 				((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
 		}
-		$("#login").click(function() {
-			var data = {
-				"email": $("#username").val(),
-				"password": $("#password").val()
-			};
-
-			function getCookie(name) {
+		function getCookie(name) {
 				var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
 				if(arr = document.cookie.match(reg)) {
 					return unescape(arr[2]);
 				} else {
 					return null;
 				}
-			}
+			};
 
 			$("#testbut").click(function(){
-				var kkk = getCookie("username");
-				alert(kkk);
-			})
+/*				var kkk = getCookie("username");
+				alert(kkk);*/
+			});
+		$("#login").click(function() {
+			var data = {
+				"email": $("#username").val(),
+				"password": $("#password").val()
+			};
+
+			
 			 
 			$.ajax({
 				type: "post",
@@ -221,7 +222,6 @@
 				success: function(returned) {
 					if(returned.status === 200) {
 						var uname = $("#username").val();
-						alert(uname);
 						setCookie("username", uname, 5)
 						location.href = "main.html";
 					} else if(returned.status === 400) {
