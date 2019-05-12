@@ -29,6 +29,8 @@ var user = getCookie("username");
 function quitpage() {
 	$("#quit").click(function() {
 		delCookie("username");
+		delCookie("level");
 		location.href = "login.html";
 	});
 }
+

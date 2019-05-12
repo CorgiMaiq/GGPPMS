@@ -152,72 +152,62 @@
 		.inputtext {
 			width: 460px;
 		}
-		.submit{
+		
+		.submit {
 			margin-left: 950px;
 			margin-top: 16px;
 			padding: 4px 10px;
 		}
-		.messageadd{
+		
+		.messageadd {
 			width: 320px;
 			height: auto;
 			margin-left: 35px;
 			margin-top: 30px;
 		}
-		.messageaddtitle{
+		
+		.messageaddtitle {
 			font-size: 16px;
-			color: rgb(102,102,123);
+			color: rgb(102, 102, 123);
 		}
-		.righttable{
+		
+		.righttable {
 			margin-top: 20px;
 			font-size: 12px;
-			color: rgb(72,72,72);
+			color: rgb(72, 72, 72);
 		}
-		.righttdfirst{
+		
+		.righttdfirst {
 			width: 60px;
 			text-align: left;
 		}
-		.righttdsec{
+		
+		.righttdsec {
 			width: 180px;
 		}
-		.righttdfirst,.righttdsec{
+		
+		.righttdfirst,
+		.righttdsec {
 			padding-top: 8px;
 		}
-		.control{
+		
+		.control {
 			margin-left: 930px;
 			margin-top: 10px;
 		}
-		.controlbut{
+		
+		.controlbut {
 			padding: 4px 10px;
 		}
 	</style>
 
 	<body>
-		<div id="head">
-			<div class="headleft">
-				<a class="headnavi">主页</a>
-				<a class="headnavi">我的工作台</a>
-				<a class="headnavi">项目</a>
-				<a class="headnavi">组</a>
-				<a class="headnavi">关于</a>
-			</div>
-
-			<div class="headright">
-				<span class="loginwith">登录为：</span>
-				<a class="headnaviright">我的账号</a>
-				<a class="headnaviright">退出</a>
-			</div>
-		</div>
-		<div class="headmid">
-			<div class="bzyimg">
-				<img class="bzy" src="img/bzy3.png" />
-			</div>
-			<div class="pms">Project Management System</div>
-		</div>
+		<div class="public"></div>
 		<div class="headbottom">
 
 		</div>
 		<div class="mainn">
-			
+
 			<form method="post">
 				<div class="mainleft">
 					<div class="mycount">
@@ -227,22 +217,22 @@
 						<table>
 							<tr>
 								<td class="tdfirst">姓名</td>
-								<td class="tdsec"><input type="text" class="inputtext" /></td>
+								<td class="tdsec"><input type="text" class="inputtext" id="nickname"/></td>
 							</tr>
 							<tr>
 								<td class="tdfirst">邮箱地址</td>
-								<td class="tdsec"><input type="text" class="inputtext" /></td>
+								<td class="tdsec"><input type="text" class="inputtext" id="email"/></td>
 							</tr>
 							<tr>
 								<td class="tdfirst">密码</td>
-								<td class="tdsec"><input type="password" class="inputtext" /></td>
+								<td class="tdsec"><input type="password" class="inputtext" id="password"/></td>
 							</tr>
 						</table>
 					</div>
-					
-					<input type="submit" value="提交" class="submit"/>
+
+					<input type="submit" value="提交" class="submit" id="submitbut"/>
 					<Div class="control">
-						<input type="button" value="管理其他用户" class="controlbut"/>
+						<input type="button" value="管理其他用户" class="controlbut" id="controlAllUser"/>
 					</Div>
 				</div>
 			</form>
@@ -254,15 +244,15 @@
 							<table>
 								<tr>
 									<td class="righttdfirst">账户名称:</td>
-									<td class="righttdsec">sdsdsd</td>
+									<td class="righttdsec" id="username"></td>
 								</tr>
 								<tr>
 									<td class="righttdfirst">所属组别:</td>
-									<td class="righttdsec">sdsdsd</td>
+									<td class="righttdsec" id="group"></td>
 								</tr>
 								<tr>
 									<td class="righttdfirst">所属等级:</td>
-									<td class="righttdsec">sdsdsd</td>
+									<td class="righttdsec" id="level"></td>
 								</tr>
 							</table>
 						</div>
@@ -276,8 +266,68 @@
 	</body>
 	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 	<script type="application/javascript">
-		$(".controlbut").click(function(){
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
+		$(".controlbut").click(function() {
 			window.location.href = "usercontrol.html";
+		});
+		var permission = getCookie("level");
+		if(permission!=0){
+			$("#controlAllUser").hide();
+		}else{
+			location.href = "usercontrol.html";
+		}
+		$(document).ready(function() {
+			var username = getCookie("username");
+			var data = {
+				"username" : username
+			}
+			$.ajax({
+				type:"post",
+				url:"",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					$("#nickname").val(returned.nickname);
+					$("#email").val(returned.email);
+					$("#password").val(returned.pword);
+					$("#username").html(returned.username);
+					$("#username").html(returned.group);
+					$("#username").html(returned.level);
+				}
+			});
+		});
+		
+		$("#submitbut").click(function(){
+			var data = {
+				"nickname" : $("#nickname").val(),
+				"email" : $("#email").val(),
+				"password" : $("#password").val()
+			};
+			$.ajax({
+				type:"post",
+				url:"",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					if(returned.status === 200) {
+						alert("账户信息修改成功");
+						location.href = "mymessage.html";
+					} else if(returned.status === 400) {
+						alert("修改失败!");
+					}
+				}
+			});
 		})
 	</script>
 

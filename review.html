@@ -215,7 +215,7 @@
 			margin-left: 30px;
 			font-size: 22px;
 			color: rgb(69, 76, 81);
-			overflow-y: scroll;
+			overflow-y: auto;
 		}
 		
 		.tableright {
@@ -230,40 +230,58 @@
 			color: rgb(102, 102, 102);
 			margin-top: 30px;
 		}
-		.test{
+		
+		.test {
 			width: 490px;
-			overflow-x:auto;
+			overflow-x: auto;
 		}
-		#link{
+		
+		#link {
 			padding-bottom: 30px;
 		}
-		.checklistbut{
+		
+		.checklistbut {
 			padding: 4px 90px;
 		}
+		
+		td {
+			overflow-y: auto;
+		}
+		.sonTable{
+			margin-left: 20px;
+			margin-top: 10px;
+			border-collapse: collapse;
+			font-size: 14px;
+			
+		}
+		.sonTable td{
+			padding: 4px;
+			text-align: center;
+			color: rgb(77,77,77);
+		}
+		#baseson{
+			background: rgb(237,237,237);
+		}
+		.sonTable tr:nth-child(odd){
+			background: rgb(246,247,248);
+		}
+		#reviewid{
+			width: 240px;
+		}
+		#reviewstate{
+			width: 260px;
+		}
+		#reviewname{
+			width: 800px;
+		}
+		#addpick{
+			cursor: pointer;
+		}
+		
 	</style>
 
 	<body>
-		<div id="head">
-			<div class="headleft">
-				<a class="headnavi">主页</a>
-				<a class="headnavi">我的工作台</a>
-				<a class="headnavi">项目</a>
-				<a class="headnavi">组</a>
-				<a class="headnavi">关于</a>
-			</div>
-
-			<div class="headright">
-				<span class="loginwith">登录为：</span>
-				<a class="headnaviright">我的账号</a>
-				<a class="headnaviright">退出</a>
-			</div>
-		</div>
-		<div class="headmid">
-			<div class="bzyimg">
-				<img class="bzy" src="img/bzy3.png" />
-			</div>
-			<div class="pms">Project Management System</div>
-		</div>
+		<div class="public"></div>
 		<div class="headbottom">
 			<span class="sign">+</span>
 			<a class="bottomnavi">概述</a>
@@ -272,19 +290,21 @@
 		</div>
 		<div class="mainn">
 			<div class="mainleft">
-				<div class="productNum">
+				<div class="productNum" id="reviewnum">
 					成果物Review编号
 				</div>
 				<div class="edit">
-					<a class="edittext">编辑</a>
+					<a class="edittext" id="editreview">编辑</a>
 				</div>
 				<div class="midbox">
-					<div class="midboxtitle">
+					<div class="midboxtitle" id="reviewTitle">
 						成果物Review标题
 					</div>
 					<div class="beizhu">
 						由xx更新于xx日
 					</div>
+					<input type="hidden" id="projectid">
+					<input type="hidden" id="resultid" />
 					<table class="table">
 						<tr>
 							<th style="width: 200px;"></th>
@@ -294,79 +314,68 @@
 						</tr>
 						<tr>
 							<td class="tdmain1">状态：</td>
-							<td class="tdmain">
-								<div class="test"></div>
+							<td class="tdmain" id="state">
+
 							</td>
 							<td class="tdmain1">开始日期：</td>
-							<td class="tdmain">2019-03-05</td>
+							<td class="tdmain" id="startTime"></td>
 						</tr>
 						<tr>
-							<td class="tdmain1">优先级：33</td>
-							<td class="tdmain"></td>
+							<td class="tdmain1">优先级：</td>
+							<td class="tdmain" id="advanced"></td>
 							<td class="tdmain1">计划完成日期：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="plantime"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">指派给：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="assign"></td>
 							<td class="tdmain1">指摘数：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="picknum"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">总页数：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="pagenum"></td>
 							<td class="tdmain1">变更量：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="changenum"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">Riviewer：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="reviewer"></td>
 							<td class="tdmain1">Riviewee：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="reviewee"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">Review场所：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="reviewplace"></td>
 							<td class="tdmain1">Review耗时：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="reviewtime"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">Review版本：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="reviewVersion"></td>
 							<td class="tdmain1">Review日期：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="reviewDate"></td>
 						</tr>
 						<tr>
-							<td class="tdmain1" id="link">相关链接：</td>
-							<td class="tdmain"></td>
-							<td class="tdmain1"><input type="button" value="查看checklist" class="checklistbut"/></td>
+							<td class="tdmain1">相关链接：</td>
+							<td class="tdmain" id="aboutlink"></td>
+							<td class="tdmain1"><input type="button" value="查看checklist" class="checklistbut" /></td>
 						</tr>
 					</table>
 				</div>
 				<div class="sonMission">
-						子任务&nbsp;&nbsp;&nbsp;
-						<a>新增</a>
-					</div>
+					子任务&nbsp;&nbsp;&nbsp;
+					<a id="addpick">新增</a>
+					<table class="sonTable" border="1px solid black">
+						<tr id="baseson">
+							<td id="reviewid">指摘编号</td>
+							<td id="reviewstate">指摘状态</td>
+							<td id="reviewname">指摘主题</td>
+						</tr>
+					</table>
+				</div>
 				<div class="history">
 					历史记录
-					<br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br />
-
 				</div>
 
 			</div>
@@ -407,5 +416,88 @@
 			Designed By ZhangHan
 		</div>
 	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/WdatePicker.js"></script>
+	<script type="text/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
+
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
+		$("#addpick").click(function(){
+			location.href = "addpick.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
+		});
+		
+		$("#editreview").click(function(){
+			location.href = "editreview.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
+		});
+		
+		$(document).ready(function() {
+			$.post("",{"reviewid" : getUrlParam("reviewid")},function(result){
+				var res = $.parseJSON(result);
+				
+				var href = " 'pick.html?pickid="
+				$.each(res, function(i, n) {
+					tempHtml += "<tr><td>" + n.pickid + "</td>";
+					tempHtml += "<td>" + n.pickstate + "</td>"
+					tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
+				});
+			})
+			
+			
+			var data = {
+				"reviewid": getUrlParam("reviewid")
+			}
+
+			$.ajax({ //根据reviewid把对应的成果物review拿出来
+				type: "post",
+				url: "",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					$("#reviewnum").html(returned.reviewid);
+					$("#reviewTitle").html(returned.reviewTitle);
+					$("#projectid").html(returned.projectid);
+					if(returned.state === 0) {
+						$("#state").html("New Creation");
+					} else if(returned.state === 1) {
+						$("#state").html("In Prograss");
+					} else if(returned.state === 2) {
+						$("#state").html("Resolved");
+					} else if(returned.state === 3) {
+						$("#state").html("Checked");
+					} else if(returned.state === 4) {
+						$("#state").html("Closed");
+					};
+					$("#startTime").html(returned.startTime);
+					if(returned.advanced === 0) {
+						$("#advanced").html("低");
+					} else if(returned.advanced === 1) {
+						$("#advanced").html("中");
+					} else if(returned.advanced === 2) {
+						$("#advanced").html("高");
+					};
+					$("#plantime").html(returned.plantime);
+					$("#assign").html(returned.assign);
+					$("#picknum").html(returned.picknum);
+					$("#pagenum").html(returned.pagenum);
+					$("#changenum").html(returned.changenum);
+					$("#reviewer").html(returned.reviewer);
+					$("#reviewee").html(returned.reviewee);
+					$("#reviewplace").html(returned.reviewplace);
+					$("#reviewtime").html(returned.reviewtime);
+					$("#reviewVersion").html(returned.reviewVersion);
+					$("#reviewDate").html(returned.reviewDate);
+					$("#aboutlink").html(returned.aboutlink);
+				}
+			});
+		})
+	</script>
 
 </html>

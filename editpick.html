@@ -260,7 +260,7 @@
 		<div class="mainn">
 			<div class="mainleft">
 				<div class="productNum">
-					增加Review指摘
+					修改Review指摘
 				</div>
 				<div class="edit">
 					<a class="edittext" id="submitpick">完成</a>
@@ -307,7 +307,7 @@
 								</select>
 							</td>
 							<td class="tdmain1">计划完成日期：</td>
-							<td class="tdmain"><input type="text" class="sthinput" id="plandate" onclick="WdatePicker()"></td>
+							<td class="tdmain"><input type="text" class="sthinput" id="plandate"  onclick="WdatePicker()"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">指派给：</td>
@@ -322,7 +322,7 @@
 							<td class="tdmain1">实际工数：</td>
 							<td class="tdmain"><input type="number" class="sthinput" id="actworknum"></td>
 							<td class="tdmain1">指摘日期：</td>
-							<td class="tdmain"><input type="text" class="sthinput" id="pickdate" onclick="WdatePicker()"></td>
+							<td class="tdmain"><input type="text" class="sthinput" id="pickdate"  onclick="WdatePicker()"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">完成度%：</td>
@@ -405,6 +405,15 @@
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
 		}
+		
+		function optionValue(id, value) {
+			var numbers = id.find("option"); //获取select下拉框的所有值
+			for(var j = 1; j < numbers.length; j++) {
+				if($(numbers[j]).val() == value) {
+					$(numbers[j]).attr("selected", "selected");
+				}
+			} 
+		}
 
 		$(document).ready(function() {
 			$.post("", { //查出项目中的所有人
@@ -415,7 +424,30 @@
 					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
 				});
 			});
-		})
+			var data = {
+				"reviewid" : getUrlParam("reviewid")
+			}
+			$.ajax({
+				type:"post",
+				url:"",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					$("#title").val(returned.title);
+					optionValue($("#state"),returned.state);
+					$("#startdate").val(returned.startdate);
+					optionValue($("#advanced"),returned.advanced);
+					$("#plandate").val(returned.plandate);
+					optionValue($("#assign"),returned.assign);
+					$("#actworknum").val(returned.actworknum);
+					$("#pickdate").val(returned.pickdate);
+					optionValue($("#completepercent"),returned.completepercent);
+					$("#pickcontent").val(returned.pickcontent);
+					$("#pickintro").val(returned.pickintro);
+				}
+			});
+			
+		});
 
 		$("#submitpick").click(function() {
 			if($("#assign").val() === "0") {
@@ -424,8 +456,7 @@
 				var data = {
 					"updatetime": mytime,
 					"updateman" : getCookie("username"),
-					"projectid": getUrlParam("projectid"),
-					"reviewid": getUrlParam("reviewid"),
+					"pickid": getUrlParam("pickid"),
 					"title": $("#title").val(),
 					"state": $("#state").val(),
 					"startdate": $("#startdate").val(),
@@ -438,15 +469,15 @@
 					"pickcontent": $("#pickcontent").val(),
 					"pickintro": $("#pickintro").val()
 				}
-				$.ajax({
-					type: "get",
+				$.ajax({//提交修改
+					type: "post",
 					url: "",
 					contentType: "application/json; charset=UTF-8",
 					data: JSON.stringify(data),
 					success: function(returned) {
 						if(returned.status===200){
 							alert("添加成功");
-							location.href = "review.html?reviewid=" + getUrlParam("reviewid");
+							location.href = "review.html?pickid=" + getUrlParam("pickid");
 						}else{
 							alert("添加出现了一些问题");
 						}

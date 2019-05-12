@@ -137,19 +137,21 @@
 			
 			var data = {
 				"groupid": id
-			}
+			};
+			// get group info
+			//groupmember采用名字逗号分隔字符串
 			$.ajax({
-				type: "put",
-				url: "",
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/group",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				success: function(returned) {
-					$("#groupid").html(returned.groupid);
-					$("#groupdate").html(returned.groupdate);
+					$("#groupid").html(returned.gid);
+					$("#groupdate").html(returned.gdate);
 					$("#groupname").html(returned.groupname);
-					$("#groupleader").html(returned.groupleader);
+					$("#groupleader").html(returned.leadername);
 					$("#groupmember").html(returned.groupmember);
-					$("#groupintro").html(returned.groupintro);
+					$("#groupintro").html(returned.gintro);
 				}
 			});
 		});

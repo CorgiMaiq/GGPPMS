@@ -215,7 +215,7 @@
 			margin-left: 30px;
 			font-size: 22px;
 			color: rgb(69, 76, 81);
-			overflow: scroll;
+			overflow-y: auto;
 		}
 		
 		.tableright {
@@ -230,34 +230,48 @@
 			color: rgb(102, 102, 102);
 			margin-top: 30px;
 		}
-		.test{
+		
+		.test {
 			width: 490px;
-			overflow-x:scroll ;
+			overflow-x:auto;
+		}
+		#state{
+			overflow-x: auto;
+		}
+		.sonTable{
+			margin-left: 20px;
+			margin-top: 10px;
+			border-collapse: collapse;
+			font-size: 14px;
+			
+		}
+		.sonTable td{
+			padding: 4px;
+			text-align: center;
+			color: rgb(77,77,77);
+		}
+		#baseson{
+			background: rgb(237,237,237);
+		}
+		.sonTable tr:nth-child(odd){
+			background: rgb(246,247,248);
+		}
+		#reviewid{
+			width: 240px;
+		}
+		#reviewstate{
+			width: 260px;
+		}
+		#reviewname{
+			width: 800px;
+		}
+		#addreview{
+			cursor: pointer;
 		}
 	</style>
 
 	<body>
-		<div id="head">
-			<div class="headleft">
-				<a class="headnavi">主页</a>
-				<a class="headnavi">我的工作台</a>
-				<a class="headnavi">项目</a>
-				<a class="headnavi">组</a>
-				<a class="headnavi">关于</a>
-			</div>
-
-			<div class="headright">
-				<span class="loginwith">登录为：</span>
-				<a class="headnaviright">我的账号</a>
-				<a class="headnaviright">退出</a>
-			</div>
-		</div>
-		<div class="headmid">
-			<div class="bzyimg">
-				<img class="bzy" src="img/bzy3.png" />
-			</div>
-			<div class="pms">Project Management System</div>
-		</div>
+		<div class="public"></div>
 		<div class="headbottom">
 			<span class="sign">+</span>
 			<a class="bottomnavi">概述</a>
@@ -270,7 +284,7 @@
 					成果物编号
 				</div>
 				<div class="edit">
-					<a class="edittext">编辑</a>
+					<a class="edittext" style="cursor: pointer;">编辑</a>
 				</div>
 				<div class="midbox">
 					<div class="midboxtitle">
@@ -288,92 +302,80 @@
 						</tr>
 						<tr>
 							<td class="tdmain1">状态：</td>
-							<td class="tdmain">
-								<div class="test">flow</div>
+							<td class="tdmain" id="state">
+								
 							</td>
 							<td class="tdmain1">开始日期：</td>
-							<td class="tdmain">2019-03-05</td>
+							<td class="tdmain" id="begindate"></td>
 						</tr>
 						<tr>
-							<td class="tdmain1">优先级：33</td>
-							<td class="tdmain"></td>
+							<td class="tdmain1">优先级：</td>
+							<td class="tdmain" id="advanced"></td>
 							<td class="tdmain1">计划完成日期：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="plandate"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">指派给：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="assign"></td>
 							<td class="tdmain1">指摘数：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="picknum"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">文档页数：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="pagenum"></td>
 							<td class="tdmain1">变更页数：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="changenum"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">预计工数：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="preworknum"></td>
 							<td class="tdmain1">实际工数：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="actworknum"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">Review计划日期：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="reviewplantime"></td>
 							<td class="tdmain1">Review最终完成日期：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="reviewendtime"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">成果物版本：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="resultversion"></td>
 							<td class="tdmain1">成果物链接：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="resultlink"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">NG数：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="NGnum"></td>
 							<td class="tdmain1">完成度：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="completepercent"></td>
 						</tr>
 						<tr>
-							<td class="tdmain1">开始日期：</td>
-							<td class="tdmain"></td>
 							<td class="tdmain1">结束日期：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="endtime"></td>
 						</tr>
 						<tr>
-							<td class="tdmain1">所属：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain1">所属项目ID：</td>
+							<td class="tdmain" id="belong"></td>
 							<td class="tdmain1">成果物类别：</td>
-							<td class="tdmain"></td>
+							<td class="tdmain" id="resulttype"></td>
 						</tr>
 					</table>
 				</div>
 				<div class="sonMission">
-						子任务&nbsp;&nbsp;&nbsp;
-						<a>新增</a>
-					</div>
+					子任务&nbsp;&nbsp;&nbsp;
+					<a id="addreview">新增</a>
+					<table class="sonTable" border="1px solid black">
+						<tr id="baseson">
+							<td id="reviewid">Review编号</td>
+							<td id="reviewstate">Review状态</td>
+							<td id="reviewname">Review主题</td>
+						</tr>
+					</table>
+				</div>
 				<div class="history">
 					历史记录
-					<br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br /><br />
-					<br />
-					<br />
-
+					
 				</div>
 
 			</div>
@@ -414,5 +416,105 @@
 			Designed By ZhangHan
 		</div>
 	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
+		
+		var resultID = getUrlParam("resultid");
+		$(".edittext").click(function(){
+			var pid = getUrlParam("pid");
+			var edithref = "editresult.html?resultID=" + resultID +"&pid=" + pid;
+			location.href = edithref;
+		});
+		
+		$("#addreview").click(function(){
+			location.href = "addreview.html?resultid=" + resultID + "&projectid=" + getUrlParam("pid");
+		});
+		
+		
+		$(document).ready(function() {
+			var data = {
+				"resultid" : resultID
+			}
+			var tempHtml;
+			$.post("",data,function(result){
+				var res = $.parseJSON(result);
+				
+				var href = " 'review.html?reviewid="
+				$.each(res, function(i, n) {
+					tempHtml += "<tr><td>" + n.reviewid + "</td>";
+					tempHtml += "<td>" + n.reviewstate + "</td>"
+					tempHtml += "<td><a href=" + href + n.reviewid + "'>" + n.reviewname + "</a></td></tr>";
+				});
+			})
+			$.ajax({
+				type:"post",
+				url:"",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					$(".productNum").html(resultID);
+					$(".midboxtitle").html(returned.resultTitle);
+					if(returned.state===0){
+						$("#state").html("new Creation");
+					}else if(returned.state===1){
+						$("#state").html("In progress");
+					}else if(returned.state===2){
+						$("#state").html("Resolved");
+					}else if(returned.state===3){
+						$("#state").html("Checked");
+					}else if(returned.state===4){
+						$("#state").html("Closed");
+					}
+					$("#begindate").html(returned.begindate);
+					if(returned.advanced==="0"){
+						$("#advanced").html("低");
+					}else if(returned.advanced==="1"){
+						$("#advanced").html("中");
+					}else{
+						$("#advanced").html("高");
+					}
+					
+					$("#plandate").html(returned.plandate);
+					$("#assign").html(returned.assign);
+					$("#picknum").html(returned.picknum);
+					$("#pagenum").html(returned.pagenum);
+					$("#changenum").html(returned.changenum);
+					$("#preworknum").html(returned.preworknum);
+					$("#actworknum").html(returned.actworknum);
+					$("#reviewplantime").html(returned.reviewplantime);
+					$("#reviewendtime").html(returned.reviewendtime);
+					$("#resultversion").html(returned.resultversion);
+					$("#resultlink").html(returned.resultlink);
+					$("#NGnum").html(returned.NGnum);
+					if(returned.completepercent===0){
+						$("#completepercent").html("0%");
+					}else if(returned.state===1){
+						$("#completepercent").html("20%");
+					}else if(returned.state===2){
+						$("#completepercent").html("40%");
+					}else if(returned.state===3){
+						$("#completepercent").html("60%");
+					}else if(returned.state===4){
+						$("#completepercent").html("80%");
+					}else{
+						$("#completepercent").html("100%");
+					}
+					$("#endtime").html(returned.endtime);
+					$("#belong").html(returned.belong);
+					$("#resulttype").html(returned.resulttype);
+				}
+			});
+		})
+	</script>
 
 </html>

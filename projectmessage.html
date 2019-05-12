@@ -161,7 +161,7 @@
 						</tr>
 						<tr>
 							<td class="td1">成果物：</td>
-							<td class="td2" id="projectIntro">
+							<td class="td2" id="resultlist">
 								<table class="resultTable" border="1px solid black">
 									<tr class="resultHead">
 										<td class="resultid">成果物id</th>
@@ -206,8 +206,9 @@
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
 		}
+		var pid = getUrlParam("pid");
 		$(document).ready(function() {
-			var pid = getUrlParam("pid");
+			
 			var data = {
 				"pid" : pid
 			}
@@ -239,11 +240,12 @@
 				"fatherid": $("#projectid").val()
 			}, function(result) {
 				var res = $.parseJSON(result);
-				var href = " 'main.html?resultid="
+				var href = " 'main.html?resultid=";
+				var href2 = "&pid=";
 				$.each(res, function(i, n) {
 					tempHtml += "<tr><td>" + n.resultid + "</td>";
 					tempHtml += "<td>" + n.resultstate + "</td>"
-					tempHtml += "<td><a href=" + href + n.resultid + "'>" + n.resultname + "</a></td></tr>"
+					tempHtml += "<td><a href=" + href + n.resultid + href2 + pid + "'>" + n.resultname + "</a></td></tr>"
 				});
 				$(".resultHead").append(tempHtml);
 			});

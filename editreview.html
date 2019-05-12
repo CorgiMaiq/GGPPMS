@@ -282,7 +282,8 @@
 			margin-top: 30px;
 			margin-bottom: 30px;
 		}
-		.edittext{
+		
+		.edittext {
 			cursor: pointer;
 		}
 	</style>
@@ -298,7 +299,7 @@
 		<div class="mainn">
 			<div class="mainleft">
 				<div class="productNum">
-					增加成果物Review
+					修改成果物Review
 				</div>
 				<div class="edit">
 					<a class="edittext" id="submitbut">完成</a>
@@ -564,9 +565,9 @@
 			loadcookie();
 			quitpage();
 		});
+		
 		var myDate = new Date();
 		var mytime = myDate.toLocaleTimeString();
-		
 
 		function getUrlParam(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -574,35 +575,16 @@
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
 		}
+
+		function optionValue(id, value) {
+			var numbers = id.find("option"); //获取select下拉框的所有值
+			for(var j = 1; j < numbers.length; j++) {
+				if($(numbers[j]).val() == value) {
+					$(numbers[j]).attr("selected", "selected");
+				}
+			} 
+		}
 		
-		$(document).ready(function(){
-			$.post("", {//查出项目中的所有人
-				"projectid": getUrlParam("projectid")
-			}, function(data) {
-				var res = $.parseJSON(data);
-				$.each(res, function(i, n) {
-					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-				});
-			});
-			
-			$.post("", {//查出项目中的管理者
-				"projectid": getUrlParam("projectid")
-			}, function(data) {
-				var res = $.parseJSON(data);
-				$.each(res, function(i, n) {
-					$("#basereviewer").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-				});
-			});
-			
-			$.post("", {//查出项目中的参与者
-				"projectid": getUrlParam("projectid")
-			}, function(data) {
-				var res = $.parseJSON(data);
-				$.each(res, function(i, n) {
-					$("#baserivewee").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-				});
-			});
-		})
 		$("#submitbut").click(function() {
 			if($("#assign").val() === "0" || $("#reviewer").val() === "0" || $("#reviewee").val() === "0") {
 				alert("请全部填写");
@@ -610,7 +592,7 @@
 				var data = {
 					"updatetime": mytime,
 					"updateman" : getCookie("username"),
-					"projectid" :getUrlParam("projectid"),
+					"reviewid" :getUrlParam("reviewid"),
 					"resultid": getUrlParam("resultid"),
 					"reviewTitle": $("#reviewTitle").val(),
 					"state": $("#state").val(),
@@ -649,11 +631,80 @@
 					success: function(returned) {
 						if(returned.status===200){
 							alert("增加成功");
-							location.href = "main1.html?resultid=" + getUrlParam("resultid");
+							location.href = "review.html?reviewid=" + getUrlParam("reviewid");
 						}
 					}
 				});
 			}
+
+		});
+
+		$(document).ready(function() {
+			$.post("", {//查出项目中的所有人
+				"projectid": getUrlParam("projectid")
+			}, function(data) {
+				var res = $.parseJSON(data);
+				$.each(res, function(i, n) {
+					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
+				});
+			});
+			
+			$.post("", {//查出项目中的管理者
+				"projectid": getUrlParam("projectid")
+			}, function(data) {
+				var res = $.parseJSON(data);
+				$.each(res, function(i, n) {
+					$("#basereviewer").append("<option value=" + n.id + ">" + n.nickname + "</option>")
+				});
+			});
+			
+			$.post("", {//查出项目中的参与者
+				"projectid": getUrlParam("projectid")
+			}, function(data) {
+				var res = $.parseJSON(data);
+				$.each(res, function(i, n) {
+					$("#baserivewee").append("<option value=" + n.id + ">" + n.nickname + "</option>")
+				});
+			});
+			var data = {
+				"reviewid" : getUrlParam("reviewid")
+			}
+			$.ajax({
+				type: "post",
+				url: "",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					$("#reviewTitle").val(returned.reviewTitle)
+					optionValue($("#state"), returned.state);
+					$("#startdate").val(returned.startdate);
+					optionValue($("#advanced"), returned.advanced);
+					$("#plandate").val(returned.plandate);
+					optionValue($("#assign"),returned.assign);
+					$("#picknum").val(returned.picknum);
+					$("#pagenum").val(returned.pagenum);
+					$("#changenum").val(returned.changenum);
+					optionValue($("#reviewer"),returned.reviewer);
+					optionValue($("#reviewee"),returned.reviewee);
+					$("#reviewplace").val(returned.reviewplace);
+					$("#reviewtime").val(returned.reviewtime);
+					$("#reviewVersion").val(returned.reviewVersion);
+					$("#reviewDate").val(returned.reviewDate);
+					$("#aboutlink").val(returned.aboutlink);
+					optionValue($("#check1"),returned.check1);
+					optionValue($("#check2"),returned.check2);
+					optionValue($("#check3"),returned.check3);
+					optionValue($("#check4"),returned.check4);
+					optionValue($("#check5"),returned.check5);
+					optionValue($("#check6"),returned.check6);
+					optionValue($("#rcheck1"),returned.rcheck1);
+					optionValue($("#rcheck2"),returned.rcheck2);
+					optionValue($("#rcheck3"),returned.rcheck3);
+					optionValue($("#rcheck4"),returned.rcheck4);
+					optionValue($("#rcheck5"),returned.rcheck5);
+					optionValue($("#rcheck6"),returned.rcheck6);
+				}
+			});
 
 		});
 	</script>

@@ -11,48 +11,6 @@
 			padding: 0px;
 		}
 		
-		#head {
-			width: 100%;
-			height: 30px;
-			background: black;
-			font-size: 13px;
-			line-height: 30px;
-			color: rgb(140, 145, 148);
-		}
-		
-		.headnavi {
-			margin-left: 30px;
-		}
-		
-		.headleft {
-			width: 85%;
-			float: left;
-		}
-		
-		.headright {
-			width: 15%;
-			float: left;
-		}
-		
-		.loginwith,
-		.headright {
-			float: left;
-		}
-		
-		.headnaviright {
-			margin-left: 15px;
-		}
-		
-		.loginwith {
-			color: white;
-		}
-		
-		.headmid {
-			height: 70px;
-			width: 100%;
-			background: rgb(44, 54, 60);
-		}
-		
 		.headbottom {
 			color: rgb(224, 224, 224);
 			width: 100%;
@@ -144,7 +102,7 @@
 		}
 		
 		.midbox {
-			height: 410px;
+			height: 500px;
 			width: 1500px;
 			background: rgb(246, 246, 246);
 			margin-top: 70px;
@@ -237,15 +195,17 @@
 		}
 		
 		select {
-			width: 470px;
+			width: 220px;
 		}
 		
 		.titletext {
 			width: 470px;
 		}
 		
-		#submitpick {
-			cursor: pointer;
+		.public {
+			width: 100%;
+			height: 100px;
+			margin: 0px;
 		}
 	</style>
 
@@ -260,15 +220,16 @@
 		<div class="mainn">
 			<div class="mainleft">
 				<div class="productNum">
-					增加Review指摘
+					编辑成果物
 				</div>
 				<div class="edit">
-					<a class="edittext" id="submitpick">完成</a>
+					<a class="edittext" id="edittext" style="cursor: pointer;">完成</a>
 				</div>
 				<div class="midbox">
 					<div class="midboxtitle">
-						Review指摘信息
+						成果物信息
 					</div>
+					<input type="hidden" id="hide" />
 					<table class="table">
 						<tr>
 							<th style="width: 200px;"></th>
@@ -277,7 +238,7 @@
 							<th style="width: 490px;"></th>
 						</tr>
 						<tr>
-							<td class="tdmain1">指摘标题：</td>
+							<td class="tdmain1">成果物标题：</td>
 							<td class="tdmain">
 								<input type="text" class="titletext" id="title" />
 							</td>
@@ -288,18 +249,18 @@
 							<td class="tdmain">
 								<select id="state">
 									<option value="0">New Creation</option>
-									<option value="1">In Prograss</option>
+									<option value="1">In progress</option>
 									<option value="2">Resolved</option>
 									<option value="3">Checked</option>
 									<option value="4">Closed</option>
 								</select>
 							</td>
 							<td class="tdmain1">开始日期：</td>
-							<td class="tdmain"><input type="text" class="sthinput" id="startdate" onclick="WdatePicker()"></td>
+							<td class="tdmain"><input type="text" class="sthinput" id="startdate"></td>
 						</tr>
 						<tr>
 							<td class="tdmain1">优先级：</td>
-							<td class="tdmain">
+							<td class="tdmain" id="advanced">
 								<select id="advanced">
 									<option value="0">低</option>
 									<option value="1">中</option>
@@ -313,19 +274,41 @@
 							<td class="tdmain1">指派给：</td>
 							<td class="tdmain">
 								<select id="assign">
-									<option id="baseAssign" value="0">请选择指派用户</option>
+									<option id="baseAssign" value="0">请选择用户</option>
 								</select>
 							</td>
+							<td class="tdmain1">指摘数：</td>
+							<td class="tdmain"><input type="number" id="picknum" /></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">文档页数：</td>
+							<td class="tdmain"><input type="number" id="pagenum" /></td>
+							<td class="tdmain1">变更页数：</td>
+							<td class="tdmain"><input type="number" id="changenum" /></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">预计工数：</td>
+							<td class="tdmain"><input type="number" class="sthinput" id="preworknum"></td>
+							<td class="tdmain1">实际工数：</td>
+							<td class="tdmain"><input type="number" id="actworknum" /></td>
 
 						</tr>
 						<tr>
-							<td class="tdmain1">实际工数：</td>
-							<td class="tdmain"><input type="number" class="sthinput" id="actworknum"></td>
-							<td class="tdmain1">指摘日期：</td>
-							<td class="tdmain"><input type="text" class="sthinput" id="pickdate" onclick="WdatePicker()"></td>
+							<td class="tdmain1">Review计划日期：</td>
+							<td class="tdmain"><input type="text" class="sthinput" id="reviewplantime" onclick="WdatePicker()"></td>
+							<td class="tdmain1">Review最终完成日期：</td>
+							<td class="tdmain"><input type="text" class="sthinput" id="reviewendtime" onclick="WdatePicker()"></td>
 						</tr>
 						<tr>
-							<td class="tdmain1">完成度%：</td>
+							<td class="tdmain1">成果物版本：</td>
+							<td class="tdmain"><input type="text" class="sthinput" id="resultversion"></td>
+							<td class="tdmain1">成果物链接：</td>
+							<td class="tdmain"><input type="text" class="sthinput" id="resultlink"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">NG数：</td>
+							<td class="tdmain"><input type="number" class="sthinput" id="NGnum"></td>
+							<td class="tdmain1">完成度：</td>
 							<td class="tdmain">
 								<select id="completepercent">
 									<option value="0">0%</option>
@@ -336,17 +319,15 @@
 									<option value="5">100%</option>
 								</select>
 							</td>
-							<td class="tdmain1">指摘内容：</td>
-							<td class="tdmain">
-								<input type="text" class="titletext" id="pickcontent" />
-							</td>
 						</tr>
-
 						<tr>
-							<td class="tdmain1">指摘描述：</td>
-							<td class="tdmain">
-								<input type="text" class="titletext" id="pickintro" />
-							</td>
+							<td class="tdmain1">成果物类别：</td>
+							<td class="tdmain"><input type="text" class="sthinput" id="resulttype"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">结束日期：</td>
+							<td class="tdmain"><input type="text" class="sthinput" id="endtime" onclick="WdatePicker()"></td>
+
 						</tr>
 					</table>
 				</div>
@@ -399,6 +380,7 @@
 		var myDate = new Date();
 		var mytime = myDate.toLocaleTimeString();
 
+
 		function getUrlParam(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -406,54 +388,110 @@
 			return null; //返回参数值
 		}
 
+		function optionValue(id, value) {
+			var numbers = id.find("option"); //获取select下拉框的所有值
+			for(var j = 1; j < numbers.length; j++) {
+				if($(numbers[j]).val() == value) {
+					$(numbers[j]).attr("selected", "selected");
+				}
+			} 
+		}
+
+		$("#edittext").click(function() {
+			if($("#NGnum").val() != 0 && $("#state").val() === "4") {
+				alert("NG数为0才可以关闭成果物");
+			} else {
+				var submitdata = {
+					"updatetime": mytime,
+					"updateman" : getCookie("username"),
+					"resultid": getUrlParam("resultID"),
+					"pid": getUrlParam("pid"),
+					"resultTitle": $("#title").val(),
+					"startdate": $("#startdate").val(),
+
+					"state": $("#state").val(),
+					"advanced": $("#advanced").val(),
+					"assign": $("#assign").val(),
+					"picknum": $("#picknum").val(),
+					"plandate": $("#plandate").val(),
+					"pagenum": $("#pagenum").val(),
+					"changenum": $("#changenum").val(),
+					"preworknum": $("#preworknum").val(),
+
+					"actworknum": $("#actworknum").val(),
+					"reviewplantime": $("#reviewplantime").val(),
+					"reviewendtime": $("#reviewendtime").val(),
+					"resultversion": $("#resultversion").val(),
+					"resultlink": $("#resultlink").val(),
+
+					"NGnum": $("#NGnum").val(),
+					"completepercent": $("#completepercent").val(),
+					"resulttype": $("#resulttype").val(),
+					"endtime": $("#endtime").val()
+				}
+
+				$.ajax({
+					type: "post",
+					url: "",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify(submitdata),
+					success: function(returned) {
+						if(returned.status === 200) {
+							alert("修改成功");
+							location.href = "main1.html?resultid=" + getUrlParam("resultID") + "&pid=" + getUrlParam("pID")
+						} else {
+							alert("修改失败");
+						}
+					}
+				});
+			}
+
+		});
+
 		$(document).ready(function() {
-			$.post("", { //查出项目中的所有人
-				"projectid": getUrlParam("projectid")
+
+			$.post("", {
+				"pid": getUrlParam("pid")
 			}, function(data) {
 				var res = $.parseJSON(data);
 				$.each(res, function(i, n) {
 					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
 				});
 			});
-		})
-
-		$("#submitpick").click(function() {
-			if($("#assign").val() === "0") {
-				alert("请选择指派给谁");
-			} else {
-				var data = {
-					"updatetime": mytime,
-					"updateman" : getCookie("username"),
-					"projectid": getUrlParam("projectid"),
-					"reviewid": getUrlParam("reviewid"),
-					"title": $("#title").val(),
-					"state": $("#state").val(),
-					"startdate": $("#startdate").val(),
-					"advanced": $("#advanced").val(),
-					"plandate": $("#plandate").val(),
-					"assign": $("#assign").val(),
-					"actworknum": $("#actworknum").val(),
-					"pickdate": $("#pickdate").val(),
-					"completepercent": $("#completepercent").val(),
-					"pickcontent": $("#pickcontent").val(),
-					"pickintro": $("#pickintro").val()
-				}
-				$.ajax({
-					type: "get",
-					url: "",
-					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(data),
-					success: function(returned) {
-						if(returned.status===200){
-							alert("添加成功");
-							location.href = "review.html?reviewid=" + getUrlParam("reviewid");
-						}else{
-							alert("添加出现了一些问题");
-						}
-					}
-				});
+			var data = {
+				"resultid": getUrlParam("resultID")
 			}
+			$.ajax({
+				type: "post",
+				url: "",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					$("#title").val(returned.resultTitle);
+					$(".midboxtitle").html(returned.resultID + "号成果物");
+					$("#startdate").val(returned.startdate);
+					optionValue($("#state"), returned.state);
+					optionValue($("#advanced"), returned.advanced);
 
+					$("#plandate").val(returned.plandate);
+					optionValue($("#assign"), returned.assign);
+
+					$("#picknum").val(returned.picknum);
+					$("#pagenum").val(returned.pagenum);
+					$("#changenum").val(returned.changenum);
+					$("#preworknum").val(returned.preworknum);
+					$("#actworknum").val(returned.actworknum);
+					$("#reviewplantime").val(returned.reviewplantime);
+					$("#reviewendtime").val(returned.reviewendtime);
+					$("#resultversion").val(returned.resultversion);
+					$("#resultlink").val(returned.resultlink);
+					$("#NGnum").val(returned.NGnum);
+					optionValue($("#completepercent"), returned.completepercent);
+
+					$("#resulttype").val(returned.resulttype);
+					$("#endtime").val(returned.endtime);
+				}
+			});
 		})
 	</script>
 

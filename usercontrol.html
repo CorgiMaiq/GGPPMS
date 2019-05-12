@@ -135,69 +135,85 @@
 		.sizerinput {
 			margin-top: 15px;
 		}
-		.sizersubmit{
+		
+		.sizersubmit {
 			padding: 4px 8px;
 			margin-left: 730px;
 			margin-top: 15px;
 		}
-		.adduser{
+		
+		.adduser {
 			position: absolute;
 			font-size: 12px;
 			left: 70%;
-			color: rgb(82,167,210);
+			color: rgb(82, 167, 210);
 		}
-		
+		.searchbox{
+			position: absolute;
+			width: 800px;
+			left: 50%;
+			margin-top: 60px;
+			margin-left: -400px;
+			background: #13777E;
+		}
+		.searchtable{
+			border-collapse: collapse;
+			text-align: center;
+		}
+		.searchtable td{
+			max-width: 280px;
+			overflow-y: auto;
+		}
 	</style>
 
 	<body>
-		<div id="head">
-			<div class="headleft">
-				<a class="headnavi">主页</a>
-				<a class="headnavi">我的工作台</a>
-				<a class="headnavi">项目</a>
-				<a class="headnavi">组</a>
-				<a class="headnavi">关于</a>
-			</div>
-
-			<div class="headright">
-				<span class="loginwith">登录为：</span>
-				<a class="headnaviright">我的账号</a>
-				<a class="headnaviright">退出</a>
-			</div>
-		</div>
-		<div class="headmid">
-			<div class="bzyimg">
-				<img class="bzy" src="img/bzy3.png" />
-			</div>
-			<div class="pms">Project Management System</div>
-		</div>
+		<div class="public"></div>
 		<div class="headbottom">
 
 		</div>
 		<div class="mainn">
 			<div class="title">
 				用户管理
-				
 			</div>
-			
-			<a class="adduser">添加用户</a>
+
+			<a class="adduser" href="adduser.html">添加用户</a>
 			<form>
 				<div class="sizer">
 					<table>
 						<tr>
 							<td class="tablefirst">工号：</td>
-							<td class="tablesec"><input type="text" class="sizerinput" id="username"/></td>
+							<td class="tablesec"><input type="text" class="sizerinput" id="username" /></td>
 							<td class="tablefirst">姓名：</td>
-							<td class="tablesec"><input type="text" class="sizerinput" id="nickname"/></td>
+							<td class="tablesec"><input type="text" class="sizerinput" id="nickname" /></td>
 						</tr>
 						<tr>
 							<td class="tablefirst">组别：</td>
-							<td class="tablesec"><input type="text" class="sizerinput" id="group"/></td>
+							<td class="tablesec"><input type="text" class="sizerinput" id="group" /></td>
 							<td class="tablefirst">等级：</td>
-							<td class="tablesec"><input type="text" class="sizerinput" id="level"/></td>
+							<td class="tablesec">
+								<select id="level" class="sizerinput">
+									<option value="-1">--请选择--</option>
+									<option value="0">管理员</option>
+									<option value="1">PL</option>
+									<option value="2">GL</option>
+									<option value="3">开发</option>
+								</select>
+							</td>
 						</tr>
 					</table>
-					<input type="submit" value="筛选" class="sizersubmit"/>
+					<div class="searchbox">
+						<table class="searchtable" border="1px">
+							<tr id="basetr">
+								<td width="120px">工号</td>
+								<td width="120px">姓名</td>
+								<td width="200px">组别</td>
+								<td width="120px">等级</td>
+								<td width="280px">邮箱</td>
+							</tr>
+						</table>
+					</div>
+					
+					<input type="submit" value="筛选" class="sizersubmit" />
 				</div>
 			</form>
 
@@ -208,27 +224,30 @@
 	</body>
 	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 	<script type="application/javascript">
-		$(".sizersubmit").click(function(){
-			var data = {
-				"username" : $("#username").val(),
-				"nickname" : $("#nickname").val(),
-				"group" : $("#group").val(),
-				"level" : $("#level").val()
-			};
-			
-		})
-		$.ajax({
-			type:"put",
-			url:"",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify(data),
-			success : function(returned){
-				if(returned.status === 300){
-					
-				}
-			}
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
 		});
+		$(".sizersubmit").click(function() {
+			var data = {
+				"username": $("#username").val(),
+				"nickname": $("#nickname").val(),
+				"group": $("#group").val(),
+				"level": $("#level").val()
+			};
+			$.post("",data,function(returned){
+				var res = $.parseJSON(returned);
+				var temphtml;
+				$.each(res, function(i,n) {
+					tempHtml += "<tr><td>" + n.username + "</td>";
+					tempHtml += "<td><a href='edituser.html?username=" + n.username + "'>" + n.nickname + "</td>"
+					tempHtml += "<td>" + n.group + "</td>";
+					tempHtml += "<td>" + n.level + "</td>";
+					tempHtml += "<td>" + n.email + "</td></tr>";
+				});
+				$("#basetr").append(tempHtml);
+			})
+		})
 	</script>
-
 
 </html>
