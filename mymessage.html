@@ -290,20 +290,20 @@
 		$(document).ready(function() {
 			var username = getCookie("username");
 			var data = {
-				"username" : username
-			}
+				"id" : username
+			};
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/get",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				success: function(returned) {
 					$("#nickname").val(returned.nickname);
 					//$("#email").val(returned.email);
-					$("#password").val(returned.pword);
-					$("#username").html(returned.username);
-					$("#username").html(returned.group);
-					$("#username").html(returned.level);
+					$("#password").val(returned.password);
+					$("#username").html(returned.email);
+					$("#group").html(returned.usergroupname);
+					$("#level").html(returned.usertype);
 				}
 			});
 		});
@@ -317,15 +317,15 @@
 				"username" : username
 			};
 			$.ajax({
-				type:"post",
-				url:"",
+				type:"patch",
+				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/get",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				success: function(returned) {
 					if(returned.status === 200) {
 						alert("账户信息修改成功");
 						location.href = "mymessage.html";
-					} else if(returned.status === 400) {
+					} else {
 						alert("修改失败!");
 					}
 				}
