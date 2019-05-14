@@ -317,14 +317,14 @@
 				"username" : username
 			};
 			$.ajax({
-				type:"patch",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user",
+				type:"post",
+				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/update",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				success: function(returned) {
 					if(returned.status === 200) {
 						alert("账户信息修改成功");
-						location.href = "mymessage.html";
+						location.href = "main1.html";
 					} else {
 						alert("修改失败!");
 					}
