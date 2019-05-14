@@ -309,10 +309,12 @@
 		});
 		
 		$("#submitbut").click(function(){
+			var username = getCookie("username");
 			var data = {
 				"nickname" : $("#nickname").val(),
 				/*"email" : $("#email").val(),*/
-				"password" : $("#password").val()
+				"password" : $("#password").val(),
+				"username" : username
 			};
 			$.ajax({
 				type:"post",
