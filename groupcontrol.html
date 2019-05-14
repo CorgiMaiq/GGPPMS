@@ -134,17 +134,13 @@
 
 		var id = getUrlParam("groupid");
 		$(document).ready(function() {
-			
-			var data = {
-				"groupid": id
-			};
 			// get group info
 			//groupmember采用名字逗号分隔字符串
 			$.ajax({
 				type: "get",
-				url: "http://www.polarbear.pub:8080/GGPPMS/api/group",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/group/"+id,
 				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify(data),
+				async: false, 
 				success: function(returned) {
 					$("#groupid").html(returned.gid);
 					$("#groupdate").html(returned.gdate);

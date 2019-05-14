@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -11,13 +12,6 @@
 				border-bottom-style: solid;
 				border-bottom-width: 2px;
 			}
-			.title{
-				font-size: 22px;
-				width: 100%;
-				text-align: center;
-				color: rgb(77,77,77);
-				margin-top: 15px;
-			}
 			
 			.foot {
 				display: block;
@@ -28,32 +22,17 @@
 				text-align: center;
 				color: rgb(222, 234, 217);
 			}
-			.sizer{
-				width: 600px;
-				height: 100px;
-				background: rgb(235,236,237);
-				position: absolute;
-				left: 50%;
-				margin-left: -300px;
-			}
-			.sizertable{
-				margin-left: 90px;
-			}
-			.td1{
-				width: 130px;
-				text-align: right;
-			}
-			tr{
-				padding: 30px;
-			}
-			.search{
-				margin-left: 500px;
-				padding: 4px 10px 4px 10px;
+			.title{
+				font-size: 22px;
+				width: 100%;
+				text-align: center;
+				color: rgb(77,77,77);
+				margin-top: 15px;
 			}
 			.tablebox{
 				width: 100%;
 				height: 500px;
-				margin-top: 90px;
+				
 			}
 			.maintable{
 				position: absolute;
@@ -71,31 +50,21 @@
 			}
 		</style>
 	</head>
+
 	<body>
-		<div class="public"></div>
+		<div class="public">
+
+		</div>
 		<div class="mainn">
 			<div class="title">组成员管理</div>
-			<div class="sizer">
-				<table class="sizertable">
-					<tr>
-						<td class="td1">工号：</td>
-						<td class="td2"><input type="text" id="username"/></td>
-					</tr>
-					<tr>
-						<td class="td1">姓名：</td>
-						<td class="td2"><input type="text" id="nickname"/></td>
-					</tr>
-				</table>
-				<button class="search">查找</button>
-			</div>
 			<div class="tablebox">
 				<table class="maintable" border="1px">
 					<tr id="basetr">
 						<td>工号</td>
 						<td>姓名</td>
-						<td>所在组</td>
 						<td>级别</td>
-						<td>指派到该组</td>
+						<td>删除</td>
+						<td>指派为组长</td>
 						
 					</tr>
 				</table>
@@ -106,57 +75,83 @@
 		</div>
 	</body>
 	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-	<script type="application/javascript">
+	<script type="text/javascript">
 		$(".public").load("public.html", function() {
 			loadcookie();
 			quitpage();
 		});
-		
+
 		function getUrlParam(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
 		}
+		function ale(){
+			alert("haha");
+		}
 		
-		function addmember(username){
-			var groupdata = {
-				"username" : username,
+		function deletesomeone(id){
+			var deleteid = {
+				"username" : id,
 				"groupid" : getUrlParam("groupid")
 			}
-			$.ajax({//添加某成员到该组
+			$.ajax({//把某个人从某个组删除出去
 				type:"post",
 				url:"",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(deleteid),
 				success: function(returned) {
 					if(returned.status===200){
-						alert("添加成功");
-						location.href = "addmember.html?groupid=" + getUrlParam("groipid"); 
+						alert("删除成功");
+						location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
 					}else{
-						alert("添加失败");
-						location.href = "addmember.html?groupid=" + getUrlParam("groipid"); 
+						alert("删除失败");
+						location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
 					}
 				}
-				
 			});
 		}
-		$(".search").click(function(){
-			var data = {
-				"username" : $("#username").val(),
-				"nickname" : $("#nickname").val()
+		
+		function assign(id){
+			var assignid = {
+				"username" : id,
+				"groupid" : getUrlParam("groupid")
 			}
-			$.post("",data,function(returned){//根据输入信息查找人
+			$.ajax({//把某个人指派为组长
+				type:"post",
+				url:"",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(deleteid),
+				success: function(returned) {
+					if(returned.status===200){
+						alert("指派成功");
+						location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
+					}else{
+						alert("指派失败");
+						location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
+					}
+				}
+			});
+		}
+		
+		$(document).ready(function(){
+			var data = {
+				"groupid" : getUrlParam("groupid")
+			}
+			$.post("",data,function(returned){//拼接裙成员
+				var tempHtml;
 				var res = $.parseJSON(returned);
 				$.each(res, function(i,n) {
 					tempHtml += "<tr><td>" + n.username + "</td>";
 					tempHtml += "<td>" + n.nickname + "</td>";
-					tempHtml += "<td>" + n.group + "</td>";
 					tempHtml += "<td>" + n.level + "</td>";
-					tempHtml += "<td><button onclick='addmember(" + n.username + ")'>指派</button>"+"</td></tr>";
+					tempHtml += "<td><button onclick='deletesomeone(" + n.username + ")'>删除</button>"+"</td>";
+					tempHtml += "<td><button onclick='assign(" + n.username + ")'>指派</button>"+"</td></tr>";
 				});
 				$("#basetr").append(tempHtml);
 			})
-		});
+		})
 	</script>
+
 </html>

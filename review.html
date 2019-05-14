@@ -294,7 +294,8 @@
 					成果物Review编号
 				</div>
 				<div class="edit">
-					<a class="edittext" id="editreview">编辑</a>
+					<a class="edittext" id="editreview">编辑</a> &nbsp;|
+					&nbsp;<a class="watch" style="cursor: pointer;">关注</a>
 				</div>
 				<div class="midbox">
 					<div class="midboxtitle" id="reviewTitle">
@@ -433,6 +434,36 @@
 		$("#addpick").click(function(){
 			location.href = "addpick.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
 		});
+		
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
+		
+		$(".watch").click(function(){
+			var data = {
+				"reviewid" : getUrlParam("reviewid"),
+				"username" : getCookie("username")
+			}
+			
+			$.ajax({//为用户关注成果物
+				type:"post",
+				url:"",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(data),
+				success: function(returned) {
+					if(returned.status===200){
+						alert("关注成功");
+					}else{
+						alert("关注失败，或许是已经关注过了");
+					}
+				}
+			});
+		})
 		
 		$("#editreview").click(function(){
 			location.href = "editreview.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();

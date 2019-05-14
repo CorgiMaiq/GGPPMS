@@ -51,6 +51,7 @@
 		$(".public").load("public.html", function() {
 			loadcookie();
 			quitpage();
+			mywork();
 		});
 		function getCookie(name) {
 			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
@@ -60,8 +61,6 @@
 				return null;
 			}
 		}
-		alert(getCookie("level"));
-		alert(getCookie("username"));
 	</script>
 
 </html>

@@ -219,10 +219,10 @@
 								<td class="tdfirst">姓名</td>
 								<td class="tdsec"><input type="text" class="inputtext" id="nickname"/></td>
 							</tr>
-							<tr>
+<!--							<tr>
 								<td class="tdfirst">邮箱地址</td>
 								<td class="tdsec"><input type="text" class="inputtext" id="email"/></td>
-							</tr>
+							</tr>-->
 							<tr>
 								<td class="tdfirst">密码</td>
 								<td class="tdsec"><input type="password" class="inputtext" id="password"/></td>
@@ -299,7 +299,7 @@
 				data: JSON.stringify(data),
 				success: function(returned) {
 					$("#nickname").val(returned.nickname);
-					$("#email").val(returned.email);
+					//$("#email").val(returned.email);
 					$("#password").val(returned.pword);
 					$("#username").html(returned.username);
 					$("#username").html(returned.group);

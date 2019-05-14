@@ -257,7 +257,7 @@
 		});
 
 		function checkinput(a, b, c, d) {
-			if(a == "" || b == "" || c == "" || d == 0) {
+			if(a == "" || b == "" || c == "") {
 
 				return false;
 			} else {
@@ -271,7 +271,7 @@
 			var nickname1 = $("#nickname").val();
 			var group1 = $("#group").val();
 
-			if(checkinput(username1, password1, nickname1, group1)) {
+			if(checkinput(username1, password1, nickname1)) {
 				var data = {
 					"username": $("#username").val(),
 					"password": $("#password").val(),
