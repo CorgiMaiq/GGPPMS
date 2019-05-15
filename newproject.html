@@ -234,8 +234,8 @@
 		$(document).ready(function() {
 			//todo 返回所有项目信息
 			$.ajax({
-				type: "post",
-				url: "",
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project",
 				datatype: "json",
 				async: false,
 				success: function(data) {
@@ -243,7 +243,7 @@
 						var html = "";
 						var ls = data[i];
 						var href = " href = 'projectmessage.html?pid=" + ls.pid + "'"
-						html += "<tr><td>" + ls.pid + "</td>" + "<td>" + "<a" + href + ">" + ls.projectname + "</td></a>" + "<td>" + ls.createname + "</td>" + "<td>" + ls.groupintro + "</td>" + "<td>" + ls.groupdata + "</td><td>" + ls.state + "</td></tr>"
+						html += "<tr><td>" + ls.pid + "</td>" + "<td>" + "<a" + href + ">" + ls.name + "</td></a>" + "<td>" + ls.creator + "</td>" + "<td>" + ls.sign + "</td>" + "<td>" + ls.create_date + "</td><td>" + ls.state + "</td></tr>"
 					}
 					$(".maintable").append(html);
 				}
