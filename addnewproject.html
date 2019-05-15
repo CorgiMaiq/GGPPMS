@@ -222,14 +222,14 @@
 			
 			var data = {
 				"name": $("#name").val(),
-				"describe": $("#describe").val(),
+				"description": $("#describe").val(),
 				"sign": $("#sign").val(),
 				"group": $("#group").val()
 			};
 			//todo 新建组
 			$.ajax({
 				type: "put",
-				url: "",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				success: function(returned){
