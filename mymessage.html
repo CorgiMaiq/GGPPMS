@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<meta content="*" http-equiv="Access-Control-Allow-Origin" />
+		<title>我的信息</title>
 	</head>
 	<style>
 		* {
@@ -207,8 +207,6 @@
 
 		</div>
 		<div class="mainn">
-
-			<form method="post">
 				<div class="mainleft">
 					<div class="mycount">
 						我的账号
@@ -230,12 +228,11 @@
 						</table>
 					</div>
 
-					<input type="submit" value="提交" class="submit" id="submitbut"/>
+					<input type="button" value="提交" class="submit" id="submitbut"/>
 					<Div class="control">
 						<input type="button" value="管理其他用户" class="controlbut" id="controlAllUser"/>
 					</Div>
 				</div>
-			</form>
 			<div class="mainright">
 				<div class="messageadd">
 					<div class="messageaddtitle">
@@ -287,6 +284,35 @@
 		}else{
 			location.href = "usercontrol.html";
 		}
+		$("#submitbut").click(function(){
+			alert("hehe");
+		})
+		
+		
+		$("#submitbut").click(function(){
+			var username = getCookie("username");
+			var data = {
+				"nickname" : $("#nickname").val(),
+				"password" : $("#password").val(),
+				"username" : username
+			};
+			$.ajax({
+				type:"post",
+				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/update",
+				contentType: "application/json; charset=UTF-8",
+				dataType: "json",
+				data: JSON.stringify(data),
+				async: false, 
+				success: function(returned) {
+					if(returned.status === 200) {
+						window.location.href = "usercontrol.html";
+						alert("账户信息修改成功");
+					} else {
+						alert("修改失败!");
+					}
+				}
+			});
+		});
 		$(document).ready(function() {
 			var username = getCookie("username");
 			var data = {
@@ -297,6 +323,7 @@
 				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/get",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
+				async: false,
 				success: function(returned) {
 					$("#nickname").val(returned.nickname);
 					//$("#email").val(returned.email);
@@ -307,30 +334,6 @@
 				}
 			});
 		});
-		
-		$("#submitbut").click(function(){
-			var username = getCookie("username");
-			var data = {
-				"nickname" : $("#nickname").val(),
-				/*"email" : $("#email").val(),*/
-				"password" : $("#password").val(),
-				"username" : username
-			};
-			$.ajax({
-				type:"post",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/update",
-				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify(data),
-				success: function(returned) {
-					if(returned.status === 200) {
-						alert("账户信息修改成功");
-						location.href = "main1.html";
-					} else {
-						alert("修改失败!");
-					}
-				}
-			});
-		})
 	</script>
 
 </html>

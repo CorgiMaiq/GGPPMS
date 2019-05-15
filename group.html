@@ -107,8 +107,8 @@
 				datatype: "json",
 				async: false,
 				success: function(data) {
+					var html = "";
 					for(var i = 0; i < data.length; i++) {
-						var html = "";
 						var ls = data[i];
 						var href = " href = 'groupcontrol.html?groupid=" + ls.gid + "'"
 						html += "<tr><td>" + ls.gid + "</td>" + "<td>" + "<a" + href + ">" + ls.groupname + "</td></a>" + "<td>" + ls.leadername + "</td>" + "<td>" + ls.gintro + "</td>" + "<td>" + getLocalTime(ls.gdate) + "</td></tr>";

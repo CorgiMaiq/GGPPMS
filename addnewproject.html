@@ -183,7 +183,7 @@
 						<td class="td1">参与组:</td>
 						<td class="td2">
 							<select multiple="multiple" id="group">
-								<option id="baseop">----</option>
+								<option >----</option>
 							</select>
 						</td>
 					</tr>
@@ -203,14 +203,19 @@
 			quitpage();
 		});
 		$(document).ready(function(){
-			$.post("",{},function(returned){
-				var res = $.parseJSON(wreturned);
-				var temphtml;
-				$.each(res, function(i,n) {
-					temphtml += "<option value='" + n.groupid + "'>" + n.groupname + "</option>"; 
-				});
-				$("#baseop").append(temphtml);
+			$.ajaxSettings.async = false;
+			$.get("http://www.polarbear.pub:8080/GGPPMS/api/group",{},function(returned){
+				var temphtml = "";
+/*				$.each(returned, function(i,n) {
+					temphtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>"; 
+				});*/
+				for (var i =0;i<returned.length;i++) {
+					var n = returned[i];
+					temphtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>"; 
+				}
+				$("#group").append(temphtml);
 			})
+			$.ajaxSettings.async = true;
 		});
 		$("#submit").click(function() {
 			var myDate = new Date();
@@ -219,8 +224,7 @@
 				"name": $("#name").val(),
 				"describe": $("#describe").val(),
 				"sign": $("#sign").val(),
-				"group": $("#group").val(),
-				"date" : myDate.toLocaleString()
+				"group": $("#group").val()
 			};
 			//todo 新建组
 			$.ajax({
