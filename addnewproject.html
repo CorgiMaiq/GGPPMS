@@ -183,13 +183,13 @@
 						<td class="td1">参与组:</td>
 						<td class="td2">
 							<select multiple="multiple" id="group">
-								<option >----</option>
+								<option>----</option>
 							</select>
 						</td>
 					</tr>
 				</table>
 				<input type="button" value="提交" id="submit" />
-				<input type="button" value="提2交" id="su" />
+
 			</div>
 		</div>
 		<div class="foot">
@@ -202,50 +202,59 @@
 			loadcookie();
 			quitpage();
 		});
-		$(document).ready(function(){
+
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
+		$(document).ready(function() {
 			$.ajaxSettings.async = false;
-			$.get("http://www.polarbear.pub:8080/GGPPMS/api/group",{},function(returned){
+			$.get("http://www.polarbear.pub:8080/GGPPMS/api/group", {}, function(returned) {
 				var temphtml = "";
-/*				$.each(returned, function(i,n) {
-					temphtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>"; 
-				});*/
-				for (var i =0;i<returned.length;i++) {
+				/*				$.each(returned, function(i,n) {
+									temphtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>"; 
+								});*/
+				for(var i = 0; i < returned.length; i++) {
 					var n = returned[i];
-					temphtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>"; 
+					temphtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>";
 				}
 				$("#group").append(temphtml);
 			})
 			$.ajaxSettings.async = true;
 		});
 		$("#submit").click(function() {
-			var myDate = new Date();
-			
-			var data = {
-				"name": $("#name").val(),
-				"description": $("#describe").val(),
-				"sign": $("#sign").val(),
-				"group": $("#group").val()
-			};
-			//todo 新建组
-			$.ajax({
-				type: "put",
-				url: "http://www.polarbear.pub:8080/GGPPMS/api/project",
-				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify(data),
-				success: function(returned){
-					if(returned.status === 200){
-						location.href = "main.html";
-					}else{
-						var name = $("#name").val();
-						var describe = $("#describe").val();
-						var sign = $("#sign").val();
-						var group = $("#group").val();
-						if(name.length==0 || describe.length==0 || sign.length==0 ||group.length==0){
-							alert("不能有属性为空")
+			if($("#name").val() != "" && $("#describe").val() != "" && $("#sign").val() != "") {
+				var data = {
+					"name": $("#name").val(),
+					"description": $("#describe").val(),
+					"sign": $("#sign").val(),
+					"group": $("#group").val(),
+					"creator": getCookie("username")
+				};
+				alert(getCookie("username"));
+				//todo 新建组
+				$.ajax({
+					type: "put",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/project",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify(data),
+					success: function(returned) {
+						if(returned.status === 200) {
+							alert("创建成功");
+							location.href = "main.html";
+						} else {
+							alert("创建失败，可能项目名重复或者还没有添加组员");
 						}
 					}
-				}
-			});
+				});
+			} else {
+				alert("请全部填写");
+			}
+
 		});
 	</script>
 
