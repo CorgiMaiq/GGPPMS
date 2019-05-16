@@ -360,11 +360,12 @@
         if (r != null) return unescape(r[2]);
         return null; //返回参数值
     }
-//todo 获取该组所有用户
-    $.post("", {"fatherID": fatherID}, function (data) {
+
+    //todo 获取该组所有用户
+    $.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/" + fatherID, function (data) {
         var res = $.parseJSON(data);
         $.each(res, function (i, n) {
-            $("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
+            $("#baseAssign").append("<option value=" + n.email + ">" + n.nickname + "</option>")
         });
     });
     var fatherID = getUrlParam("projectid");
