@@ -361,6 +361,7 @@
         return null; //返回参数值
     }
 
+    var fatherID = getUrlParam("projectid");
     //todo 获取该组所有用户
     $.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/" + fatherID, function (data) {
         var res = $.parseJSON(data);
@@ -368,7 +369,6 @@
             $("#baseAssign").append("<option value=" + n.email + ">" + n.nickname + "</option>")
         });
     });
-    var fatherID = getUrlParam("projectid");
     $("#edittext").click(function () {
         var data = {
             "title": $("#title").val(),
