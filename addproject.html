@@ -383,7 +383,7 @@
         //todo 新建成果物
         $.ajax({
             type: "post",
-            url: "",
+            url: "http://www.polarbear.pub:8080/GGPPMS/api/result/insert",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(data),
             success: function (returned) {
