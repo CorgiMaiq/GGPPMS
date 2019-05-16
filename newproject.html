@@ -250,8 +250,8 @@
 			});
 			//todo 获取开启的/关闭的/总共的项目数
 			$.ajax({
-				type: "post",
-				url: "",
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/count",
 				async: false,
 				success: function(returned) {
 					$("#openproject").html(returned.opennum);
