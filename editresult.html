@@ -450,7 +450,7 @@
 
 		$(document).ready(function() {
 
-			$.post("", {
+			$.post("", {//显示该项目中所有成员
 				"pid": getUrlParam("pid")
 			}, function(data) {
 				var res = $.parseJSON(data);
@@ -461,7 +461,7 @@
 			var data = {
 				"resultid": getUrlParam("resultID")
 			}
-			$.ajax({
+			$.ajax({//编辑成果物
 				type: "post",
 				url: "",
 				contentType: "application/json; charset=UTF-8",

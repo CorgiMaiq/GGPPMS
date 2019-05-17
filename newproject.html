@@ -239,11 +239,17 @@
 				datatype: "json",
 				async: false,
 				success: function(data) {
+					var html = "";
 					for(var i = 0; i < data.length; i++) {
-						var html = "";
 						var ls = data[i];
 						var href = " href = 'projectmessage.html?pid=" + ls.id + "'"
-						html += "<tr><td>" + ls.id + "</td>" + "<td>" + "<a" + href + ">" + ls.name + "</td></a>" + "<td>" + ls.creator + "</td>" + "<td>" + ls.sign + "</td>" + "<td>" + timestampToTime(ls.create_date) + "</td><td>" + ls.status + "</td></tr>"
+						html += "<tr><td>" + ls.id + "</td>" + "<td>" + "<a" + href + ">" + ls.name + "</td></a>" + "<td>" + ls.creator + "</td>" + "<td>" + ls.sign + "</td>";
+						html += "<td>" + timestampToTime(ls.create_date) + "</td>";
+						if (ls.status==0) {
+							html += "<td>开启</td></tr>"
+						} else{
+							html += "<td>关闭</td></tr>"
+						}
 					}
 					$(".maintable").append(html);
 				}
