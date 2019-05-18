@@ -404,11 +404,10 @@
             alert("NG数为0才可以关闭成果物");
         } else {
             var submitdata = {
-                "updatetime": mytime,
-                "updateman": getCookie("username"),
-                "resultid": getUrlParam("resultID"),
-                "pid": getUrlParam("pid"),
-                "resultTitle": $("#title").val(),
+                "creator": getCookie("username"),
+                "id": getUrlParam("resultID"),
+                "pid": getUrlParam("fatherid"),
+                "title": $("#title").val(),
                 "startdate": $("#startdate").val(),
 
                 "state": $("#state").val(),
@@ -421,7 +420,7 @@
                 "preworknum": $("#preworknum").val(),
 
                 "actworknum": $("#actworknum").val(),
-                "reviewplantime": $("#reviewplantime").val(),
+                "reviewplan": $("#reviewplantime").val(),
                 "reviewendtime": $("#reviewendtime").val(),
                 "resultversion": $("#resultversion").val(),
                 "resultlink": $("#resultlink").val(),
@@ -430,11 +429,11 @@
                 "completepercent": $("#completepercent").val(),
                 "resulttype": $("#resulttype").val(),
                 "endtime": $("#endtime").val()
-            }
+            };
 
             $.ajax({
                 type: "post",
-                url: "",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/result/insert",
                 contentType: "application/json; charset=UTF-8",
                 data: JSON.stringify(submitdata),
                 success: function (returned) {
@@ -460,35 +459,35 @@
         });
         var data = {
             "resultid": getUrlParam("resultID")
-        }
+        };
         $.ajax({//编辑成果物
-            type: "post",
-            url: "",
+            type: "get",
+            url: "http://www.polarbear.pub:8080/GGPPMS/api/result/load/" + getUrlParam("resultID"),
             contentType: "application/json; charset=UTF-8",
-            data: JSON.stringify(data),
+            // data: JSON.stringify(data),
             success: function (returned) {
-                $("#title").val(returned.resultTitle);
-                $(".midboxtitle").html(returned.resultID + "号成果物");
-                $("#startdate").val(returned.startdate);
-                optionValue($("#state"), returned.state);
-                optionValue($("#advanced"), returned.advanced);
+                $("#title").val(returned.resultName);
+                $(".midboxtitle").html(returned.resultId + "号成果物");
+                $("#startdate").val(returned.startDate);
+                optionValue($("#state"), returned.status);
+                optionValue($("#advanced"), returned.advancement);
 
-                $("#plandate").val(returned.plandate);
-                optionValue($("#assign"), returned.assign);
+                $("#plandate").val(returned.planEndDate);
+                optionValue($("#assign"), returned.assignTo);
 
-                $("#picknum").val(returned.picknum);
-                $("#pagenum").val(returned.pagenum);
-                $("#changenum").val(returned.changenum);
-                $("#preworknum").val(returned.preworknum);
-                $("#actworknum").val(returned.actworknum);
-                $("#reviewplantime").val(returned.reviewplantime);
-                $("#reviewendtime").val(returned.reviewendtime);
-                $("#resultversion").val(returned.resultversion);
-                $("#resultlink").val(returned.resultlink);
-                $("#NGnum").val(returned.NGnum);
-                optionValue($("#completepercent"), returned.completepercent);
+                $("#picknum").val(returned.pickNum);
+                $("#pagenum").val(returned.pageNum);
+                $("#changenum").val(returned.changeNum);
+                $("#preworknum").val(returned.preWorkNum);
+                $("#actworknum").val(returned.actWorkNum);
+                $("#reviewplantime").val(returned.planReviewDate);
+                $("#reviewendtime").val(returned.reviewedDate);
+                $("#resultversion").val(returned.version);
+                $("#resultlink").val(returned.link);
+                $("#NGnum").val(returned.ngNum);
+                optionValue($("#completepercent"), returned.completePct);
 
-                $("#resulttype").val(returned.resulttype);
+                $("#resulttype").val(returned.resultType);
                 $("#endtime").val(returned.endtime);
             }
         });

@@ -228,7 +228,7 @@
             }
         });
         var tempHtml;
-        $.get("http://www.polarbear.pub:8080/GGPPMS/api/result/load/" + $("#projectid").val(), function (result) {
+        $.get("http://www.polarbear.pub:8080/GGPPMS/api/result/load/pro/" + $("#projectid").val(), function (result) {
             var res = $.parseJSON(result);
             var href = " 'main.html?resultid=";
             var href2 = "&pid=";
