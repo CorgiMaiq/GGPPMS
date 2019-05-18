@@ -228,17 +228,15 @@
             }
         });
         var tempHtml;
-        $.post("", {
-            "fatherid": $("#projectid").val()
-        }, function (result) {
+        $.get("http://www.polarbear.pub:8080/GGPPMS/api/result/load/" + $("#projectid").val(), function (result) {
             var res = $.parseJSON(result);
             var href = " 'main.html?resultid=";
             var href2 = "&pid=";
-            for (var i =0;i<result.length;i++) {
-            	var n = result[i];
-            	tempHtml += "<tr><td>" + n.resultid + "</td>";
-                tempHtml += "<td>" + n.resultstate + "</td>"
-                tempHtml += "<td><a href=" + href + n.resultid + href2 + pid + "'>" + n.resultname + "</a></td></tr>"
+            for (var i = 0; i < result.length; i++) {
+                var n = result[i];
+                tempHtml += "<tr><td>" + n.resultId + "</td>";
+                tempHtml += "<td>" + n.status + "</td>"
+                tempHtml += "<td><a href=" + href + n.resultId + href2 + pid + "'>" + n.resultName + "</a></td></tr>"
             }
             $(".resultHead").append(tempHtml);
         });
