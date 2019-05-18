@@ -443,11 +443,11 @@
 			var data = {
 				"resultid" : getUrlParam("resultid"),
 				"username" : getCookie("username")
-			}
+            };
 			
 			$.ajax({//为用户关注成果物
 				type:"post",
-				url:"",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/result",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				success: function(returned) {
@@ -458,7 +458,7 @@
 					}
 				}
 			});
-		})
+        });
 		
 		var resultID = getUrlParam("resultid");
 		$(".edittext").click(function(){
