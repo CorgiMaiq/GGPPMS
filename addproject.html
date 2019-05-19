@@ -366,6 +366,15 @@
 			return null; //返回参数值
 		}
 
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
+
 		var fatherID = getUrlParam("projectid");
 		$(document).ready(function() {
 			turl = "http://www.polarbear.pub:8080/GGPPMS/api/project/member/" + fatherID;
@@ -407,6 +416,7 @@
 				alert("开始日期不可以在结束日期后");
 			} else {
 				var data = {
+					"creator": getCookie("username"),
 					"title": $("#title").val(),
 					"state": $("#state").val(),
 					"startdate": $("#startdate").val(),
@@ -426,7 +436,7 @@
 					data: JSON.stringify(data),
 					success: function(returned) {
 						alert(JSON.stringify(returned));
-						var dataObj=eval("("+returned+")");
+						var dataObj = eval("(" + returned + ")");
 						if(dataObj.status === 200) {
 							alert("添加成功");
 							location.href = "main1.html";
