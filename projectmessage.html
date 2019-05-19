@@ -1,262 +1,284 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <style>
-        .mainn {
-            width: 100%;
-            height: 1000px;
-        }
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.mainn {
+				width: 100%;
+				height: 1000px;
+			}
+			
+			.mainleft {
+				height: auto;
+				width: 80%;
+				float: left;
+			}
+			
+			.mainright {
+				float: right;
+				width: 19%;
+				height: 1000px;
+				background: rgb(250, 250, 250);
+				border-left-color: rgb(220, 220, 220);
+				border-left-width: 1px;
+				border-left-style: solid;
+				border-bottom-color: rgb(220, 220, 220);
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+			
+			.projecttitle {
+				font-size: 22px;
+				margin: 20px;
+				width: auto;
+				color: rgb(76, 76, 76);
+				float: left;
+			}
+			
+			.addproject {
+				color: rgb(17, 102, 153);
+				float: right;
+				margin: 20px;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			.righttitle {
+				font-size: 18px;
+				margin: 18px;
+				color: rgb(77, 77, 77);
+			}
+			
+			.addnewproject {
+				color: rgb(17, 102, 153);
+			}
+			
+			.mainbox {
+				margin: 80px 20px 0 20px;
+				width: 1470px;
+				background: rgb(246, 246, 246);
+				height: 600px;
+				border: 1px solid rgb(228, 228, 228);
+			}
+			
+			.tablemain {
+				margin: 40px;
+				border-collapse: collapse;
+			}
+			
+			.td1 {
+				text-align: right;
+				padding: 12px 0px 12px 40px;
+			}
+			
+			.td2 {
+				width: 1100px;
+				word-break: break-all;
+				word-wrap: break-word;
+				padding: 15px;
+			}
+			
+			.tableright {
+				font-size: 12px;
+				margin-left: 20px;
+				margin-top: 30px;
+			}
+			
+			.td3 {
+				text-align: right;
+			}
+			
+			.td3,
+			.td4 {
+				padding: 4px 2px 4px 0px;
+			}
+			
+			a {
+				cursor: pointer;
+			}
+			
+			.resultTable {
+				border-collapse: collapse;
+				text-align: center;
+				font-size: 12px;
+			}
+			
+			.resultid {
+				width: 130px;
+			}
+			
+			.resultstate {
+				width: 220px;
+			}
+			
+			.resultname {
+				width: 600px;
+			}
+			
+			.resultHead {
+				font-weight: 700;
+			}
+			#resultlist{
+				overflow: auto;
+				max-height: 250px;
+			}	
+			.iop{
+				
+				max-height: 250px;
+				overflow: auto;
+			}		
+		</style>
+	</head>
 
-        .mainleft {
-            height: auto;
-            width: 80%;
-            float: left;
-        }
+	<body>
+		<div class="public"></div>
+		<div class="mainn">
+			<div class="mainleft">
+				<div class="projecttitle">
+					项目信息
+				</div>
+				<div class="addproject">
+					<a class="addnewproject">增加成果物</a>
+				</div>
+				<div class="mainbox">
+					<table class="tablemain" border="1px solid rgb(221,221,221)">
+						<tr>
+							<td class="td1">项目id：</td>
+							<td class="td2" id="projectid"></td>
+						</tr>
+						<tr>
+							<td class="td1">创建日期：</td>
+							<td class="td2" id="projectCreateDate"></td>
+						</tr>
+						<tr>
+							<td class="td1">项目名称：</td>
+							<td class="td2" id="projectName"></td>
+							<a href=""></a>
 
-        .mainright {
-            float: right;
-            width: 19%;
-            height: 1000px;
-            background: rgb(250, 250, 250);
-            border-left-color: rgb(220, 220, 220);
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-bottom-color: rgb(220, 220, 220);
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-        }
+						</tr>
+						<tr>
+							<td class="td1">项目标识：</td>
+							<td class="td2" id="projectSign"></td>
+						</tr>
+						<tr>
+							<td class="td1">项目描述：</td>
+							<td class="td2" id="projectIntro"></td>
+						</tr>
+						<tr>
+							<td class="td1">成果物：</td>
+							<td class="td2" id="resultlist">
+								<div class="iop">
+									<table class="resultTable" border="1px solid black" id="resulttable">
+									<tr class="resultHead">
+										<td class="resultid">成果物id
+											</th>
+											<td class="resultstate">成果物状态
+												</th>
+												<td class="resultname">成果物主题
+													</th>
+									</tr>
 
-        .projecttitle {
-            font-size: 22px;
-            margin: 20px;
-            width: auto;
-            color: rgb(76, 76, 76);
-            float: left;
-        }
+								</table>
+								</div>
+								
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="mainright">
+				<table class="tableright">
+					<tr>
+						<td class="td3">创建者：</td>
+						<td class="td4" id="creator"></td>
+					</tr>
+					<tr>
+						<td class="td3">管理员：</td>
+						<td class="td4" id="manager"></td>
+					</tr>
+					<tr>
+						<td class="td3">参与者：</td>
+						<td class="td4" id="grouper"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="application/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
 
-        .addproject {
-            color: rgb(17, 102, 153);
-            float: right;
-            margin: 20px;
-        }
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
 
-        a {
-            text-decoration: none;
-        }
+		var pid = getUrlParam("pid");
+		$(document).ready(function() {
 
-        .righttitle {
-            font-size: 18px;
-            margin: 18px;
-            color: rgb(77, 77, 77);
-        }
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/" + pid,
+				success: function(returned) {
+					$("#projectid").html(returned.id);
+					$("#projectCreateDate").html(timestampToTime(returned.create_date));
+					$("#projectName").html(returned.name);
+					$("#projectSign").html(returned.sign);
+					$("#projectIntro").html(returned.description);
+					$("#creator").html(returned.creator);
+					$("#manager").html(returned.manager);
+					$("#grouper").html(returned.grouper);
+				}
+			});
+			var tempHtml = "";
+			var lurl = "http://www.polarbear.pub:8080/GGPPMS/api/result/load/pro/" + getUrlParam("pid");
+			$.ajax({
+				type: "get",
+				url: lurl,
+				contentType: "application/json; charset=UTF-8",
+				async: false,
+				success: function(result) {
+					alert("heihei");
+					var href = " 'main1.html?resultid=";
+					var href2 = "&pid=";
+					var dataObj=eval("("+result+")");
+					for(var i = 0; i < dataObj.length; i++) {
+						var n = dataObj[i];
+						tempHtml += "<tr><td>" + n.resultId + "</td>";
+						tempHtml += "<td>" + n.status + "</td>"
+						tempHtml += "<td><a href=" + href + n.resultId + href2 + pid + "'>" + n.resultName + "</a></td></tr>"
+					}
+					alert(tempHtml);
+					$("#resulttable").append(tempHtml);
+				}
+			});
 
-        .addnewproject {
-            color: rgb(17, 102, 153);
-        }
+		});
+		$(".addnewproject").click(function() {
+			var id = $("#projectid").html();
+			var href = "addproject.html?projectid=" + id;
+			location.href = href;
+		});
 
-        .mainbox {
-            margin: 80px 20px 0 20px;
-            width: 1470px;
-            background: rgb(246, 246, 246);
-            height: 600px;
-            border: 1px solid rgb(228, 228, 228);
-        }
-
-        .tablemain {
-            margin: 40px;
-            border-collapse: collapse;
-        }
-
-        .td1 {
-            text-align: right;
-            padding: 12px 0px 12px 40px;
-        }
-
-        .td2 {
-            width: 1100px;
-            word-break: break-all;
-            word-wrap: break-word;
-            padding: 15px;
-        }
-
-        .tableright {
-            font-size: 12px;
-            margin-left: 20px;
-            margin-top: 30px;
-        }
-
-        .td3 {
-            text-align: right;
-        }
-
-        .td3,
-        .td4 {
-            padding: 4px 2px 4px 0px;
-        }
-
-        a {
-            cursor: pointer;
-        }
-
-        .resultTable {
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 12px;
-        }
-
-        .resultid {
-            width: 130px;
-        }
-
-        .resultstate {
-            width: 220px;
-        }
-
-        .resultname {
-            width: 600px;
-        }
-
-        .resultHead {
-            font-weight: 700;
-        }
-    </style>
-</head>
-
-<body>
-<div class="public"></div>
-<div class="mainn">
-    <div class="mainleft">
-        <div class="projecttitle">
-            项目信息
-        </div>
-        <div class="addproject">
-            <a class="addnewproject">增加成果物</a>
-        </div>
-        <div class="mainbox">
-            <table class="tablemain" border="1px solid rgb(221,221,221)">
-                <tr>
-                    <td class="td1">项目id：</td>
-                    <td class="td2" id="projectid"></td>
-                </tr>
-                <tr>
-                    <td class="td1">创建日期：</td>
-                    <td class="td2" id="projectCreateDate"></td>
-                </tr>
-                <tr>
-                    <td class="td1">项目名称：</td>
-                    <td class="td2" id="projectName"></td>
-                    <a href=""></a>
-
-                </tr>
-                <tr>
-                    <td class="td1">项目标识：</td>
-                    <td class="td2" id="projectSign"></td>
-                </tr>
-                <tr>
-                    <td class="td1">项目描述：</td>
-                    <td class="td2" id="projectIntro"></td>
-                </tr>
-                <tr>
-                    <td class="td1">成果物：</td>
-                    <td class="td2" id="resultlist">
-                        <table class="resultTable" border="1px solid black">
-                            <tr class="resultHead">
-                                <td class="resultid">成果物id
-                                </th>
-                                <td class="resultstate">成果物状态
-                                </th>
-                                <td class="resultname">成果物主题
-                                </th>
-                            </tr>
-
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="mainright">
-        <table class="tableright">
-            <tr>
-                <td class="td3">创建者：</td>
-                <td class="td4" id="creator"></td>
-            </tr>
-            <tr>
-                <td class="td3">管理员：</td>
-                <td class="td4" id="manager"></td>
-            </tr>
-            <tr>
-                <td class="td3">参与者：</td>
-                <td class="td4" id="grouper"></td>
-            </tr>
-        </table>
-    </div>
-</div>
-</body>
-<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-<script type="application/javascript">
-    $(".public").load("public.html", function () {
-        loadcookie();
-        quitpage();
-    });
-
-    function getUrlParam(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg); //匹配目标参数
-        if (r != null) return unescape(r[2]);
-        return null; //返回参数值
-    }
-
-    var pid = getUrlParam("pid");
-    $(document).ready(function () {
-
-        $.ajax({
-            type: "get",
-            url: "http://www.polarbear.pub:8080/GGPPMS/api/project/" + pid,
-            success: function (returned) {
-                $("#projectid").html(returned.id);
-                $("#projectCreateDate").html(timestampToTime(returned.create_date));
-                $("#projectName").html(returned.name);
-                $("#projectSign").html(returned.sign);
-                $("#projectIntro").html(returned.description);
-                $("#creator").html(returned.creator);
-                $("#manager").html(returned.manager);
-                $("#grouper").html(returned.grouper);
-            }
-        });
-        var tempHtml;
-        $.get("http://www.polarbear.pub:8080/GGPPMS/api/result/load/pro/" + $("#projectid").val(), function (result) {
-            var res = $.parseJSON(result);
-            var href = " 'main.html?resultid=";
-            var href2 = "&pid=";
-            for (var i = 0; i < result.length; i++) {
-                var n = result[i];
-                tempHtml += "<tr><td>" + n.resultId + "</td>";
-                tempHtml += "<td>" + n.status + "</td>"
-                tempHtml += "<td><a href=" + href + n.resultId + href2 + pid + "'>" + n.resultName + "</a></td></tr>"
-            }
-            $(".resultHead").append(tempHtml);
-        });
-    });
-    $(".addnewproject").click(function () {
-        var id = $("#projectid").html();
-        var href = "addproject.html?projectid=" + id;
-        location.href = href;
-    });
-
-    function timestampToTime(timestamp) {
-        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-        Y = date.getFullYear() + '-';
-        M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-        D = date.getDate() + ' ';
-        h = date.getHours() + ':';
-        m = date.getMinutes() + ':';
-        s = date.getSeconds();
-        return Y + M + D + h + m + s;
-    }
-</script>
+		function timestampToTime(timestamp) {
+			var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+			Y = date.getFullYear() + '-';
+			M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+			D = date.getDate() + ' ';
+			h = date.getHours() + ':';
+			m = date.getMinutes() + ':';
+			s = date.getSeconds();
+			return Y + M + D + h + m + s;
+		}
+	</script>
 
 </html>
