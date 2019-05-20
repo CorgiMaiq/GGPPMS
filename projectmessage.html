@@ -9,13 +9,13 @@
 				width: 100%;
 				height: 1000px;
 			}
-			
+
 			.mainleft {
 				height: auto;
 				width: 80%;
 				float: left;
 			}
-			
+
 			.mainright {
 				float: right;
 				width: 19%;
@@ -28,7 +28,7 @@
 				border-bottom-width: 1px;
 				border-bottom-style: solid;
 			}
-			
+
 			.projecttitle {
 				font-size: 22px;
 				margin: 20px;
@@ -36,27 +36,27 @@
 				color: rgb(76, 76, 76);
 				float: left;
 			}
-			
+
 			.addproject {
 				color: rgb(17, 102, 153);
 				float: right;
 				margin: 20px;
 			}
-			
+
 			a {
 				text-decoration: none;
 			}
-			
+
 			.righttitle {
 				font-size: 18px;
 				margin: 18px;
 				color: rgb(77, 77, 77);
 			}
-			
+
 			.addnewproject {
 				color: rgb(17, 102, 153);
 			}
-			
+
 			.mainbox {
 				margin: 80px 20px 0 20px;
 				width: 1470px;
@@ -64,73 +64,73 @@
 				height: 600px;
 				border: 1px solid rgb(228, 228, 228);
 			}
-			
+
 			.tablemain {
 				margin: 40px;
 				border-collapse: collapse;
 			}
-			
+
 			.td1 {
 				text-align: right;
 				padding: 12px 0px 12px 40px;
 			}
-			
+
 			.td2 {
 				width: 1100px;
 				word-break: break-all;
 				word-wrap: break-word;
 				padding: 15px;
 			}
-			
+
 			.tableright {
 				font-size: 12px;
 				margin-left: 20px;
 				margin-top: 30px;
 			}
-			
+
 			.td3 {
 				text-align: right;
 			}
-			
+
 			.td3,
 			.td4 {
 				padding: 4px 2px 4px 0px;
 			}
-			
+
 			a {
 				cursor: pointer;
 			}
-			
+
 			.resultTable {
 				border-collapse: collapse;
 				text-align: center;
 				font-size: 12px;
 			}
-			
+
 			.resultid {
 				width: 130px;
 			}
-			
+
 			.resultstate {
 				width: 220px;
 			}
-			
+
 			.resultname {
 				width: 600px;
 			}
-			
+
 			.resultHead {
 				font-weight: 700;
 			}
 			#resultlist{
 				overflow: auto;
 				max-height: 250px;
-			}	
+			}
 			.iop{
-				
+
 				max-height: 250px;
 				overflow: auto;
-			}		
+			}
 		</style>
 	</head>
 
@@ -184,7 +184,7 @@
 
 								</table>
 								</div>
-								
+
 							</td>
 						</tr>
 					</table>
@@ -254,7 +254,7 @@
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
 						tempHtml += "<tr><td>" + n.resultId + "</td>";
-						tempHtml += "<td>" + n.status + "</td>"
+						tempHtml += "<td>" + n.status + "</td>";
 						tempHtml += "<td><a href=" + href + n.resultId + href2 + pid + "'>" + n.resultName + "</a></td></tr>"
 					}
 					alert(tempHtml);
