@@ -451,7 +451,7 @@
 
     $(document).ready(function () {
 
-        $.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/" + getUrlParam("pid"), function (data) {
+        $.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("pid"), function (data) {
             var res = $.parseJSON(data);
             $.each(res, function (i, n) {
                 $("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")

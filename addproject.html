@@ -377,7 +377,7 @@
 
 		var fatherID = getUrlParam("projectid");
 		$(document).ready(function() {
-			turl = "http://www.polarbear.pub:8080/GGPPMS/api/project/member/" + fatherID;
+			turl = "http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + fatherID;
 			$.ajax({
 				type: "get",
 				url: turl,
