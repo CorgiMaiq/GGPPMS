@@ -485,7 +485,7 @@
     $(document).ready(function () {
         var data = {
             "resultid": resultID
-        }
+        };
         var tempHtml;
         $.post("", data, function (result) {
             var res = $.parseJSON(result);
@@ -496,7 +496,7 @@
                 tempHtml += "<td>" + n.reviewstate + "</td>"
                 tempHtml += "<td><a href=" + href + n.reviewid + "'>" + n.reviewname + "</a></td></tr>";
             });
-        })
+        });
         $.ajax({
             type: "post",
             url: "http://www.polarbear.pub:8080/GGPPMS/api/result/load/" + resultID,
