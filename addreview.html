@@ -637,8 +637,8 @@
                 "updatetime": mytime
             };
             $.ajax({//增加成果物
-                type: "post",
-                url: "",
+                type: "put",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/review",
                 contentType: "application/json; charset=UTF-8",
                 data: JSON.stringify(data),
                 success: function (returned) {
