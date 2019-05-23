@@ -407,15 +407,14 @@
 		}
 
 		$(document).ready(function() {
-			$.post("", { //查出项目中的所有人
-				"projectid": getUrlParam("projectid")
-			}, function(data) {
+            $.get("\"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/\" + getUrlParam(\"projectid\")", //查出项目中的所有人
+                function (data) {
 				var res = $.parseJSON(data);
 				$.each(res, function(i, n) {
 					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
 				});
 			});
-		})
+        });
 
 		$("#submitpick").click(function() {
 			if($("#assign").val() === "0") {
@@ -439,14 +438,14 @@
 					"pickintro": $("#pickintro").val()
 				}
 				$.ajax({
-					type: "get",
-					url: "",
+                    type: "post",
+                    url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/insert",
 					contentType: "application/json; charset=UTF-8",
 					data: JSON.stringify(data),
 					success: function(returned) {
 						if(returned.status===200){
 							alert("添加成功");
-							location.href = "review.html?reviewid=" + getUrlParam("reviewid");
+                            location.href = "pick.html?reviewid=" + getUrlParam("reviewid");
 						}else{
 							alert("添加出现了一些问题");
 						}
