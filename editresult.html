@@ -402,7 +402,9 @@
     $("#edittext").click(function () {
         if ($("#NGnum").val() != 0 && $("#state").val() === "4") {
             alert("NG数为0才可以关闭成果物");
-        } else {
+        }else if($("#state").val()==="4"&&getCookie("level")!=0) {
+        	alert("您无权关闭此成果物");
+        }else {
             var submitdata = {
                 "creator": getCookie("username"),
                 "id": getUrlParam("resultID"),

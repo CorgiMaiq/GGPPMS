@@ -2,7 +2,8 @@
 <html>
 
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8" />
+		<meta content="*" http-equiv="Access-Control-Allow-Origin" />
 		<title></title>
 		<style>
 			.mainn {
@@ -247,7 +248,6 @@
 				contentType: "application/json; charset=UTF-8",
 				async: false,
 				success: function(result) {
-					alert("heihei");
 					var href = " 'main1.html?resultid=";
 					var href2 = "&pid=";
 					var dataObj=eval("("+result+")");

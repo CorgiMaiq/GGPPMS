@@ -488,6 +488,7 @@
         };
         var tempHtml;
         $.post("", data, function (result) {
+        	
             var res = $.parseJSON(result);
 
             var href = " 'review.html?reviewid="
@@ -502,18 +503,19 @@
             url: "http://www.polarbear.pub:8080/GGPPMS/api/result/load/" + resultID,
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(data),
-            success: function (returned) {
-                $(".productNum").html(resultID);
-                $(".midboxtitle").html(returned.resultName);
-                if (returned.status === 0) {
+            success: function (result) {
+            	var returned=eval("("+result+")");
+                $(".productNum").html(resultID+"号成果物");
+                $("#midboxtitle").html(returned.resultName);
+                if (returned.status === "0") {
                     $("#state").html("new Creation");
-                } else if (returned.status === 1) {
+                } else if (returned.status === "1") {
                     $("#state").html("In progress");
-                } else if (returned.status === 2) {
+                } else if (returned.status === '2') {
                     $("#state").html("Resolved");
-                } else if (returned.status === 3) {
+                } else if (returned.status === "3") {
                     $("#state").html("Checked");
-                } else if (returned.status === 4) {
+                } else if (returned.status === "4") {
                     $("#state").html("Closed");
                 }
                 $("#begindate").html(returned.startDate);
@@ -537,7 +539,8 @@
                 $("#resultversion").html(returned.version);
                 $("#resultlink").html(returned.link);
                 $("#NGnum").html(returned.ngNum);
-                if (returned.completePct === 0) {
+                alert(returned.completePct);
+                if (returned.completePct === "0") {
                     $("#completepercent").html("0%");
                 } else if (returned.completePct === 1) {
                     $("#completepercent").html("20%");
