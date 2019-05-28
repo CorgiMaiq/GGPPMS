@@ -200,7 +200,7 @@
 				});
 				$("#baserightTr").append(temphtml);
 			});
-			//todo 根据用户名查找用户被指派的review，返回Riview id，所属项目名
+            // 根据用户名查找用户被指派的review，返回Riview id，所属项目名
 			$.get("http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/pick/watch/" + getCookie("username"), function (wreturnedpick) {
 				var res = $.parseJSON(wreturnedpick);
 				var temphtml;
