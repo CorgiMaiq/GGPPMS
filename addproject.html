@@ -412,9 +412,14 @@
 			var d2 = $("#plandate").val();
 			var e1 = new Date(d1).getTime();
 			var e2 = new Date(d2).getTime();
+		
 			if(d1 > d2) {
 				alert("开始日期不可以在结束日期后");
-			} else {
+			} else if($("#assign").val()==="0"){
+				alert("指派不能为空");
+			}else
+			
+			{
 				var data = {
 					"creator": getCookie("username"),
 					"title": $("#title").val(),

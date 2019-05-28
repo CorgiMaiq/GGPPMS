@@ -10,13 +10,13 @@
 				width: 100%;
 				height: 1000px;
 			}
-
+			
 			.mainleft {
 				height: auto;
 				width: 80%;
 				float: left;
 			}
-
+			
 			.mainright {
 				float: right;
 				width: 19%;
@@ -29,7 +29,7 @@
 				border-bottom-width: 1px;
 				border-bottom-style: solid;
 			}
-
+			
 			.projecttitle {
 				font-size: 22px;
 				margin: 20px;
@@ -37,27 +37,27 @@
 				color: rgb(76, 76, 76);
 				float: left;
 			}
-
+			
 			.addproject {
 				color: rgb(17, 102, 153);
 				float: right;
 				margin: 20px;
 			}
-
+			
 			a {
 				text-decoration: none;
 			}
-
+			
 			.righttitle {
 				font-size: 18px;
 				margin: 18px;
 				color: rgb(77, 77, 77);
 			}
-
+			
 			.addnewproject {
 				color: rgb(17, 102, 153);
 			}
-
+			
 			.mainbox {
 				margin: 80px 20px 0 20px;
 				width: 1470px;
@@ -65,70 +65,71 @@
 				height: 600px;
 				border: 1px solid rgb(228, 228, 228);
 			}
-
+			
 			.tablemain {
 				margin: 40px;
 				border-collapse: collapse;
 			}
-
+			
 			.td1 {
 				text-align: right;
 				padding: 12px 0px 12px 40px;
 			}
-
+			
 			.td2 {
 				width: 1100px;
 				word-break: break-all;
 				word-wrap: break-word;
 				padding: 15px;
 			}
-
+			
 			.tableright {
 				font-size: 12px;
 				margin-left: 20px;
 				margin-top: 30px;
 			}
-
+			
 			.td3 {
 				text-align: right;
 			}
-
+			
 			.td3,
 			.td4 {
 				padding: 4px 2px 4px 0px;
 			}
-
+			
 			a {
 				cursor: pointer;
 			}
-
+			
 			.resultTable {
 				border-collapse: collapse;
 				text-align: center;
 				font-size: 12px;
 			}
-
+			
 			.resultid {
 				width: 130px;
 			}
-
+			
 			.resultstate {
 				width: 220px;
 			}
-
+			
 			.resultname {
 				width: 600px;
 			}
-
+			
 			.resultHead {
 				font-weight: 700;
 			}
-			#resultlist{
+			
+			#resultlist {
 				overflow: auto;
 				max-height: 250px;
 			}
-			.iop{
-
+			
+			.iop {
 				max-height: 250px;
 				overflow: auto;
 			}
@@ -174,19 +175,19 @@
 							<td class="td2" id="resultlist">
 								<div class="iop">
 									<table class="resultTable" border="1px solid black" id="resulttable">
-									<tr class="resultHead">
-										<td class="resultid">成果物id
-											</th>
-											<td class="resultstate">成果物状态
+										<tr class="resultHead">
+											<td class="resultid">成果物id
 												</th>
-												<td class="resultname">成果物主题
+												<td class="resultstate">成果物状态
 													</th>
-									</tr>
+													<td class="resultname">成果物主题
+														</th>
+										</tr>
 
-								</table>
+									</table>
 								</div>
 
-							</td>
+								</td>
 						</tr>
 					</table>
 				</div>
@@ -250,7 +251,7 @@
 				success: function(result) {
 					var href = " 'main1.html?resultid=";
 					var href2 = "&pid=";
-					var dataObj=eval("("+result+")");
+					var dataObj = eval("(" + result + ")");
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
 						tempHtml += "<tr><td>" + n.resultId + "</td>";
@@ -273,7 +274,7 @@
 			var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
 			Y = date.getFullYear() + '-';
 			M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-			D = date.getDate() + ' ';
+			D = date.getDate() < 10 ? '0' + date.getDate() + ' ' : date.getDate()+' ';
 			h = date.getHours() + ':';
 			m = date.getMinutes() + ':';
 			s = date.getSeconds();

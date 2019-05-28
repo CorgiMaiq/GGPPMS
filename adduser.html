@@ -226,12 +226,13 @@
 			};
 		$(document).ready(function() {
 			$("tr").eq(4).hide();
-			var temlHtml;
+			var temlHtml="";
 			$.post("",{},function(returned){
-				var res = $.parseJSON(returned);
-				$.each(res, function(i,n) {
+				for(var i =0;i<returned.length;i++){
+					var n = returned[i];
 					temlHtml += "<option value='" + n.groupid + "'>" + n.groupname + "</option>";
-				});
+				}
+				
 				$("#basegroup").append(temlHtml);
 			});
 			
@@ -270,8 +271,9 @@
 			var password1 = $("#password").val();
 			var nickname1 = $("#nickname").val();
 			var group1 = $("#group").val();
-
-			if(checkinput(username1, password1, nickname1)) {
+			if(username1.length<4 || username1.length>8 || password1.length<6 || password1.length>12){
+				alert("用户名需要在4-8位之间，密码需要在6-12位之间");
+			}else if(checkinput(username1, password1, nickname1)) {
 				var data = {
 					"username": $("#username").val(),
 					"password": $("#password").val(),

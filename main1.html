@@ -375,7 +375,7 @@
         <div class="sonMission">
             子任务&nbsp;&nbsp;&nbsp;
             <a id="addreview">新增</a>
-            <table class="sonTable" border="1px solid black">
+            <table class="sonTable" border="1px solid black" id="sontable">
                 <tr id="baseson">
                     <td id="reviewid">Review编号</td>
                     <td id="reviewstate">Review状态</td>
@@ -448,6 +448,22 @@
             return null;
         }
     }
+    
+function timestampToTime(timestamp) {
+    		if(timestamp>1){
+    			var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				Y = date.getFullYear() + '-';
+				M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+				D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+				h = date.getHours() + ':';
+				m = date.getMinutes() + ':';
+				s = date.getSeconds();
+				return Y + M + D;
+    		}else{
+    			return "";
+    		}
+			
+		}
 
     $(".watch").click(function () {
         var data = {
@@ -486,17 +502,16 @@
         var data = {
             "resultid": resultID
         };
-        var tempHtml;
+        var tempHtml = "";
         $.post("", data, function (result) {
-        	
-            var res = $.parseJSON(result);
-
             var href = " 'review.html?reviewid="
+            
             $.each(res, function (i, n) {
                 tempHtml += "<tr><td>" + n.reviewid + "</td>";
                 tempHtml += "<td>" + n.reviewstate + "</td>"
                 tempHtml += "<td><a href=" + href + n.reviewid + "'>" + n.reviewname + "</a></td></tr>";
             });
+            $("#sontable").append(tempHtml);
         });
         $.ajax({
             type: "post",
@@ -518,7 +533,7 @@
                 } else if (returned.status === "4") {
                     $("#state").html("Closed");
                 }
-                $("#begindate").html(returned.startDate);
+                $("#begindate").html(timestampToTime(returned.startDate));
                 if (returned.advanced === "0") {
                     $("#advanced").html("低");
                 } else if (returned.advanced === "1") {
@@ -527,15 +542,15 @@
                     $("#advanced").html("高");
                 }
 
-                $("#plandate").html(returned.planEndDate);
+                $("#plandate").html(timestampToTime(returned.planEndDate));
                 $("#assign").html(returned.assignTo);
                 $("#picknum").html(returned.pickNum);
                 $("#pagenum").html(returned.pageNum);
                 $("#changenum").html(returned.changeNum);
                 $("#preworknum").html(returned.preWorkNum);
                 $("#actworknum").html(returned.actWorkNum);
-                $("#reviewplantime").html(returned.planReviewDate);
-                $("#reviewendtime").html(returned.reviewedDate);
+                $("#reviewplantime").html(timestampToTime(returned.planReviewDate));
+                $("#reviewendtime").html(timestampToTime(returned.reviewedDate));
                 $("#resultversion").html(returned.version);
                 $("#resultlink").html(returned.link);
                 $("#NGnum").html(returned.ngNum);

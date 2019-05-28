@@ -382,6 +382,21 @@
     var myDate = new Date();
     var mytime = myDate.toLocaleTimeString();
 
+    function timestampToTime(timestamp) {
+    		if(timestamp>1){
+    			var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				Y = date.getFullYear() + '-';
+				M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+				D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+				h = date.getHours() + ':';
+				m = date.getMinutes() + ':';
+				s = date.getSeconds();
+				return Y + M + D;
+    		}else{
+    			return "";
+    		}
+			
+		}
 
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -400,6 +415,7 @@
     }
 
     $("#edittext").click(function () {
+    	alert("点击测试");
         if ($("#NGnum").val() != 0 && $("#state").val() === "4") {
             alert("NG数为0才可以关闭成果物");
         }else if($("#state").val()==="4"&&getCookie("level")!=0) {
@@ -432,13 +448,14 @@
                 "resulttype": $("#resulttype").val(),
                 "endtime": $("#endtime").val()
             };
-
+			alert("hihi");
             $.ajax({
                 type: "post",
                 url: "http://www.polarbear.pub:8080/GGPPMS/api/result/update",
                 contentType: "application/json; charset=UTF-8",
                 data: JSON.stringify(submitdata),
                 success: function (returned) {
+                	alert(returned.status);
                     if (returned.status === 200) {
                         alert("修改成功");
                         location.href = "main1.html?resultid=" + getUrlParam("resultID") + "&pid=" + getUrlParam("pID")
@@ -467,14 +484,15 @@
             url: "http://www.polarbear.pub:8080/GGPPMS/api/result/load/" + getUrlParam("resultID"),
             contentType: "application/json; charset=UTF-8",
             // data: JSON.stringify(data),
-            success: function (returned) {
+            success: function (result) {
+            	var returned=eval("("+result+")");
                 $("#title").val(returned.resultName);
                 $(".midboxtitle").html(returned.resultId + "号成果物");
-                $("#startdate").val(returned.startDate);
+                $("#startdate").val(timestampToTime(returned.startDate));
                 optionValue($("#state"), returned.status);
                 optionValue($("#advanced"), returned.advancement);
 
-                $("#plandate").val(returned.planEndDate);
+                $("#plandate").val(timestampToTime(returned.planEndDate));
                 optionValue($("#assign"), returned.assignTo);
 
                 $("#picknum").val(returned.pickNum);
@@ -482,8 +500,8 @@
                 $("#changenum").val(returned.changeNum);
                 $("#preworknum").val(returned.preWorkNum);
                 $("#actworknum").val(returned.actWorkNum);
-                $("#reviewplantime").val(returned.planReviewDate);
-                $("#reviewendtime").val(returned.reviewedDate);
+                $("#reviewplantime").val(timestampToTime(returned.planReviewDate));
+                $("#reviewendtime").val(timestampToTime(returned.reviewedDate));
                 $("#resultversion").val(returned.version);
                 $("#resultlink").val(returned.link);
                 $("#NGnum").val(returned.ngNum);
