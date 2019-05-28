@@ -123,10 +123,11 @@
 			var groupdata = {
 				"username" : username,
 				"groupid" : getUrlParam("groupid")
-			}
-			$.ajax({//添加某成员到该组
+            };
+            // 添加某成员到该组
+            $.ajax({
 				type:"post",
-				url:"",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/setGroup",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(deleteid),
 				success: function(returned) {
@@ -145,8 +146,9 @@
 			var data = {
 				"username" : $("#username").val(),
 				"nickname" : $("#nickname").val()
-			}
-			$.post("",data,function(returned){//根据输入信息查找人
+            };
+            // 根据输入信息查找人
+            $.post("http://www.polarbear.pub:8080/GGPPMS/api/user/filtered-list", data, function (returned) {
 				var res = $.parseJSON(returned);
 				$.each(res, function(i,n) {
 					tempHtml += "<tr><td>" + n.username + "</td>";

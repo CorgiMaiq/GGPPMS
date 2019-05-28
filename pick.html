@@ -384,13 +384,13 @@
 
     $(".watch").click(function () {
         var data = {
-            "pickid": getUrlParam("pickid"),
+            "id": getUrlParam("pickid"),
             "username": getCookie("username")
-        }
-
-        $.ajax({//为用户关注成果物
+        };
+// 为用户关注pick
+        $.ajax({
             type: "post",
-            url: "",
+            url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/pick",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(data),
             success: function (returned) {
@@ -405,12 +405,12 @@
 
     $("#editpick").click(function () {
         location.href = "editpick.html?pickid=" + $("#pickid").html();
-    })
+    });
 
     $(document).ready(function () {
         var data = {
             reviewid: getUrlParam("reviewid")
-        }
+        };
         $.ajax({
             type: "get",
             url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/load/" + getUrlParam("pickid"),

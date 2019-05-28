@@ -227,13 +227,14 @@
 		$(document).ready(function() {
 			$("tr").eq(4).hide();
 			var temlHtml="";
-			$.post("",{},function(returned){
+            // 查出所有组
+            $.get("http://www.polarbear.pub:8080/GGPPMS/api/group", function (returned) {
 				for(var i =0;i<returned.length;i++){
 					var n = returned[i];
 					temlHtml += "<option value='" + n.groupid + "'>" + n.groupname + "</option>";
 				}
-				
-				$("#basegroup").append(temlHtml);
+
+                $("#basegroup").append(temlHtml);
 			});
 			
 			$("#group").change(function() {

@@ -235,12 +235,13 @@
 				"group": $("#group").val(),
 				"level": $("#level").val()
 			};
-			$.post("",data,function(returned){
+			// 根据信息查找符合的用户
+			$.post("http://www.polarbear.pub:8080/GGPPMS/api/user/filtered-list", data, function (returned) {
 				var res = $.parseJSON(returned);
 				var temphtml;
 				$.each(res, function(i,n) {
 					tempHtml += "<tr><td>" + n.username + "</td>";
-					tempHtml += "<td><a href='edituser.html?username=" + n.username + "'>" + n.nickname + "</td>"
+					tempHtml += "<td><a href='edituser.html?username=" + n.username + "'>" + n.nickname + "</td>";
 					tempHtml += "<td>" + n.group + "</td>";
 					tempHtml += "<td>" + n.level + "</td>";
 					tempHtml += "<td>" + n.email + "</td></tr>";

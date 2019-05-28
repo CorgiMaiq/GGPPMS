@@ -446,13 +446,14 @@
 		
 		$(".watch").click(function(){
 			var data = {
-				"reviewid" : getUrlParam("reviewid"),
+				"id": getUrlParam("reviewid"),
 				"username" : getCookie("username")
-			}
-			
-			$.ajax({//为用户关注成果物
+			};
+
+			// 为用户关注review
+			$.ajax({
 				type:"post",
-				url:"",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/review",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				success: function(returned) {
@@ -470,25 +471,27 @@
 		});
 		
 		$(document).ready(function() {
-			$.post("",{"reviewid" : getUrlParam("reviewid")},function(result){
+			// 查询该review下的全部指摘
+			$.get("http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"), function (result) {
 				var res = $.parseJSON(result);
-				
-				var href = " 'pick.html?pickid="
+
+				var href = " 'pick.html?pickid=";
 				$.each(res, function(i, n) {
 					tempHtml += "<tr><td>" + n.pickid + "</td>";
-					tempHtml += "<td>" + n.pickstate + "</td>"
+					tempHtml += "<td>" + n.status + "</td>"
 					tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
 				});
-			})
+			});
 			
 			
 			var data = {
 				"reviewid": getUrlParam("reviewid")
-			}
+			};
 
-			$.ajax({ //根据reviewid把对应的成果物review拿出来
-				type: "post",
-				url: "",
+			// 根据reviewid把对应的成果物review拿出来
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/review/" + getUrlParam("reviewid"),
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				success: function(returned) {

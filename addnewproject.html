@@ -223,7 +223,7 @@
 					temphtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>";
 				}
 				$("#group").append(temphtml);
-			})
+			});
 			$.ajaxSettings.async = true;
 		});
 		$("#submit").click(function() {
@@ -236,7 +236,7 @@
 					"creator": getCookie("username")
 				};
 				alert(getCookie("username"));
-				//todo 新建组
+				//新建组
 				$.ajax({
 					type: "put",
 					url: "http://www.polarbear.pub:8080/GGPPMS/api/project",

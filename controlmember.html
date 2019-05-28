@@ -12,7 +12,7 @@
 				border-bottom-style: solid;
 				border-bottom-width: 2px;
 			}
-			
+
 			.foot {
 				display: block;
 				height: 20px;
@@ -32,7 +32,7 @@
 			.tablebox{
 				width: 100%;
 				height: 500px;
-				
+
 			}
 			.maintable{
 				position: absolute;
@@ -65,7 +65,7 @@
 						<td>级别</td>
 						<td>删除</td>
 						<td>指派为组长</td>
-						
+
 					</tr>
 				</table>
 			</div>
@@ -90,15 +90,16 @@
 		function ale(){
 			alert("haha");
 		}
-		
+
 		function deletesomeone(id){
 			var deleteid = {
 				"username" : id,
 				"groupid" : getUrlParam("groupid")
-			}
-			$.ajax({//把某个人从某个组删除出去
+            };
+            // 把某个人从某个组删除出去
+            $.ajax({
 				type:"post",
-				url:"",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/removeGroup",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(deleteid),
 				success: function(returned) {
@@ -112,15 +113,16 @@
 				}
 			});
 		}
-		
+
 		function assign(id){
 			var assignid = {
 				"username" : id,
 				"groupid" : getUrlParam("groupid")
-			}
-			$.ajax({//把某个人指派为组长
+            };
+            // 把某个人指派为组长
+            $.ajax({
 				type:"post",
-				url:"",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/setGroupLeader",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(deleteid),
 				success: function(returned) {
@@ -134,18 +136,19 @@
 				}
 			});
 		}
-		
-		$(document).ready(function(){
+
+        $(document).ready(function(){
 			var data = {
 				"groupid" : getUrlParam("groupid")
-			}
-			$.post("",data,function(returned){//拼接裙成员
+            };
+            // 拼接裙成员
+            $.get("http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"), function (returned) {
 				var tempHtml;
 				var res = $.parseJSON(returned);
 				$.each(res, function(i,n) {
-					tempHtml += "<tr><td>" + n.username + "</td>";
+                    tempHtml += "<tr><td>" + n.email + "</td>";
 					tempHtml += "<td>" + n.nickname + "</td>";
-					tempHtml += "<td>" + n.level + "</td>";
+                    tempHtml += "<td>" + n.usertype + "</td>";
 					tempHtml += "<td><button onclick='deletesomeone(" + n.username + ")'>删除</button>"+"</td>";
 					tempHtml += "<td><button onclick='assign(" + n.username + ")'>指派</button>"+"</td></tr>";
 				});

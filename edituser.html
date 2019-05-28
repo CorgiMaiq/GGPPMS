@@ -247,21 +247,21 @@
 			if(getCookie("level") === 2) {
 				var data = {
 					"username": getUrlParam("username")
-				}
-
-				$.ajax({ //获取这个人是哪个组
-					type: "post",
-					url: "",
+				};
+				// 获取这个人是哪个组
+				$.ajax({
+					type: "get",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + getUrlParam("username"),
 					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(data),
 					success: function(returned) {
-						var content = returned.groupname;
+						var content = returned.usergroupname;
 						$("#glgroup").html(content);
 					}
 				});
 			} else {
 				var temlHtml;
-				$.post("", {}, function(returned) {
+				// 查询所有组
+				$.get("http://www.polarbear.pub:8080/GGPPMS/api/group", function (returned) {
 					var res = $.parseJSON(returned);
 					$.each(res, function(i, n) {
 						temlHtml += "<option value='" + n.groupid + "'>" + n.groupname + "</option>";
@@ -270,17 +270,17 @@
 				});
 				var data2 = {
 					"username": getUrlParam("username")
-				}
-				$.ajax({ //获取这个人的工号密码和姓名还有组别
-					type: "post",
-					url: "",
+				};
+				// 获取这个人的工号密码和姓名还有组别
+				$.ajax({
+					type: "get",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + getUrlParam("username"),
 					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(data2),
 					success: function(returned) {
-						$("#username").html(returned.username);
+						$("#username").html(returned.email);
 						$("#password").val(returned.password);
 						$("#nickname").val(returned.nickname);
-						optionValue($("#group"), returned.groupid);
+						optionValue($("#group"), returned.usergroupid);
 						if(getCookie("level") === "1") {
 							$("tr").eq(4).show();
 							var option1 = $("<option></option>").val(1).text("PL");
@@ -341,10 +341,11 @@
 					"nickname": $("#nickname").val(),
 					"group": $("#group").val(),
 					"level": $(".level").val()
-				}
+				};
+				// 修改用户
 				$.ajax({
-					type: "put",
-					url: "",
+					type: "post",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update",
 					contentType: "application/json; charset=UTF-8",
 					data: JSON.stringify(data),
 					success: function(returned) {

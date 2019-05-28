@@ -448,7 +448,7 @@
             return null;
         }
     }
-    
+
 function timestampToTime(timestamp) {
     		if(timestamp>1){
     			var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
@@ -462,12 +462,12 @@ function timestampToTime(timestamp) {
     		}else{
     			return "";
     		}
-			
+
 		}
 
     $(".watch").click(function () {
         var data = {
-            "resultid": getUrlParam("resultid"),
+            "id": getUrlParam("resultid"),
             "username": getCookie("username")
         };
 
@@ -503,9 +503,10 @@ function timestampToTime(timestamp) {
             "resultid": resultID
         };
         var tempHtml = "";
-        $.post("", data, function (result) {
+        // 统计该成果物下的全部review
+        $.get("http://www.polarbear.pub:8080/GGPPMS/api/review/getByResult/" + resultID, function (result) {
             var href = " 'review.html?reviewid="
-            
+
             $.each(res, function (i, n) {
                 tempHtml += "<tr><td>" + n.reviewid + "</td>";
                 tempHtml += "<td>" + n.reviewstate + "</td>"
