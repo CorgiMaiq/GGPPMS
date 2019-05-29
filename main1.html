@@ -506,12 +506,13 @@ function timestampToTime(timestamp) {
         // 统计该成果物下的全部review
         $.get("http://www.polarbear.pub:8080/GGPPMS/api/review/getByResult/" + resultID, function (result) {
             var href = " 'review.html?reviewid="
-
-            $.each(res, function (i, n) {
-                tempHtml += "<tr><td>" + n.reviewid + "</td>";
+			var dataObj = eval("(" + result + ")");
+			for (var i = 0;i<dataObj.length;i++) {
+				var n = dataObj[i];
+				tempHtml += "<tr><td>" + n.reviewid + "</td>";
                 tempHtml += "<td>" + n.reviewstate + "</td>"
                 tempHtml += "<td><a href=" + href + n.reviewid + "'>" + n.reviewname + "</a></td></tr>";
-            });
+			}
             $("#sontable").append(tempHtml);
         });
         $.ajax({
