@@ -513,7 +513,7 @@
 					var href = " 'review.html?reviewid="
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
-						tempHtml += "<tr><td>" + n.reviewid + "</td>";
+                        tempHtml += "<tr><td>" + n.id + "</td>";
 						tempHtml += "<td>" + n.state + "</td>"
 						tempHtml += "<td><a href=" + href + n.reviewid + "'>" + n.reviewtitle + "</a></td></tr>";
 					}
