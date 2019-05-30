@@ -576,30 +576,68 @@
 		}
 
 		$(document).ready(function() {
-			$.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"), function(data) {
-				var dataObj = eval("(" + data + ")");
-				alert(dataObj);
-				for(var i = 0; i < dataObj.length; i++) {
-					var n = dataObj[i];
-					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>");
+			/*			$.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"),{}, function(data) {
+							alert("test2");
+							var dataObj = eval("(" + data + ")");
+							for(var i = 0; i < dataObj.length; i++) {
+								var n = dataObj[i];
+								$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>");
+							}
+						});
+						*/
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"),
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				dataType: "text",
+				success: function(data) {
+					var tempHtml = "";
+					var dataObj = eval("(" + data + ")");
+					for(var i = 0; i < dataObj.length; i++) {
+						var n = dataObj[i];
+						tempHtml += "<option value=" + n.email + ">" + n.nickname + "</option>";
+					}
+					$("#assign").append(tempHtml);
+				}
+			});
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/manager/" + getUrlParam("projectid"),
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				dataType: "text",
+				success: function(data) {
+					var dataObj = eval("(" + data + ")");
+				
+					var tempHtml = "";
+					for(var i = 0; i < dataObj.length; i++) {
+						var n = dataObj[i];
+						tempHtml += "<option value=" + n.email + ">" + n.nickname + "</option>";
+					}
+					$("#reviewer").append(tempHtml);
 				}
 			});
 
-			$.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/manager/" + getUrlParam("projectid"), function(data) {
-				var dataObj = eval("(" + data + ")");
-				for(var i = 0; i < dataObj.length; i++) {
-					var n = dataObj[i];
-					$("#basereviewer").append("<option value=" + n.id + ">" + n.nickname + "</option>")
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/worker/" + getUrlParam("projectid"),
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				dataType: "text",
+				success: function(data) {
+					var dataObj = eval("(" + data + ")");
+					alert(dataObj)
+					var tempHtml = "";
+					for(var i = 0; i < dataObj.length; i++) {
+						var n = dataObj[i];
+						tempHtml += "<option value=" + n.email + ">" + n.nickname + "</option>";
+					}
+					$("#reviewee").append(tempHtml);
 				}
 			});
 
-			$.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/worker/" + getUrlParam("projectid"), function(data) {
-				var dataObj = eval("(" + data + ")");
-				for(var i = 0; i < dataObj.length; i++) {
-					var n = dataObj[i];
-					$("#baserivewee").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-				}
-			});
+		
 		});
 		$("#submitbut").click(function() {
 			if($("#assign").val() === "0" || $("#reviewer").val() === "0" || $("#reviewee").val() === "0") {

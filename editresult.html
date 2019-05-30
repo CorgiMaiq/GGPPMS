@@ -415,12 +415,12 @@
     }
 
     $("#edittext").click(function () {
-    	alert("点击测试");
         if ($("#NGnum").val() != 0 && $("#state").val() === "4") {
             alert("NG数为0才可以关闭成果物");
         }else if($("#state").val()==="4"&&getCookie("level")!=0) {
         	alert("您无权关闭此成果物");
         }else {
+        	alert("gugu");
             var submitdata = {
                 "creator": getCookie("username"),
                 "id": getUrlParam("resultID"),
@@ -448,14 +448,15 @@
                 "resulttype": $("#resulttype").val(),
                 "endtime": $("#endtime").val()
             };
-			alert("hihi");
             $.ajax({
                 type: "post",
                 url: "http://www.polarbear.pub:8080/GGPPMS/api/result/update",
                 contentType: "application/json; charset=UTF-8",
                 data: JSON.stringify(submitdata),
+                async:false,
+                dataType : "json",
                 success: function (returned) {
-                	alert(returned.status);
+                	alert("xixi2");
                     if (returned.status === 200) {
                         alert("修改成功");
                         location.href = "main1.html?resultid=" + getUrlParam("resultID") + "&pid=" + getUrlParam("pID")
@@ -469,13 +470,22 @@
     });
 
     $(document).ready(function () {
-
-        $.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("pid"), function (data) {
-            var res = $.parseJSON(data);
-            $.each(res, function (i, n) {
-                $("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-            });
+        $.ajax({
+        	type:"get",
+        	url:"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("pid"),
+        	async:false,
+        	dataType: "text",
+        	success: function(data){
+        		var temlHtml = "";
+        		var returned=eval("("+data+")");
+        		for (var i = 0;i<returned.length;i++) {
+        			var n = returned[i];
+        			temlHtml += "<option value=" + n.id + ">" + n.nickname + "</option>";
+        		}
+        		$("#assign").append(temlHtml);
+        	}
         });
+        
         var data = {
             "resultid": getUrlParam("resultID")
         };
@@ -483,6 +493,7 @@
             type: "get",
             url: "http://www.polarbear.pub:8080/GGPPMS/api/result/load/" + getUrlParam("resultID"),
             contentType: "application/json; charset=UTF-8",
+            async:false,
             // data: JSON.stringify(data),
             success: function (result) {
             	var returned=eval("("+result+")");

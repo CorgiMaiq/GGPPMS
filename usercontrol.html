@@ -148,7 +148,8 @@
 			left: 70%;
 			color: rgb(82, 167, 210);
 		}
-		.searchbox{
+		
+		.searchbox {
 			position: absolute;
 			width: 800px;
 			left: 50%;
@@ -156,11 +157,13 @@
 			margin-left: -400px;
 			background: #13777E;
 		}
-		.searchtable{
+		
+		.searchtable {
 			border-collapse: collapse;
 			text-align: center;
 		}
-		.searchtable td{
+		
+		.searchtable td {
 			max-width: 280px;
 			overflow-y: auto;
 		}
@@ -177,7 +180,6 @@
 			</div>
 
 			<a class="adduser" href="adduser.html">添加用户</a>
-			<form>
 				<div class="sizer">
 					<table>
 						<tr>
@@ -202,7 +204,7 @@
 						</tr>
 					</table>
 					<div class="searchbox">
-						<table class="searchtable" border="1px">
+						<table class="searchtable" border="1px" id="basetable">
 							<tr id="basetr">
 								<td width="120px">工号</td>
 								<td width="120px">姓名</td>
@@ -212,10 +214,9 @@
 							</tr>
 						</table>
 					</div>
-					
-					<input type="submit" value="筛选" class="sizersubmit" />
+
+					<input type="button" value="筛选" class="sizersubmit" />
 				</div>
-			</form>
 
 		</div>
 		<div class="foot">
@@ -236,18 +237,38 @@
 				"level": $("#level").val()
 			};
 			// 根据信息查找符合的用户
-			$.post("http://www.polarbear.pub:8080/GGPPMS/api/user/filtered-list", data, function (returned) {
-				var res = $.parseJSON(returned);
-				var temphtml;
-				$.each(res, function(i,n) {
+			$.ajax({
+				type: "post",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/filtered-list",
+				data: JSON.stringify(data),
+				async: false,
+				success: function(returned) {
+					alert("hello");
+					var temphtml = "";
+					
+					for(var i = 0; i < returned.length; i++) {
+						tempHtml += "<tr><td>" + n.username + "</td>";
+						tempHtml += "<td><a href='edituser.html?username=" + n.username + "'>" + n.nickname + "</td>";
+						tempHtml += "<td>" + n.group + "</td>";
+						tempHtml += "<td>" + n.level + "</td>";
+						tempHtml += "<td>" + n.email + "</td></tr>";
+					}
+					$("#basetable").append(tempHtml);
+				}
+			});
+
+			/*$.post("http://www.polarbear.pub:8080/GGPPMS/api/user/filtered-list", data, function(returned) {
+				alert("hehe");
+				var temphtml = "";
+				for(var i = 0; i < returned.length; i++) {
 					tempHtml += "<tr><td>" + n.username + "</td>";
 					tempHtml += "<td><a href='edituser.html?username=" + n.username + "'>" + n.nickname + "</td>";
 					tempHtml += "<td>" + n.group + "</td>";
 					tempHtml += "<td>" + n.level + "</td>";
 					tempHtml += "<td>" + n.email + "</td></tr>";
-				});
-				$("#basetr").append(tempHtml);
-			})
+				}
+				$("#basetable").append(tempHtml);
+			})*/
 		})
 	</script>
 
