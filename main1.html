@@ -540,8 +540,7 @@
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/result/load/" + resultID,
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
-				success: function(result) {
-					var returned = eval("(" + result + ")");
+				success: function (returned) {
 					$(".productNum").html(resultID + "号成果物");
 					$("#midboxtitle").html(returned.resultName);
 					if(returned.status === "0") {
@@ -556,9 +555,9 @@
 						$("#state").html("Closed");
 					}
 					$("#begindate").html(timestampToTime(returned.startDate));
-					if(returned.advanced === "0") {
+					if (returned.advancement === "0") {
 						$("#advanced").html("低");
-					} else if(returned.advanced === "1") {
+					} else if (returned.advancement === "1") {
 						$("#advanced").html("中");
 					} else {
 						$("#advanced").html("高");

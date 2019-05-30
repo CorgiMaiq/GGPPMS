@@ -495,8 +495,7 @@
             contentType: "application/json; charset=UTF-8",
             async:false,
             // data: JSON.stringify(data),
-            success: function (result) {
-            	var returned=eval("("+result+")");
+            success: function (returned) {
                 $("#title").val(returned.resultName);
                 $(".midboxtitle").html(returned.resultId + "号成果物");
                 $("#startdate").val(timestampToTime(returned.startDate));
