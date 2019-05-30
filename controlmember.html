@@ -58,7 +58,7 @@
 		<div class="mainn">
 			<div class="title">组成员管理</div>
 			<div class="tablebox">
-				<table class="maintable" border="1px">
+				<table class="maintable" id="maintable" border="1px">
 					<tr id="basetr">
 						<td>工号</td>
 						<td>姓名</td>
@@ -124,7 +124,7 @@
 				type:"post",
                 url: "http://www.polarbear.pub:8080/GGPPMS/api/user/setGroupLeader",
 				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify(deleteid),
+				data: JSON.stringify(assignid),
 				success: function(returned) {
 					if(returned.status===200){
 						alert("指派成功");
@@ -141,10 +141,30 @@
 			var data = {
 				"groupid" : getUrlParam("groupid")
             };
+            alert("?");
+            $.ajax({
+            	type:"get",
+            	url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"),
+            	async:false,
+            	//dataType : "text",
+            	success : function(data){
+            		alert("?");
+            		alert(data);
+            		var tempHtml = "";
+            		var returned=eval("("+data+")");
+            		for (var i = 0;i<returned.length;i++) {
+            			tempHtml += "<tr><td>" + n.email + "</td>";
+						tempHtml += "<td>" + n.nickname + "</td>";
+	                    tempHtml += "<td>" + n.usertype + "</td>";
+						tempHtml += "<td><button onclick='deletesomeone(" + n.username + ")'>删除</button>"+"</td>";
+						tempHtml += "<td><button onclick='assign(" + n.username + ")'>指派</button>"+"</td></tr>";
+            		}
+            		$("#maintable").append(tempHtml);
+            	}
+            });
             // 拼接裙成员
-            $.get("http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"), function (returned) {
-				var tempHtml;
-				var res = $.parseJSON(returned);
+/*            $.get("http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"), function (returned) {
+				var tempHtml = "";
 				$.each(res, function(i,n) {
                     tempHtml += "<tr><td>" + n.email + "</td>";
 					tempHtml += "<td>" + n.nickname + "</td>";
@@ -153,7 +173,7 @@
 					tempHtml += "<td><button onclick='assign(" + n.username + ")'>指派</button>"+"</td></tr>";
 				});
 				$("#basetr").append(tempHtml);
-			})
+			})*/
 		})
 	</script>
 

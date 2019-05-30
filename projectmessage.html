@@ -248,10 +248,10 @@
 				url: lurl,
 				contentType: "application/json; charset=UTF-8",
 				async: false,
-				success: function(result) {
+				success: function(dataObj) {
 					var href = " 'main1.html?resultid=";
 					var href2 = "&pid=";
-					var dataObj = eval("(" + result + ")");
+					//var dataObj = eval("(" + result + ")");
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
 						tempHtml += "<tr><td>" + n.resultId + "</td>";
