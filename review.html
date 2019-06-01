@@ -1,620 +1,636 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-	</head>
-	<style>
-		* {
-			margin: 0px;
-			padding: 0px;
-		}
-		
-		#head {
-			width: 100%;
-			height: 30px;
-			background: black;
-			font-size: 13px;
-			line-height: 30px;
-			color: rgb(140, 145, 148);
-		}
-		
-		.headnavi {
-			margin-left: 30px;
-		}
-		
-		.headleft {
-			width: 85%;
-			float: left;
-		}
-		
-		.headright {
-			width: 15%;
-			float: left;
-		}
-		
-		.loginwith,
-		.headright {
-			float: left;
-		}
-		
-		.headnaviright {
-			margin-left: 15px;
-		}
-		
-		.loginwith {
-			color: white;
-		}
-		
-		.headmid {
-			height: 70px;
-			width: 100%;
-			background: rgb(44, 54, 60);
-		}
-		
-		.headbottom {
-			color: rgb(224, 224, 224);
-			width: 100%;
-			height: 50px;
-			background: rgb(63, 71, 77);
-		}
-		
-		.bottomnavi {
-			color: rgb(156, 157, 164);
-			font-size: 16px;
-			line-height: 50px;
-			display: inline-block;
-			margin-right: 30px;
-		}
-		
-		.sign {
-			margin: 0px 20px;
-		}
-		
-		.bzy {
-			display: inline;
-			height: 60px;
-			margin-left: 23px;
-			margin-top: 5px;
-		}
-		
-		.bzyimg {
-			width: auto;
-			height: 100%;
-			float: left;
-		}
-		
-		.pms {
-			line-height: 70px;
-			margin-left: 7px;
-			width: 30%;
-			float: left;
-			color: rgb(248, 248, 248);
-			font-size: 14px;
-		}
-		
-		.mainn {
-			width: 100%;
-			height: 1000px;
-		}
-		
-		.foot {
-			display: block;
-			height: 20px;
-			width: 100%;
-			font-size: 12px;
-			line-height: 20px;
-			text-align: center;
-			color: rgb(222, 234, 217);
-		}
-		
-		.productNum {
-			float: left;
-			width: auto;
-			height: auto;
-			color: rgb(86, 86, 86);
-			font-size: 25px;
-			margin: 15px 30px 0px;
-		}
-		
-		.edit {
-			float: right;
-			margin: 15px 30px 0px;
-			color: rgb(82, 167, 210);
-		}
-		
-		.mainleft {
-			height: auto;
-			width: 80%;
-			float: left;
-		}
-		
-		.mainright {
-			float: right;
-			width: 19%;
-			height: 1000px;
-			background: rgb(250, 250, 250);
-			border-left-color: rgb(220, 220, 220);
-			border-left-width: 1px;
-			border-left-style: solid;
-			border-bottom-color: rgb(220, 220, 220);
-			border-bottom-width: 1px;
-			border-bottom-style: solid;
-		}
-		
-		.midbox {
-			height: auto;
-			width: 1500px;
-			background: rgb(255, 255, 222);
-			margin-top: 70px;
-			margin-left: 30px;
-		}
-		
-		.midboxtitle {
-			font-size: 25px;
-			margin-left: 30px;
-			width: auto;
-			height: auto;
-			padding-top: 15px;
-			color: rgb(86, 86, 86);
-		}
-		
-		.beizhu {
-			margin-left: 30px;
-			width: auto;
-			height: auto;
-			padding-top: 10px;
-			color: rgb(86, 86, 86);
-		}
-		
-		.table {
-			margin-left: 30px;
-			margin-top: 30px;
-			color: rgb(69, 76, 81);
-		}
-		
-		table {
-			table-layout: fixed;
-		}
-		
-		.tdmain,
-		.tdmain1 {
-			padding-top: 10px;
-		}
-		
-		.tdmain1 {
-			width: 200px;
-			overflow: hidden;
-		}
-		
-		.hr1 {
-			margin-top: 30px;
-			width: 95%;
-			margin-left: 30px;
-			margin-bottom: 20px;
-		}
-		
-		.sonMission {
-			margin-top: 40px;
-			margin-left: 30px;
-			color: rgb(69, 76, 81);
-			height: autopx;
-			font-size: 22px;
-		}
-		
-		.sonMission>a {
-			font-size: 8px;
-			color: rgb(96, 180, 208);
-		}
-		
-		.history {
-			width: 99%;
-			height: 200px;
-			margin-top: 20px;
-			margin-left: 30px;
-			font-size: 22px;
-			color: rgb(69, 76, 81);
-			overflow-y: auto;
-		}
-		
-		.tableright {
-			margin-left: 15px;
-			margin-top: 20px;
-			font-size: 10px;
-		}
-		
-		.explain {
-			margin-left: 15px;
-			font-size: 22px;
-			color: rgb(102, 102, 102);
-			margin-top: 30px;
-		}
-		
-		.test {
-			width: 490px;
-			overflow-x: auto;
-		}
-		
-		#link {
-			padding-bottom: 30px;
-		}
-		
-		.checklistbut {
-			padding: 4px 90px;
-		}
-		
-		td {
-			overflow-y: auto;
-		}
-		
-		.sonTable {
-			margin-left: 20px;
-			margin-top: 10px;
-			border-collapse: collapse;
-			font-size: 14px;
-		}
-		
-		.sonTable td {
-			padding: 4px;
-			text-align: center;
-			color: rgb(77, 77, 77);
-		}
-		
-		#baseson {
-			background: rgb(237, 237, 237);
-		}
-		
-		.sonTable tr:nth-child(odd) {
-			background: rgb(246, 247, 248);
-		}
-		
-		#reviewid {
-			width: 240px;
-		}
-		
-		#reviewstate {
-			width: 260px;
-		}
-		
-		#reviewname {
-			width: 800px;
-		}
-		
-		#addpick {
-			cursor: pointer;
-		}
-	</style>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
 
-	<body>
-		<div class="public"></div>
-		<div class="headbottom">
-			<span class="sign">+</span>
-			<a class="bottomnavi">概述</a>
-			<a class="bottomnavi">活动</a>
-			<a class="bottomnavi">问题</a>
-		</div>
-		<div class="mainn">
-			<div class="mainleft">
-				<div class="productNum" id="reviewnum">
-					成果物Review编号
-				</div>
-				<div class="edit">
-					<a class="edittext" id="editreview">编辑</a> &nbsp;| &nbsp;
-					<a class="watch" style="cursor: pointer;" id="watch">关注</a>&nbsp;| &nbsp;
-					<a class="delete" style="cursor: pointer;">删除</a>
-				</div>
-				<div class="midbox">
-					<div class="midboxtitle" id="reviewTitle">
-						成果物Review标题
-					</div>
-					<div class="beizhu">
-						由xx更新于xx日
-					</div>
-					<input type="hidden" id="projectid">
-					<input type="hidden" id="resultid" />
-					<table class="table">
-						<tr>
-							<th style="width: 200px;"></th>
-							<th style="width: 490px;"></th>
-							<th style="width: 200px;"></th>
-							<th style="width: 490px;"></th>
-						</tr>
-						<tr>
-							<td class="tdmain1">状态：</td>
-							<td class="tdmain" id="state">
+    #head {
+        width: 100%;
+        height: 30px;
+        background: black;
+        font-size: 13px;
+        line-height: 30px;
+        color: rgb(140, 145, 148);
+    }
 
-							</td>
-							<td class="tdmain1">开始日期：</td>
-							<td class="tdmain" id="startTime"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">优先级：</td>
-							<td class="tdmain" id="advanced"></td>
-							<td class="tdmain1">计划完成日期：</td>
-							<td class="tdmain" id="plantime"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">指派给：</td>
-							<td class="tdmain" id="assign"></td>
-							<td class="tdmain1">指摘数：</td>
-							<td class="tdmain" id="picknum"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">总页数：</td>
-							<td class="tdmain" id="pagenum"></td>
-							<td class="tdmain1">变更量：</td>
-							<td class="tdmain" id="changenum"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">Riviewer：</td>
-							<td class="tdmain" id="reviewer"></td>
-							<td class="tdmain1">Riviewee：</td>
-							<td class="tdmain" id="reviewee"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">Review场所：</td>
-							<td class="tdmain" id="reviewplace"></td>
-							<td class="tdmain1">Review耗时：</td>
-							<td class="tdmain" id="reviewtime"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">Review版本：</td>
-							<td class="tdmain" id="reviewVersion"></td>
-							<td class="tdmain1">Review日期：</td>
-							<td class="tdmain" id="reviewDate"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">相关链接：</td>
-							<td class="tdmain" id="aboutlink"></td>
-							<td class="tdmain1"><input type="button" value="查看checklist" class="checklistbut" /></td>
-						</tr>
-					</table>
-				</div>
-				<div class="sonMission">
-					子任务&nbsp;&nbsp;&nbsp;
-					<a id="addpick">新增</a>
-					<table class="sonTable" border="1px solid black" id="sontable">
-						<tr id="baseson">
-							<td id="reviewid">指摘编号</td>
-							<td id="reviewstate">指摘状态</td>
-							<td id="reviewname">指摘主题</td>
-						</tr>
-					</table>
-				</div>
-				<div class="history">
-					历史记录
-				</div>
+    .headnavi {
+        margin-left: 30px;
+    }
 
-			</div>
-			<div class="mainright">
-				<div class="explain">
-					成果物阶段状态说明
-				</div>
-				<table border="1" class="tableright">
-					<tr>
-						<th style="width: 70px;">状态名称</th>
-						<th style="width: 240px;">使用方法</th>
-					</tr>
-					<tr>
-						<td>New Creation</td>
-						<td>处于新建状态，是刚由管理者指派过来，且尚未开发的状态，此状态下进度应为0%</td>
-					</tr>
-					<tr>
-						<td>In progress</td>
-						<td>正在开发中，且尚未Review，在此阶段请不要将完成度置于100%，Review结束之后，且无NG部分，再将完成度置于100%</td>
-					</tr>
-					<tr>
-						<td>Resolved</td>
-						<td>本阶段已经开发完毕，并且Review结束且无特殊问题，可以转发给管理者</td>
-					</tr>
-					<tr>
-						<td>Checked</td>
-						<td>由GL检查完毕，可以转发给PL，由PL来承认成果物</td>
-					</tr>
-					<tr>
-						<td>Closed</td>
-						<td>已经由相关管理者检查完毕，关闭此成果物，完成</td>
-					</tr>
-				</table>
-			</div>
+    .headleft {
+        width: 85%;
+        float: left;
+    }
 
-		</div>
-		<div class="foot">
-			Designed By ZhangHan
-		</div>
-	</body>
-	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-	<script src="js/WdatePicker.js"></script>
-	<script type="text/javascript">
-		$(".public").load("public.html", function() {
-			loadcookie();
-			quitpage();
-		});
+    .headright {
+        width: 15%;
+        float: left;
+    }
 
-		function getUrlParam(name) {
-			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-			var r = window.location.search.substr(1).match(reg); //匹配目标参数
-			if(r != null) return unescape(r[2]);
-			return null; //返回参数值
-		}
-		$("#addpick").click(function() {
-			location.href = "addpick.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
-		});
+    .loginwith,
+    .headright {
+        float: left;
+    }
 
-		function getCookie(name) {
-			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-			if(arr = document.cookie.match(reg)) {
-				return unescape(arr[2]);
-			} else {
-				return null;
-			}
-		}
+    .headnaviright {
+        margin-left: 15px;
+    }
 
-		$(".watch").click(function() {
-			var data = {
-				"id": getUrlParam("reviewid"),
-				"username": getCookie("username")
-			};
-			if($(".watch").html() === "关注") {
-				$.ajax({
-					type: "post",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/review",
-					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(data),
-					success: function(returned) {
-						if(returned.status === 200) {
-							alert("关注成功");
-						} else {
-							alert("关注失败");
-						}
-					}
-				});
-			}else{
-				$.ajax({
-					type: "post",
-					url: "",//为用户取消关注
-					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(data),
-					success: function(returned) {
-						if(returned.status === 200) {
-							alert("取消成功");
-						} else {
-							alert("取消失败");
-						}
-					}
-				});
-			}
+    .loginwith {
+        color: white;
+    }
 
-			// 为用户关注review
+    .headmid {
+        height: 70px;
+        width: 100%;
+        background: rgb(44, 54, 60);
+    }
 
-		})
+    .headbottom {
+        color: rgb(224, 224, 224);
+        width: 100%;
+        height: 50px;
+        background: rgb(63, 71, 77);
+    }
 
-		$("#editreview").click(function() {
-			location.href = "editreview.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
-		});
-		
-		function del() {
-			var msg = "您真的确定要删除吗？将删除所有下关联活动\n\n请确认！";
-			if(confirm(msg) == true) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+    .bottomnavi {
+        color: rgb(156, 157, 164);
+        font-size: 16px;
+        line-height: 50px;
+        display: inline-block;
+        margin-right: 30px;
+    }
 
-		$(".delete").click(function() {
-			var le = getCookie("level");
-			if(le != 1) {
-				alert("只有项目管理员可以删除");
-			} else {
-				if(del()) {
-					$.ajax({
-						type: "get",
-						url: "",
-						async: false,
-						success : function(returned){
-							if(returned.status===200){
-								alert("删除成功");
-							}else{
-								alert("删除失败");
-							}
-						}
-					});
-				}
+    .sign {
+        margin: 0px 20px;
+    }
 
-			}
-		});
+    .bzy {
+        display: inline;
+        height: 60px;
+        margin-left: 23px;
+        margin-top: 5px;
+    }
 
-		$(document).ready(function() {
-			$.ajax({
-				type: "get",
-				url: "", //查询关注状态，如果已关注，把关注按钮改成取消关注
-				async: false,
-				success: function(result) {
-					if(result.watched) {
-						$("#watch").html("取消关注");
-					}
-				}
-			});
+    .bzyimg {
+        width: auto;
+        height: 100%;
+        float: left;
+    }
 
-			$.ajax({
-				type: "get",
-				url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"),
-				async: false,
-				success: function(result) {
-					var tempHtml = "";
-					var href = " 'pick.html?pickid=";
-					for(var i = 0; i < result.length; i++) {
-						tempHtml += "<tr><td>" + n.pickid + "</td>";
-						tempHtml += "<td>" + n.status + "</td>"
-						tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
-					}
-					$("#sontable").append(tempHtml);
+    .pms {
+        line-height: 70px;
+        margin-left: 7px;
+        width: 30%;
+        float: left;
+        color: rgb(248, 248, 248);
+        font-size: 14px;
+    }
 
-				}
-			});
+    .mainn {
+        width: 100%;
+        height: 1000px;
+    }
 
-			// 查询该review下的全部指摘
-			$.get("http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"), function(result) {
-				var res = $.parseJSON(result);
+    .foot {
+        display: block;
+        height: 20px;
+        width: 100%;
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        color: rgb(222, 234, 217);
+    }
 
-				var href = " 'pick.html?pickid=";
-				$.each(res, function(i, n) {
-					tempHtml += "<tr><td>" + n.pickid + "</td>";
-					tempHtml += "<td>" + n.status + "</td>"
-					tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
-				});
-			});
+    .productNum {
+        float: left;
+        width: auto;
+        height: auto;
+        color: rgb(86, 86, 86);
+        font-size: 25px;
+        margin: 15px 30px 0px;
+    }
 
-			var data = {
-				"reviewid": getUrlParam("reviewid")
-			};
+    .edit {
+        float: right;
+        margin: 15px 30px 0px;
+        color: rgb(82, 167, 210);
+    }
 
-			// 根据reviewid把对应的成果物review拿出来
-			$.ajax({
-				type: "get",
-				url: "http://www.polarbear.pub:8080/GGPPMS/api/review/" + getUrlParam("reviewid"),
-				contentType: "application/json; charset=UTF-8",
-				//data: JSON.stringify(data),
-				success: function(returned) {
-					$("#reviewnum").html(returned.reviewid);
-					$("#reviewTitle").html(returned.reviewTitle);
-					$("#projectid").html(returned.projectid);
-					if(returned.state === 0) {
-						$("#state").html("New Creation");
-					} else if(returned.state === 1) {
-						$("#state").html("In Prograss");
-					} else if(returned.state === 2) {
-						$("#state").html("Resolved");
-					} else if(returned.state === 3) {
-						$("#state").html("Checked");
-					} else if(returned.state === 4) {
-						$("#state").html("Closed");
-					};
-					$("#startTime").html(returned.startTime);
-					if(returned.advanced === 0) {
-						$("#advanced").html("低");
-					} else if(returned.advanced === 1) {
-						$("#advanced").html("中");
-					} else if(returned.advanced === 2) {
-						$("#advanced").html("高");
-					};
-					$("#plantime").html(returned.plantime);
-					$("#assign").html(returned.assign);
-					$("#picknum").html(returned.picknum);
-					$("#pagenum").html(returned.pagenum);
-					$("#changenum").html(returned.changenum);
-					$("#reviewer").html(returned.reviewer);
-					$("#reviewee").html(returned.reviewee);
-					$("#reviewplace").html(returned.reviewplace);
-					$("#reviewtime").html(returned.reviewtime);
-					$("#reviewVersion").html(returned.reviewVersion);
-					$("#reviewDate").html(returned.reviewDate);
-					$("#aboutlink").html(returned.aboutlink);
-				}
-			});
-		})
-	</script>
+    .mainleft {
+        height: auto;
+        width: 80%;
+        float: left;
+    }
+
+    .mainright {
+        float: right;
+        width: 19%;
+        height: 1000px;
+        background: rgb(250, 250, 250);
+        border-left-color: rgb(220, 220, 220);
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-bottom-color: rgb(220, 220, 220);
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+    }
+
+    .midbox {
+        height: auto;
+        width: 1500px;
+        background: rgb(255, 255, 222);
+        margin-top: 70px;
+        margin-left: 30px;
+    }
+
+    .midboxtitle {
+        font-size: 25px;
+        margin-left: 30px;
+        width: auto;
+        height: auto;
+        padding-top: 15px;
+        color: rgb(86, 86, 86);
+    }
+
+    .beizhu {
+        margin-left: 30px;
+        width: auto;
+        height: auto;
+        padding-top: 10px;
+        color: rgb(86, 86, 86);
+    }
+
+    .table {
+        margin-left: 30px;
+        margin-top: 30px;
+        color: rgb(69, 76, 81);
+    }
+
+    table {
+        table-layout: fixed;
+    }
+
+    .tdmain,
+    .tdmain1 {
+        padding-top: 10px;
+    }
+
+    .tdmain1 {
+        width: 200px;
+        overflow: hidden;
+    }
+
+    .hr1 {
+        margin-top: 30px;
+        width: 95%;
+        margin-left: 30px;
+        margin-bottom: 20px;
+    }
+
+    .sonMission {
+        margin-top: 40px;
+        margin-left: 30px;
+        color: rgb(69, 76, 81);
+        height: autopx;
+        font-size: 22px;
+    }
+
+    .sonMission > a {
+        font-size: 8px;
+        color: rgb(96, 180, 208);
+    }
+
+    .history {
+        width: 99%;
+        height: 200px;
+        margin-top: 20px;
+        margin-left: 30px;
+        font-size: 22px;
+        color: rgb(69, 76, 81);
+        overflow-y: auto;
+    }
+
+    .tableright {
+        margin-left: 15px;
+        margin-top: 20px;
+        font-size: 10px;
+    }
+
+    .explain {
+        margin-left: 15px;
+        font-size: 22px;
+        color: rgb(102, 102, 102);
+        margin-top: 30px;
+    }
+
+    .test {
+        width: 490px;
+        overflow-x: auto;
+    }
+
+    #link {
+        padding-bottom: 30px;
+    }
+
+    .checklistbut {
+        padding: 4px 90px;
+    }
+
+    td {
+        overflow-y: auto;
+    }
+
+    .sonTable {
+        margin-left: 20px;
+        margin-top: 10px;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .sonTable td {
+        padding: 4px;
+        text-align: center;
+        color: rgb(77, 77, 77);
+    }
+
+    #baseson {
+        background: rgb(237, 237, 237);
+    }
+
+    .sonTable tr:nth-child(odd) {
+        background: rgb(246, 247, 248);
+    }
+
+    #reviewid {
+        width: 240px;
+    }
+
+    #reviewstate {
+        width: 260px;
+    }
+
+    #reviewname {
+        width: 800px;
+    }
+
+    #addpick {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+<div class="public"></div>
+<div class="headbottom">
+    <span class="sign">+</span>
+    <a class="bottomnavi">概述</a>
+    <a class="bottomnavi">活动</a>
+    <a class="bottomnavi">问题</a>
+</div>
+<div class="mainn">
+    <div class="mainleft">
+        <div class="productNum" id="reviewnum">
+            成果物Review编号
+        </div>
+        <div class="edit">
+            <a class="edittext" id="editreview">编辑</a> &nbsp;| &nbsp;
+            <a class="watch" style="cursor: pointer;" id="watch">关注</a>&nbsp;| &nbsp;
+            <a class="delete" style="cursor: pointer;">删除</a>
+        </div>
+        <div class="midbox">
+            <div class="midboxtitle" id="reviewTitle">
+                成果物Review标题
+            </div>
+            <div class="beizhu">
+                由xx更新于xx日
+            </div>
+            <input type="hidden" id="projectid">
+            <input type="hidden" id="resultid"/>
+            <table class="table">
+                <tr>
+                    <th style="width: 200px;"></th>
+                    <th style="width: 490px;"></th>
+                    <th style="width: 200px;"></th>
+                    <th style="width: 490px;"></th>
+                </tr>
+                <tr>
+                    <td class="tdmain1">状态：</td>
+                    <td class="tdmain" id="state">
+
+                    </td>
+                    <td class="tdmain1">开始日期：</td>
+                    <td class="tdmain" id="startTime"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">优先级：</td>
+                    <td class="tdmain" id="advanced"></td>
+                    <td class="tdmain1">计划完成日期：</td>
+                    <td class="tdmain" id="plantime"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">指派给：</td>
+                    <td class="tdmain" id="assign"></td>
+                    <td class="tdmain1">指摘数：</td>
+                    <td class="tdmain" id="picknum"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">总页数：</td>
+                    <td class="tdmain" id="pagenum"></td>
+                    <td class="tdmain1">变更量：</td>
+                    <td class="tdmain" id="changenum"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">Riviewer：</td>
+                    <td class="tdmain" id="reviewer"></td>
+                    <td class="tdmain1">Riviewee：</td>
+                    <td class="tdmain" id="reviewee"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">Review场所：</td>
+                    <td class="tdmain" id="reviewplace"></td>
+                    <td class="tdmain1">Review耗时：</td>
+                    <td class="tdmain" id="reviewtime"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">Review版本：</td>
+                    <td class="tdmain" id="reviewVersion"></td>
+                    <td class="tdmain1">Review日期：</td>
+                    <td class="tdmain" id="reviewDate"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">相关链接：</td>
+                    <td class="tdmain" id="aboutlink"></td>
+                    <td class="tdmain1"><input type="button" value="查看checklist" class="checklistbut"/></td>
+                </tr>
+            </table>
+        </div>
+        <div class="sonMission">
+            子任务&nbsp;&nbsp;&nbsp;
+            <a id="addpick">新增</a>
+            <table class="sonTable" border="1px solid black" id="sontable">
+                <tr id="baseson">
+                    <td id="reviewid">指摘编号</td>
+                    <td id="reviewstate">指摘状态</td>
+                    <td id="reviewname">指摘主题</td>
+                </tr>
+            </table>
+        </div>
+        <div class="history">
+            历史记录
+        </div>
+
+    </div>
+    <div class="mainright">
+        <div class="explain">
+            成果物阶段状态说明
+        </div>
+        <table border="1" class="tableright">
+            <tr>
+                <th style="width: 70px;">状态名称</th>
+                <th style="width: 240px;">使用方法</th>
+            </tr>
+            <tr>
+                <td>New Creation</td>
+                <td>处于新建状态，是刚由管理者指派过来，且尚未开发的状态，此状态下进度应为0%</td>
+            </tr>
+            <tr>
+                <td>In progress</td>
+                <td>正在开发中，且尚未Review，在此阶段请不要将完成度置于100%，Review结束之后，且无NG部分，再将完成度置于100%</td>
+            </tr>
+            <tr>
+                <td>Resolved</td>
+                <td>本阶段已经开发完毕，并且Review结束且无特殊问题，可以转发给管理者</td>
+            </tr>
+            <tr>
+                <td>Checked</td>
+                <td>由GL检查完毕，可以转发给PL，由PL来承认成果物</td>
+            </tr>
+            <tr>
+                <td>Closed</td>
+                <td>已经由相关管理者检查完毕，关闭此成果物，完成</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<div class="foot">
+    Designed By ZhangHan
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/WdatePicker.js"></script>
+<script type="text/javascript">
+    $(".public").load("public.html", function () {
+        loadcookie();
+        quitpage();
+    });
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
+    $("#addpick").click(function () {
+        location.href = "addpick.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
+    });
+
+    function getCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg)) {
+            return unescape(arr[2]);
+        } else {
+            return null;
+        }
+    }
+
+    $(".watch").click(function () {
+        var data;
+        if ($(".watch").html() === "关注") {
+            data = {
+                "id": getUrlParam("reviewid"),
+                "username": getCookie("username"),
+                "status": 1
+            };
+            $.ajax({
+                type: "post",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/review",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify(data),
+                success: function (returned) {
+                    if (returned.status === 200) {
+                        alert("关注成功");
+                    } else {
+                        alert("关注失败");
+                    }
+                }
+            });
+        } else {
+            data = {
+                "id": getUrlParam("reviewid"),
+                "username": getCookie("username"),
+                "status": 0
+            };
+            $.ajax({
+                type: "post",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/review",//为用户取消关注
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify(data),
+                success: function (returned) {
+                    if (returned.status === 200) {
+                        alert("取消成功");
+                    } else {
+                        alert("取消失败");
+                    }
+                }
+            });
+        }
+
+        // 为用户关注review
+
+    })
+
+    $("#editreview").click(function () {
+        location.href = "editreview.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
+    });
+
+    function del() {
+        var msg = "您真的确定要删除吗？将删除所有下关联活动\n\n请确认！";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $(".delete").click(function () {
+        var le = getCookie("level");
+        if (le != 1) {
+            alert("只有项目管理员可以删除");
+        } else {
+            if (del()) {
+                $.ajax({
+                    type: "get",
+                    url: "http://www.polarbear.pub:8080/GGPPMS/api/result/delete/" + getUrlParam("reviewid"),
+                    async: false,
+                    success: function (returned) {
+                        if (returned.status === 200) {
+                            alert("删除成功");
+                        } else {
+                            alert("删除失败");
+                        }
+                    }
+                });
+            }
+
+        }
+    });
+
+    $(document).ready(function () {
+        var dataA = {
+            "id": getUrlParam("reviewid"),
+            "username": getCookie("username"),
+        };
+        $.ajax({
+            type: "post",
+            data: JSON.stringify(dataA),
+            contentType: "application/json",
+            url: "http://www.polarbear.pub:8080/GGPPMS/api/user/query/uo/review", //查询关注状态，如果已关注，把关注按钮改成取消关注
+            async: false,
+            success: function (result) {
+                if (result.watched) {
+                    $("#watch").html("取消关注");
+                }
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"),
+            async: false,
+            success: function (result) {
+                var tempHtml = "";
+                var href = " 'pick.html?pickid=";
+                for (var i = 0; i < result.length; i++) {
+                    tempHtml += "<tr><td>" + n.pickid + "</td>";
+                    tempHtml += "<td>" + n.status + "</td>"
+                    tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
+                }
+                $("#sontable").append(tempHtml);
+
+            }
+        });
+
+        // 查询该review下的全部指摘
+        $.get("http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"), function (result) {
+            var res = $.parseJSON(result);
+
+            var href = " 'pick.html?pickid=";
+            $.each(res, function (i, n) {
+                tempHtml += "<tr><td>" + n.pickid + "</td>";
+                tempHtml += "<td>" + n.status + "</td>"
+                tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
+            });
+        });
+
+        var data = {
+            "reviewid": getUrlParam("reviewid")
+        };
+
+        // 根据reviewid把对应的成果物review拿出来
+        $.ajax({
+            type: "get",
+            url: "http://www.polarbear.pub:8080/GGPPMS/api/review/" + getUrlParam("reviewid"),
+            contentType: "application/json; charset=UTF-8",
+            //data: JSON.stringify(data),
+            success: function (returned) {
+                $("#reviewnum").html(returned.reviewid);
+                $("#reviewTitle").html(returned.reviewTitle);
+                $("#projectid").html(returned.projectid);
+                if (returned.state === 0) {
+                    $("#state").html("New Creation");
+                } else if (returned.state === 1) {
+                    $("#state").html("In Prograss");
+                } else if (returned.state === 2) {
+                    $("#state").html("Resolved");
+                } else if (returned.state === 3) {
+                    $("#state").html("Checked");
+                } else if (returned.state === 4) {
+                    $("#state").html("Closed");
+                }
+                ;
+                $("#startTime").html(returned.startTime);
+                if (returned.advanced === 0) {
+                    $("#advanced").html("低");
+                } else if (returned.advanced === 1) {
+                    $("#advanced").html("中");
+                } else if (returned.advanced === 2) {
+                    $("#advanced").html("高");
+                }
+                ;
+                $("#plantime").html(returned.plantime);
+                $("#assign").html(returned.assign);
+                $("#picknum").html(returned.picknum);
+                $("#pagenum").html(returned.pagenum);
+                $("#changenum").html(returned.changenum);
+                $("#reviewer").html(returned.reviewer);
+                $("#reviewee").html(returned.reviewee);
+                $("#reviewplace").html(returned.reviewplace);
+                $("#reviewtime").html(returned.reviewtime);
+                $("#reviewVersion").html(returned.reviewVersion);
+                $("#reviewDate").html(returned.reviewDate);
+                $("#aboutlink").html(returned.aboutlink);
+            }
+        });
+    })
+</script>
 
 </html>

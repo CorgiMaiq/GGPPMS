@@ -241,16 +241,19 @@
 				type: "post",
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/filtered-list",
 				data: JSON.stringify(data),
+				contentType: 'application/json',
+				dataType: "json",
 				async: false,
 				success: function(returned) {
 					alert("hello");
-					var temphtml = "";
+					var tempHtml = "";
 					
 					for(var i = 0; i < returned.length; i++) {
-						tempHtml += "<tr><td>" + n.username + "</td>";
+						var n = returned[i];
+						tempHtml += "<tr><td>" + n.email + "</td>";
 						tempHtml += "<td><a href='edituser.html?username=" + n.username + "'>" + n.nickname + "</td>";
-						tempHtml += "<td>" + n.group + "</td>";
-						tempHtml += "<td>" + n.level + "</td>";
+						tempHtml += "<td>" + n.usergroupname + "</td>";
+						tempHtml += "<td>" + n.usertype + "</td>";
 						tempHtml += "<td>" + n.email + "</td></tr>";
 					}
 					$("#basetable").append(tempHtml);

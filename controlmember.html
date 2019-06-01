@@ -146,13 +146,11 @@
             	type:"get",
             	url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"),
             	async:false,
-            	//dataType : "text",
-            	success : function(data){
-            		alert("?");
-            		alert(data);
+                dataType: "json",
+                success: function (returned) {
             		var tempHtml = "";
-            		var returned=eval("("+data+")");
             		for (var i = 0;i<returned.length;i++) {
+                        var n = returned[i];
             			tempHtml += "<tr><td>" + n.email + "</td>";
 						tempHtml += "<td>" + n.nickname + "</td>";
 	                    tempHtml += "<td>" + n.usertype + "</td>";
