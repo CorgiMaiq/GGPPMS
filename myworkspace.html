@@ -195,21 +195,21 @@
 				type:"get",
 				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/result/watch/" + getCookie("username"),
 				async:false,
-				dataType : "text",
-				success : function(data){
-					alert("hihi");
-					var tempHtml = "";
+                dataType: "json",
+                success: function (returned) {
+                    // alert(JSON.stringify(returned));
+                    var temphtml = "";
         			//var returned=eval("("+data+")");
-        			alert(returned);
         			for(var i = 0;i<returned.length;i++){
         				var n = returned[i];
+                        alert(n);
         				temphtml += "<tr><td>" + n.id + "</td>";
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
 						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
 						temphtml += "<td><a href=main1.html?resultid=" + n.id + "></a></td></tr>"
         			}
-        			$("#rightTable").append(tempHtml);
+                    $("#rightTable").append(temphtml);
 				}
 			});
 			/*
