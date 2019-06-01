@@ -247,37 +247,43 @@
 		td {
 			overflow-y: auto;
 		}
-		.sonTable{
+		
+		.sonTable {
 			margin-left: 20px;
 			margin-top: 10px;
 			border-collapse: collapse;
 			font-size: 14px;
-			
-		}
-		.sonTable td{
-			padding: 4px;
-			text-align: center;
-			color: rgb(77,77,77);
-		}
-		#baseson{
-			background: rgb(237,237,237);
-		}
-		.sonTable tr:nth-child(odd){
-			background: rgb(246,247,248);
-		}
-		#reviewid{
-			width: 240px;
-		}
-		#reviewstate{
-			width: 260px;
-		}
-		#reviewname{
-			width: 800px;
-		}
-		#addpick{
-			cursor: pointer;
 		}
 		
+		.sonTable td {
+			padding: 4px;
+			text-align: center;
+			color: rgb(77, 77, 77);
+		}
+		
+		#baseson {
+			background: rgb(237, 237, 237);
+		}
+		
+		.sonTable tr:nth-child(odd) {
+			background: rgb(246, 247, 248);
+		}
+		
+		#reviewid {
+			width: 240px;
+		}
+		
+		#reviewstate {
+			width: 260px;
+		}
+		
+		#reviewname {
+			width: 800px;
+		}
+		
+		#addpick {
+			cursor: pointer;
+		}
 	</style>
 
 	<body>
@@ -294,8 +300,9 @@
 					成果物Review编号
 				</div>
 				<div class="edit">
-					<a class="edittext" id="editreview">编辑</a> &nbsp;|
-					&nbsp;<a class="watch" style="cursor: pointer;">关注</a>
+					<a class="edittext" id="editreview">编辑</a> &nbsp;| &nbsp;
+					<a class="watch" style="cursor: pointer;" id="watch">关注</a>&nbsp;| &nbsp;
+					<a class="delete" style="cursor: pointer;">删除</a>
 				</div>
 				<div class="midbox">
 					<div class="midboxtitle" id="reviewTitle">
@@ -367,7 +374,7 @@
 				<div class="sonMission">
 					子任务&nbsp;&nbsp;&nbsp;
 					<a id="addpick">新增</a>
-					<table class="sonTable" border="1px solid black">
+					<table class="sonTable" border="1px solid black" id="sontable">
 						<tr id="baseson">
 							<td id="reviewid">指摘编号</td>
 							<td id="reviewstate">指摘状态</td>
@@ -431,10 +438,10 @@
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
 		}
-		$("#addpick").click(function(){
+		$("#addpick").click(function() {
 			location.href = "addpick.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
 		});
-		
+
 		function getCookie(name) {
 			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
 			if(arr = document.cookie.match(reg)) {
@@ -443,36 +450,113 @@
 				return null;
 			}
 		}
-		
-		$(".watch").click(function(){
+
+		$(".watch").click(function() {
 			var data = {
 				"id": getUrlParam("reviewid"),
-				"username" : getCookie("username")
+				"username": getCookie("username")
 			};
+			if($(".watch").html() === "关注") {
+				$.ajax({
+					type: "post",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/review",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify(data),
+					success: function(returned) {
+						if(returned.status === 200) {
+							alert("关注成功");
+						} else {
+							alert("关注失败");
+						}
+					}
+				});
+			}else{
+				$.ajax({
+					type: "post",
+					url: "",//为用户取消关注
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify(data),
+					success: function(returned) {
+						if(returned.status === 200) {
+							alert("取消成功");
+						} else {
+							alert("取消失败");
+						}
+					}
+				});
+			}
 
 			// 为用户关注review
-			$.ajax({
-				type:"post",
-				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/review",
-				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify(data),
-				success: function(returned) {
-					if(returned.status===200){
-						alert("关注成功");
-					}else{
-						alert("关注失败，或许是已经关注过了");
-					}
-				}
-			});
+
 		})
-		
-		$("#editreview").click(function(){
+
+		$("#editreview").click(function() {
 			location.href = "editreview.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
 		});
 		
+		function del() {
+			var msg = "您真的确定要删除吗？将删除所有下关联活动\n\n请确认！";
+			if(confirm(msg) == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		$(".delete").click(function() {
+			var le = getCookie("level");
+			if(le != 1) {
+				alert("只有项目管理员可以删除");
+			} else {
+				if(del()) {
+					$.ajax({
+						type: "get",
+						url: "",
+						async: false,
+						success : function(returned){
+							if(returned.status===200){
+								alert("删除成功");
+							}else{
+								alert("删除失败");
+							}
+						}
+					});
+				}
+
+			}
+		});
+
 		$(document).ready(function() {
+			$.ajax({
+				type: "get",
+				url: "", //查询关注状态，如果已关注，把关注按钮改成取消关注
+				async: false,
+				success: function(result) {
+					if(result.watched) {
+						$("#watch").html("取消关注");
+					}
+				}
+			});
+
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"),
+				async: false,
+				success: function(result) {
+					var tempHtml = "";
+					var href = " 'pick.html?pickid=";
+					for(var i = 0; i < result.length; i++) {
+						tempHtml += "<tr><td>" + n.pickid + "</td>";
+						tempHtml += "<td>" + n.status + "</td>"
+						tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
+					}
+					$("#sontable").append(tempHtml);
+
+				}
+			});
+
 			// 查询该review下的全部指摘
-			$.get("http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"), function (result) {
+			$.get("http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"), function(result) {
 				var res = $.parseJSON(result);
 
 				var href = " 'pick.html?pickid=";
@@ -482,8 +566,7 @@
 					tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
 				});
 			});
-			
-			
+
 			var data = {
 				"reviewid": getUrlParam("reviewid")
 			};
@@ -493,7 +576,7 @@
 				type: "get",
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/review/" + getUrlParam("reviewid"),
 				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify(data),
+				//data: JSON.stringify(data),
 				success: function(returned) {
 					$("#reviewnum").html(returned.reviewid);
 					$("#reviewTitle").html(returned.reviewTitle);

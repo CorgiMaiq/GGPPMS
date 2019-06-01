@@ -420,11 +420,10 @@
         }else if($("#state").val()==="4"&&getCookie("level")!=0) {
         	alert("您无权关闭此成果物");
         }else {
-        	alert("gugu");
             var submitdata = {
                 "creator": getCookie("username"),
                 "id": getUrlParam("resultID"),
-                "pid": getUrlParam("fatherid"),
+                "pid": getUrlParam("pid"),
                 "title": $("#title").val(),
                 "startdate": $("#startdate").val(),
 
@@ -456,10 +455,9 @@
                 async:false,
                 dataType : "json",
                 success: function (returned) {
-                	alert("xixi2");
                     if (returned.status === 200) {
                         alert("修改成功");
-                        location.href = "main1.html?resultid=" + getUrlParam("resultID") + "&pid=" + getUrlParam("pID")
+                        location.href = "main1.html?resultid=" + getUrlParam("resultID") + "&pid=" + getUrlParam("pid")
                     } else {
                         alert("修改失败");
                     }
@@ -518,7 +516,7 @@
                 optionValue($("#completepercent"), returned.completePct);
 
                 $("#resulttype").val(returned.resultType);
-                $("#endtime").val(returned.endtime);
+                $("#endtime").val(timestampToTime(returned.endtime));
             }
         });
     })

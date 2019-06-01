@@ -1,467 +1,527 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8"/>
-    <title></title>
-</head>
-<style>
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#head {
+			width: 100%;
+			height: 30px;
+			background: black;
+			font-size: 13px;
+			line-height: 30px;
+			color: rgb(140, 145, 148);
+		}
+		
+		.headnavi {
+			margin-left: 30px;
+		}
+		
+		.headleft {
+			width: 85%;
+			float: left;
+		}
+		
+		.headright {
+			width: 15%;
+			float: left;
+		}
+		
+		.loginwith,
+		.headright {
+			float: left;
+		}
+		
+		.headnaviright {
+			margin-left: 15px;
+		}
+		
+		.loginwith {
+			color: white;
+		}
+		
+		.headmid {
+			height: 70px;
+			width: 100%;
+			background: rgb(44, 54, 60);
+		}
+		
+		.headbottom {
+			color: rgb(224, 224, 224);
+			width: 100%;
+			height: 50px;
+			background: rgb(63, 71, 77);
+		}
+		
+		.bottomnavi {
+			color: rgb(156, 157, 164);
+			font-size: 16px;
+			line-height: 50px;
+			display: inline-block;
+			margin-right: 30px;
+		}
+		
+		.sign {
+			margin: 0px 20px;
+		}
+		
+		.bzy {
+			display: inline;
+			height: 60px;
+			margin-left: 23px;
+			margin-top: 5px;
+		}
+		
+		.bzyimg {
+			width: auto;
+			height: 100%;
+			float: left;
+		}
+		
+		.pms {
+			line-height: 70px;
+			margin-left: 7px;
+			width: 30%;
+			float: left;
+			color: rgb(248, 248, 248);
+			font-size: 14px;
+		}
+		
+		.mainn {
+			width: 100%;
+			height: 1000px;
+		}
+		
+		.foot {
+			display: block;
+			height: 20px;
+			width: 100%;
+			font-size: 12px;
+			line-height: 20px;
+			text-align: center;
+			color: rgb(222, 234, 217);
+		}
+		
+		.productNum {
+			float: left;
+			width: auto;
+			height: auto;
+			color: rgb(86, 86, 86);
+			font-size: 25px;
+			margin: 15px 30px 0px;
+		}
+		
+		.edit {
+			float: right;
+			margin: 15px 30px 0px;
+			color: rgb(82, 167, 210);
+		}
+		
+		.mainleft {
+			height: auto;
+			width: 80%;
+			float: left;
+		}
+		
+		.mainright {
+			float: right;
+			width: 19%;
+			height: 1000px;
+			background: rgb(250, 250, 250);
+			border-left-color: rgb(220, 220, 220);
+			border-left-width: 1px;
+			border-left-style: solid;
+			border-bottom-color: rgb(220, 220, 220);
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+		
+		.midbox {
+			height: 400px;
+			width: 1500px;
+			background: rgb(255, 255, 222);
+			margin-top: 70px;
+			margin-left: 30px;
+		}
+		
+		.midboxtitle {
+			font-size: 25px;
+			margin-left: 30px;
+			width: auto;
+			height: auto;
+			padding-top: 15px;
+			color: rgb(86, 86, 86);
+		}
+		
+		.beizhu {
+			margin-left: 30px;
+			width: auto;
+			height: auto;
+			padding-top: 10px;
+			color: rgb(86, 86, 86);
+		}
+		
+		.table {
+			margin-left: 30px;
+			margin-top: 30px;
+			color: rgb(69, 76, 81);
+		}
+		
+		table {
+			table-layout: fixed;
+		}
+		
+		.tdmain,
+		.tdmain1 {
+			padding-top: 10px;
+		}
+		
+		.tdmain1 {
+			width: 120px;
+		}
+		
+		.hr1 {
+			margin-top: 30px;
+			width: 95%;
+			margin-left: 30px;
+			margin-bottom: 20px;
+		}
+		
+		.sonMission {
+			margin-top: 40px;
+			margin-left: 30px;
+			color: rgb(69, 76, 81);
+			height: autopx;
+			font-size: 22px;
+		}
+		
+		.sonMission>a {
+			font-size: 8px;
+			color: rgb(96, 180, 208);
+		}
+		
+		.history {
+			width: 99%;
+			height: 200px;
+			margin-top: 20px;
+			margin-left: 30px;
+			font-size: 22px;
+			color: rgb(69, 76, 81);
+			overflow-y: scroll;
+		}
+		
+		.tableright {
+			margin-left: 15px;
+			margin-top: 20px;
+			font-size: 10px;
+		}
+		
+		.explain {
+			margin-left: 15px;
+			font-size: 22px;
+			color: rgb(102, 102, 102);
+			margin-top: 30px;
+		}
+		
+		.test {
+			width: 490px;
+			overflow-x: auto;
+		}
+		
+		.checklistbut {
+			padding: 4px 90px;
+		}
+		
+		td {
+			max-width: 570px;
+			overflow-y: auto;
+		}
+		
+		.tdmain {
+			text-align: left;
+			width: 570px;
+		}
+	</style>
 
-    #head {
-        width: 100%;
-        height: 30px;
-        background: black;
-        font-size: 13px;
-        line-height: 30px;
-        color: rgb(140, 145, 148);
-    }
+	<body>
+		<div class="public"></div>
+		<div class="headbottom">
+			<span class="sign">+</span>
+			<a class="bottomnavi">概述</a>
+			<a class="bottomnavi">活动</a>
+			<a class="bottomnavi">问题</a>
+		</div>
+		<div class="mainn">
+			<div class="mainleft">
+				<div class="productNum" id="pickid">
+					Review指摘编号
+				</div>
+				<div class="edit">
+					<a class="edittext" id="editpick">编辑</a> &nbsp;| &nbsp;
+					<a class="watch" style="cursor: pointer;">关注</a>&nbsp;| &nbsp;
+					<a class="delete" style="cursor: pointer;">删除</a>
+				</div>
+				<div class="midbox">
+					<div class="midboxtitle" id="picktitle">
+						Review指摘标题
+					</div>
+					<div class="beizhu">
+						由xx更新于xx日
+					</div>
+					<table class="table">
 
-    .headnavi {
-        margin-left: 30px;
-    }
+						<tr>
+							<td class="tdmain1">状态：</td>
+							<td class="tdmain" id="state">
 
-    .headleft {
-        width: 85%;
-        float: left;
-    }
+							</td>
+							<td class="tdmain1">开始日期：</td>
+							<td class="tdmain" id="startdate"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">优先级：</td>
+							<td class="tdmain" id="advanced"></td>
+							<td class="tdmain1">计划完成日期：</td>
+							<td class="tdmain" id="plantime"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">指派给：</td>
+							<td class="tdmain" id="assign"></td>
+							<td class="tdmain1">完成度%：</td>
+							<td class="tdmain" id="completepercent"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">指摘者：</td>
+							<td class="tdmain" id="picker"></td>
+							<td class="tdmain1">指摘内容：</td>
+							<td class="tdmain" id="pickcontent"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">指摘日期：</td>
+							<td class="tdmain" id="pickdate"></td>
+							<td class="tdmain1">实际工数：</td>
+							<td class="tdmain" id="actworknum"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1" id="link">指摘描述：</td>
+							<td class="tdmain" id="pickintro"></td>
+						</tr>
+					</table>
+				</div>
 
-    .headright {
-        width: 15%;
-        float: left;
-    }
+				<div class="history">
+					历史记录
+				</div>
 
-    .loginwith,
-    .headright {
-        float: left;
-    }
+			</div>
+			<div class="mainright">
+				<div class="explain">
+					成果物阶段状态说明
+				</div>
+				<table border="1" class="tableright">
+					<tr>
+						<th style="width: 70px;">状态名称</th>
+						<th style="width: 240px;">使用方法</th>
+					</tr>
+					<tr>
+						<td>New Creation</td>
+						<td>处于新建状态，是刚由管理者指派过来，且尚未开发的状态，此状态下进度应为0%</td>
+					</tr>
+					<tr>
+						<td>In progress</td>
+						<td>正在开发中，且尚未Review，在此阶段请不要将完成度置于100%，Review结束之后，且无NG部分，再将完成度置于100%</td>
+					</tr>
+					<tr>
+						<td>Resolved</td>
+						<td>本阶段已经开发完毕，并且Review结束且无特殊问题，可以转发给管理者</td>
+					</tr>
+					<tr>
+						<td>Checked</td>
+						<td>由GL检查完毕，可以转发给PL，由PL来承认成果物</td>
+					</tr>
+					<tr>
+						<td>Closed</td>
+						<td>已经由相关管理者检查完毕，关闭此成果物，完成</td>
+					</tr>
+				</table>
+			</div>
 
-    .headnaviright {
-        margin-left: 15px;
-    }
+		</div>
+		<div class="foot">
+			Designed By ZhangHan
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/WdatePicker.js"></script>
+	<script type="text/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
 
-    .loginwith {
-        color: white;
-    }
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
 
-    .headmid {
-        height: 70px;
-        width: 100%;
-        background: rgb(44, 54, 60);
-    }
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
 
-    .headbottom {
-        color: rgb(224, 224, 224);
-        width: 100%;
-        height: 50px;
-        background: rgb(63, 71, 77);
-    }
+		$(".watch").click(function() {
 
-    .bottomnavi {
-        color: rgb(156, 157, 164);
-        font-size: 16px;
-        line-height: 50px;
-        display: inline-block;
-        margin-right: 30px;
-    }
+			var data = {
+				"id": getUrlParam("pickid"),
+				"username": getCookie("username")
+			};
+			// 为用户关注pick
+			if($(".watch").html() === "关注") {
+				$.ajax({
+					type: "post",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/pick",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify(data),
+					success: function(returned) {
+						if(returned.status === 200) {
+							alert("关注成功");
+						} else {
+							alert("关注失败，或许是已经关注过了");
+						}
+					}
+				});
+			}else{
+				$.ajax({
+					type: "post",
+					url: "",//为用户取消关注
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify(data),
+					success: function(returned) {
+						if(returned.status === 200) {
+							alert("取消成功");
+						} else {
+							alert("取消失败");
+						}
+					}
+				});
+			}
 
-    .sign {
-        margin: 0px 20px;
-    }
+		})
+		
+		function del() {
+			var msg = "您真的确定要删除吗？将删除所有下关联活动\n\n请确认！";
+			if(confirm(msg) == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 
-    .bzy {
-        display: inline;
-        height: 60px;
-        margin-left: 23px;
-        margin-top: 5px;
-    }
+		$(".delete").click(function() {
+			var le = getCookie("level");
+			if(le != 1) {
+				alert("只有项目管理员可以删除");
+			} else {
+				if(del()) {
+					$.ajax({
+						type: "get",
+						url: "",
+						async: false,
+						success : function(returned){
+							if(returned.status===200){
+								alert("删除成功");
+							}else{
+								alert("删除失败");
+							}
+						}
+					});
+				}
 
-    .bzyimg {
-        width: auto;
-        height: 100%;
-        float: left;
-    }
+			}
+		});
 
-    .pms {
-        line-height: 70px;
-        margin-left: 7px;
-        width: 30%;
-        float: left;
-        color: rgb(248, 248, 248);
-        font-size: 14px;
-    }
+		$("#editpick").click(function() {
+			location.href = "editpick.html?pickid=" + $("#pickid").html();
+		});
 
-    .mainn {
-        width: 100%;
-        height: 1000px;
-    }
+		$(document).ready(function() {
+			var data = {
+				reviewid: getUrlParam("reviewid")
+			};
+			$.ajax({
+				type: "get",
+				url: "", //查询关注状态，如果已关注，把关注按钮改成取消关注
+				async: false,
+				success: function(result) {
+					if(result.watched) {
+						$("#watch").html("取消关注");
+					}
+				}
+			});
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/load/" + getUrlParam("pickid"),
+				contentType: "application/json; charset=UTF-8",
+				// data: JSON.stringify(data),
+				success: function(returned) {
+					$("#pickid").html(returned.id);
+					$("#picktitle").html(returned.title);
+					if(returned.state === 0) {
+						$("#state").html("new Creation");
+					} else if(returned.state === 1) {
+						$("#state").html("In progress");
+					} else if(returned.state === 2) {
+						$("#state").html("Resolved");
+					} else if(returned.state === 3) {
+						$("#state").html("Checked");
+					} else if(returned.state === 4) {
+						$("#state").html("Closed");
+					}
+					$("#startdate").html(returned.startdate);
+					if(returned.advanced === "0") {
+						$("#advanced").html("低");
+					} else if(returned.advanced === "1") {
+						$("#advanced").html("中");
+					} else {
+						$("#advanced").html("高");
+					}
 
-    .foot {
-        display: block;
-        height: 20px;
-        width: 100%;
-        font-size: 12px;
-        line-height: 20px;
-        text-align: center;
-        color: rgb(222, 234, 217);
-    }
-
-    .productNum {
-        float: left;
-        width: auto;
-        height: auto;
-        color: rgb(86, 86, 86);
-        font-size: 25px;
-        margin: 15px 30px 0px;
-    }
-
-    .edit {
-        float: right;
-        margin: 15px 30px 0px;
-        color: rgb(82, 167, 210);
-    }
-
-    .mainleft {
-        height: auto;
-        width: 80%;
-        float: left;
-    }
-
-    .mainright {
-        float: right;
-        width: 19%;
-        height: 1000px;
-        background: rgb(250, 250, 250);
-        border-left-color: rgb(220, 220, 220);
-        border-left-width: 1px;
-        border-left-style: solid;
-        border-bottom-color: rgb(220, 220, 220);
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-    }
-
-    .midbox {
-        height: 400px;
-        width: 1500px;
-        background: rgb(255, 255, 222);
-        margin-top: 70px;
-        margin-left: 30px;
-    }
-
-    .midboxtitle {
-        font-size: 25px;
-        margin-left: 30px;
-        width: auto;
-        height: auto;
-        padding-top: 15px;
-        color: rgb(86, 86, 86);
-    }
-
-    .beizhu {
-        margin-left: 30px;
-        width: auto;
-        height: auto;
-        padding-top: 10px;
-        color: rgb(86, 86, 86);
-    }
-
-    .table {
-        margin-left: 30px;
-        margin-top: 30px;
-        color: rgb(69, 76, 81);
-    }
-
-    table {
-        table-layout: fixed;
-    }
-
-    .tdmain,
-    .tdmain1 {
-        padding-top: 10px;
-    }
-
-    .tdmain1 {
-        width: 120px;
-    }
-
-    .hr1 {
-        margin-top: 30px;
-        width: 95%;
-        margin-left: 30px;
-        margin-bottom: 20px;
-    }
-
-    .sonMission {
-        margin-top: 40px;
-        margin-left: 30px;
-        color: rgb(69, 76, 81);
-        height: autopx;
-        font-size: 22px;
-    }
-
-    .sonMission > a {
-        font-size: 8px;
-        color: rgb(96, 180, 208);
-    }
-
-    .history {
-        width: 99%;
-        height: 200px;
-        margin-top: 20px;
-        margin-left: 30px;
-        font-size: 22px;
-        color: rgb(69, 76, 81);
-        overflow-y: scroll;
-    }
-
-    .tableright {
-        margin-left: 15px;
-        margin-top: 20px;
-        font-size: 10px;
-    }
-
-    .explain {
-        margin-left: 15px;
-        font-size: 22px;
-        color: rgb(102, 102, 102);
-        margin-top: 30px;
-    }
-
-    .test {
-        width: 490px;
-        overflow-x: auto;
-    }
-
-    .checklistbut {
-        padding: 4px 90px;
-    }
-
-    td {
-        max-width: 570px;
-        overflow-y: auto;
-    }
-
-    .tdmain {
-        text-align: left;
-        width: 570px;
-    }
-
-</style>
-
-<body>
-<div class="public"></div>
-<div class="headbottom">
-    <span class="sign">+</span>
-    <a class="bottomnavi">概述</a>
-    <a class="bottomnavi">活动</a>
-    <a class="bottomnavi">问题</a>
-</div>
-<div class="mainn">
-    <div class="mainleft">
-        <div class="productNum" id="pickid">
-            Review指摘编号
-        </div>
-        <div class="edit">
-            <a class="edittext" id="editpick">编辑</a> &nbsp;|
-            &nbsp;<a class="watch" style="cursor: pointer;">关注</a>
-        </div>
-        <div class="midbox">
-            <div class="midboxtitle" id="picktitle">
-                Review指摘标题
-            </div>
-            <div class="beizhu">
-                由xx更新于xx日
-            </div>
-            <table class="table">
-
-                <tr>
-                    <td class="tdmain1">状态：</td>
-                    <td class="tdmain" id="state">
-
-                    </td>
-                    <td class="tdmain1">开始日期：</td>
-                    <td class="tdmain" id="startdate"></td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">优先级：</td>
-                    <td class="tdmain" id="advanced"></td>
-                    <td class="tdmain1">计划完成日期：</td>
-                    <td class="tdmain" id="plantime"></td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">指派给：</td>
-                    <td class="tdmain" id="assign"></td>
-                    <td class="tdmain1">完成度%：</td>
-                    <td class="tdmain" id="completepercent"></td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">指摘者：</td>
-                    <td class="tdmain" id="picker"></td>
-                    <td class="tdmain1">指摘内容：</td>
-                    <td class="tdmain" id="pickcontent"></td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">指摘日期：</td>
-                    <td class="tdmain" id="pickdate"></td>
-                    <td class="tdmain1">实际工数：</td>
-                    <td class="tdmain" id="actworknum"></td>
-                </tr>
-                <tr>
-                    <td class="tdmain1" id="link">指摘描述：</td>
-                    <td class="tdmain" id="pickintro"></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="history">
-            历史记录
-        </div>
-
-    </div>
-    <div class="mainright">
-        <div class="explain">
-            成果物阶段状态说明
-        </div>
-        <table border="1" class="tableright">
-            <tr>
-                <th style="width: 70px;">状态名称</th>
-                <th style="width: 240px;">使用方法</th>
-            </tr>
-            <tr>
-                <td>New Creation</td>
-                <td>处于新建状态，是刚由管理者指派过来，且尚未开发的状态，此状态下进度应为0%</td>
-            </tr>
-            <tr>
-                <td>In progress</td>
-                <td>正在开发中，且尚未Review，在此阶段请不要将完成度置于100%，Review结束之后，且无NG部分，再将完成度置于100%</td>
-            </tr>
-            <tr>
-                <td>Resolved</td>
-                <td>本阶段已经开发完毕，并且Review结束且无特殊问题，可以转发给管理者</td>
-            </tr>
-            <tr>
-                <td>Checked</td>
-                <td>由GL检查完毕，可以转发给PL，由PL来承认成果物</td>
-            </tr>
-            <tr>
-                <td>Closed</td>
-                <td>已经由相关管理者检查完毕，关闭此成果物，完成</td>
-            </tr>
-        </table>
-    </div>
-
-</div>
-<div class="foot">
-    Designed By ZhangHan
-</div>
-</body>
-<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-<script src="js/WdatePicker.js"></script>
-<script type="text/javascript">
-    $(".public").load("public.html", function () {
-        loadcookie();
-        quitpage();
-    });
-
-    function getUrlParam(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg); //匹配目标参数
-        if (r != null) return unescape(r[2]);
-        return null; //返回参数值
-    }
-
-    function getCookie(name) {
-        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-        if (arr = document.cookie.match(reg)) {
-            return unescape(arr[2]);
-        } else {
-            return null;
-        }
-    }
-
-    $(".watch").click(function () {
-        var data = {
-            "id": getUrlParam("pickid"),
-            "username": getCookie("username")
-        };
-// 为用户关注pick
-        $.ajax({
-            type: "post",
-            url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update/uo/pick",
-            contentType: "application/json; charset=UTF-8",
-            data: JSON.stringify(data),
-            success: function (returned) {
-                if (returned.status === 200) {
-                    alert("关注成功");
-                } else {
-                    alert("关注失败，或许是已经关注过了");
-                }
-            }
-        });
-    })
-
-    $("#editpick").click(function () {
-        location.href = "editpick.html?pickid=" + $("#pickid").html();
-    });
-
-    $(document).ready(function () {
-        var data = {
-            reviewid: getUrlParam("reviewid")
-        };
-        $.ajax({
-            type: "get",
-            url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/load/" + getUrlParam("pickid"),
-            contentType: "application/json; charset=UTF-8",
-            data: JSON.stringify(data),
-            success: function (returned) {
-                $("#pickid").html(returned.id);
-                $("#picktitle").html(returned.title);
-                if (returned.state === 0) {
-                    $("#state").html("new Creation");
-                } else if (returned.state === 1) {
-                    $("#state").html("In progress");
-                } else if (returned.state === 2) {
-                    $("#state").html("Resolved");
-                } else if (returned.state === 3) {
-                    $("#state").html("Checked");
-                } else if (returned.state === 4) {
-                    $("#state").html("Closed");
-                }
-                $("#startdate").html(returned.startdate);
-                if (returned.advanced === "0") {
-                    $("#advanced").html("低");
-                } else if (returned.advanced === "1") {
-                    $("#advanced").html("中");
-                } else {
-                    $("#advanced").html("高");
-                }
-
-                $("#plantime").html(returned.plantime);
-                $("#assign").html(returned.assign);
-                if (returned.completepercent === 0) {
-                    $("#completepercent").html("0%");
-                } else if (returned.state === 1) {
-                    $("#completepercent").html("20%");
-                } else if (returned.state === 2) {
-                    $("#completepercent").html("40%");
-                } else if (returned.state === 3) {
-                    $("#completepercent").html("60%");
-                } else if (returned.state === 4) {
-                    $("#completepercent").html("80%");
-                } else {
-                    $("#completepercent").html("100%");
-                }
-                $("#picker").html(returned.picker);
-                $("#pickcontent").html(returned.pickcontent);
-                $("#pickdate").html(returned.pickdate);
-                $("#actworknum").html(returned.actworknum);
-                $("#pickintro").html(returned.pickintro);
-            }
-        });
-    })
-</script>
+					$("#plantime").html(returned.plantime);
+					$("#assign").html(returned.assign);
+					if(returned.completepercent === 0) {
+						$("#completepercent").html("0%");
+					} else if(returned.state === 1) {
+						$("#completepercent").html("20%");
+					} else if(returned.state === 2) {
+						$("#completepercent").html("40%");
+					} else if(returned.state === 3) {
+						$("#completepercent").html("60%");
+					} else if(returned.state === 4) {
+						$("#completepercent").html("80%");
+					} else {
+						$("#completepercent").html("100%");
+					}
+					$("#picker").html(returned.picker);
+					$("#pickcontent").html(returned.pickcontent);
+					$("#pickdate").html(returned.pickdate);
+					$("#actworknum").html(returned.actworknum);
+					$("#pickintro").html(returned.pickintro);
+				}
+			});
+		})
+	</script>
 
 </html>
