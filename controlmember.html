@@ -152,8 +152,8 @@
             			tempHtml += "<tr><td>" + n.email + "</td>";
 						tempHtml += "<td>" + n.nickname + "</td>";
 	                    tempHtml += "<td>" + n.usertype + "</td>";
-						tempHtml += "<td><button onclick='deletesomeone(" + n.username + ")'>删除</button>"+"</td>";
-						tempHtml += "<td><button onclick='assign(" + n.username + ")'>指派</button>"+"</td></tr>";
+						tempHtml += "<td><button onclick='deletesomeone(\"" + n.email + "\")'>删除</button>" + "</td>";
+						tempHtml += "<td><button onclick='assign(\"" + n.email + "\")'>指派</button>" + "</td></tr>";
             		}
             		$("#maintable").append(tempHtml);
             	}
