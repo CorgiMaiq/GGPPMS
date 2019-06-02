@@ -87,9 +87,6 @@
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
 		}
-		function ale(){
-			alert("haha");
-		}
 
 		function deletesomeone(id){
 			var deleteid = {
@@ -102,6 +99,7 @@
                 url: "http://www.polarbear.pub:8080/GGPPMS/api/user/removeGroup",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(deleteid),
+				async:false,
 				success: function(returned) {
 					if(returned.status===200){
 						alert("删除成功");
@@ -125,6 +123,7 @@
                 url: "http://www.polarbear.pub:8080/GGPPMS/api/user/setGroupLeader",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(assignid),
+				async:false,
 				success: function(returned) {
 					if(returned.status===200){
 						alert("指派成功");
@@ -141,7 +140,6 @@
 			var data = {
 				"groupid" : getUrlParam("groupid")
             };
-            alert("?");
             $.ajax({
             	type:"get",
             	url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"),

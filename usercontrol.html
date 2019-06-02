@@ -154,8 +154,7 @@
 			width: 800px;
 			left: 50%;
 			margin-top: 60px;
-			margin-left: -400px;
-			background: #13777E;
+			margin-left: -300px;
 		}
 		
 		.searchtable {
@@ -210,7 +209,6 @@
 								<td width="120px">姓名</td>
 								<td width="200px">组别</td>
 								<td width="120px">等级</td>
-								<td width="280px">邮箱</td>
 							</tr>
 						</table>
 					</div>
@@ -236,6 +234,7 @@
 				"group": $("#group").val(),
 				"level": $("#level").val()
 			};
+			$(".addtr").remove();
 			// 根据信息查找符合的用户
 			$.ajax({
 				type: "post",
@@ -245,16 +244,21 @@
 				dataType: "json",
 				async: false,
 				success: function(returned) {
-					alert("hello");
 					var tempHtml = "";
-					
 					for(var i = 0; i < returned.length; i++) {
 						var n = returned[i];
-						tempHtml += "<tr><td>" + n.email + "</td>";
-						tempHtml += "<td><a href='edituser.html?username=" + n.username + "'>" + n.nickname + "</td>";
+						tempHtml += "<tr class='addtr'><td>" + n.email + "</td>";
+						tempHtml += "<td><a href='edituser.html?username=" + n.email + "'>" + n.nickname + "</td>";
 						tempHtml += "<td>" + n.usergroupname + "</td>";
-						tempHtml += "<td>" + n.usertype + "</td>";
-						tempHtml += "<td>" + n.email + "</td></tr>";
+						if(n.usertype===1){
+							tempHtml += "<td>" + "PL" + "</td></tr>";
+						}else if(n.usertype===2){
+							tempHtml += "<td>" + "GL" + "</td></tr>";
+						}else if(n.usertype===3){
+							tempHtml += "<td>" + "开发" + "</td></tr>";
+						}else{
+							tempHtml += "<td>" +" " + "</td></tr>";
+						}
 					}
 					$("#basetable").append(tempHtml);
 				}

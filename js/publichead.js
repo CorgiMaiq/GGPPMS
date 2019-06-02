@@ -18,7 +18,7 @@ function delCookie(name) {
 
 function mywork(){
 	$("#mywork").click(function(){
-		location.href = "myworkspace.html?username=" + getCookie("username");
+		location.href = "myworkspace.html";
 	});
 }
 

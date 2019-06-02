@@ -244,33 +244,22 @@
 
 		$(document).ready(function() {
 			$("tr").eq(4).hide();
-			if(getCookie("level") === 2) {
-				var data = {
-					"username": getUrlParam("username")
-				};
-				// 获取这个人是哪个组
+
+				// 查询所有组
 				$.ajax({
 					type: "get",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + getUrlParam("username"),
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/group",
+					async: false,
 					contentType: "application/json; charset=UTF-8",
 					success: function(returned) {
-						var content = returned.usergroupname;
-						$("#glgroup").html(content);
+						var temlHtml = "";
+						for(var i = 0; i < returned.length; i++) {
+							var n = returned[i];
+							temlHtml += "<option value='" + n.groupid + "'>" + n.groupname + "</option>";
+						}
+						$("#group").append(temlHtml);
 					}
 				});
-			} else {
-				var temlHtml;
-				// 查询所有组
-				$.get("http://www.polarbear.pub:8080/GGPPMS/api/group", function (returned) {
-					var res = $.parseJSON(returned);
-					$.each(res, function(i, n) {
-						temlHtml += "<option value='" + n.groupid + "'>" + n.groupname + "</option>";
-					});
-					$("#basegroup").append(temlHtml);
-				});
-				var data2 = {
-					"username": getUrlParam("username")
-				};
 				// 获取这个人的工号密码和姓名还有组别
 				$.ajax({
 					type: "get",
@@ -314,8 +303,6 @@
 						$(".level").append(option3);
 					}
 				})
-			}
-
 		});
 
 		function checkinput(b, c, d) {
@@ -335,7 +322,7 @@
 
 			if(checkinput(password1, nickname1, group1)) {
 				var data = {
-					
+
 					"username": $("#username").html(),
 					"password": $("#password").val(),
 					"nickname": $("#nickname").val(),
@@ -352,7 +339,7 @@
 						if(returned.status === 200) {
 							alert("修改成功");
 							location.href = "usercontrol.html";
-						} else if(returned.status === 400) {
+						} else if(returned.status === 500) {
 							alert("某种错误");
 						}
 					}

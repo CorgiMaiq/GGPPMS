@@ -640,29 +640,57 @@
     });
 
     $(document).ready(function () {
-        $.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"), //查出项目中的所有人
-            function (data) {
-                var res = $.parseJSON(data);
-                $.each(res, function (i, n) {
-                    $("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-                });
-            });
+       $.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"),
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				dataType: "text",
+				success: function(data) {
+					var tempHtml = "";
+					var dataObj = eval("(" + data + ")");
+					for(var i = 0; i < dataObj.length; i++) {
+						var n = dataObj[i];
+						tempHtml += "<option value=" + n.email + ">" + n.nickname + "</option>";
+					}
+					$("#assign").append(tempHtml);
+				}
+			});
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/manager/" + getUrlParam("projectid"),
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				dataType: "text",
+				success: function(data) {
+					var dataObj = eval("(" + data + ")");
+				
+					var tempHtml = "";
+					for(var i = 0; i < dataObj.length; i++) {
+						var n = dataObj[i];
+						tempHtml += "<option value=" + n.email + ">" + n.nickname + "</option>";
+					}
+					$("#reviewer").append(tempHtml);
+				}
+			});
 
-        $.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/manager/" + getUrlParam("projectid"),//查出项目中的管理者
-            function (data) {
-                var res = $.parseJSON(data);
-                $.each(res, function (i, n) {
-                    $("#basereviewer").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-                });
-            });
-
-        $.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/worker/" + getUrlParam("projectid"), //查出项目中的参与者
-            function (data) {
-                var res = $.parseJSON(data);
-                $.each(res, function (i, n) {
-                    $("#baserivewee").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-                });
-            });
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/worker/" + getUrlParam("projectid"),
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				dataType: "text",
+				success: function(data) {
+					var dataObj = eval("(" + data + ")");
+					alert(dataObj)
+					var tempHtml = "";
+					for(var i = 0; i < dataObj.length; i++) {
+						var n = dataObj[i];
+						tempHtml += "<option value=" + n.email + ">" + n.nickname + "</option>";
+					}
+					$("#reviewee").append(tempHtml);
+				}
+			});
         var data = {
             "reviewid": getUrlParam("reviewid")
         };
@@ -670,7 +698,6 @@
             type: "get",
             url: "http://www.polarbear.pub:8080/GGPPMS/api/review" + getUrlParam("reviewid"),
             contentType: "application/json; charset=UTF-8",
-            data: JSON.stringify(data),
             success: function (returned) {
                 $("#reviewTitle").val(returned.reviewTitle)
                 optionValue($("#state"), returned.state);

@@ -293,8 +293,8 @@
         </div>
         <div class="edit">
             <a class="edittext" style="cursor: pointer;">编辑</a> &nbsp;| &nbsp;
-            <a class="watch" style="cursor: pointer;">关注</a> &nbsp;| &nbsp;
-            <a class="delete" style="cursor: pointer;">删除</a>
+            <a class="watch" style="cursor: pointer;">关注</a> &nbsp;
+            <a class="delete" style="cursor: pointer;">| &nbsp;删除</a>
         </div>
         <div class="midbox">
             <div class="midboxtitle">
@@ -661,7 +661,7 @@
                 } else {
                     $("#completepercent").html("100%");
                 }
-                $("#endtime").html(returned.endDate);
+                $("#endtime").html(timestampToTime(returned.endDate));
                 $("#belong").html(returned.linkProject);
                 $("#resulttype").html(returned.resultType);
             }

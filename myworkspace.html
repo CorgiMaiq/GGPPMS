@@ -132,23 +132,24 @@
 			var data = {
 				"username":getCookie("username")
 			};
-			/*$.ajax({
+			$.ajax({
 				type:"get",
 				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/result/assign/" + getCookie("username"),
 				async:false,
-				dataType : "text",
-				success : function(data){
-					var tempHtml = "";
-        			var returned=eval("("+data+")");
+				dataType: "json",
+				success : function(returned){
+					var temphtml = "";
         			for(var i = 0;i<returned.length;i++){
         				var n = returned[i];
+        				alert(n.id);
         				temphtml += "<tr><td>" + n.id + "</td>";
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
 						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
 						temphtml += "<td><a href=main1.html?resultid=" + n.id + "></a></td></tr>";
+						alert(temphtml);
         			}
-        			$("#leftTable").append(tempHtml);
+        			$("#leftTable").append(temphtml);
 				}
 			});
 			
@@ -156,10 +157,8 @@
 				type:"get",
 				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/review/assign/" + getCookie("username"),
 				async:false,
-				dataType : "text",
-				success : function(data){
-					var tempHtml = "";
-        			var returned=eval("("+data+")");
+				success : function(returned){
+					var temphtml = "";
         			for(var i = 0;i<returned.length;i++){
         				var n = returned[i];
         				temphtml += "<tr><td>" + n.id + "</td>";
@@ -168,17 +167,15 @@
 						temphtml += "<td>" + n.project + "</td>";
 						temphtml += "<td><a href=review.html?reviewid=" + n.id + "></a></td></tr>";
         			}
-        			$("#leftTable").append(tempHtml);
+        			$("#leftTable").append(temphtml);
 				}
 			});
 			$.ajax({
 				type:"get",
 				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/pick/assign/" + getCookie("username"),
 				async:false,
-				dataType : "text",
-				success : function(data){
-					var tempHtml = "";
-        			var returned=eval("("+data+")");
+				success : function(returned){
+					var temphtml = "";
         			for(var i = 0;i<returned.length;i++){
         				var n = returned[i];
         				temphtml += "<tr><td>" + n.id + "</td>";
@@ -187,10 +184,10 @@
 						temphtml += "<td>" + n.project + "</td>";
 						temphtml += "<td><a href=pick.html?pickid=" + n.id + "></a></td></tr>";
         			}
-        			$("#leftTable").append(tempHtml);
+        			$("#leftTable").append(temphtml);
 				}
 			});
-			*/
+			
 			$.ajax({
 				type:"get",
 				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/result/watch/" + getCookie("username"),
@@ -202,7 +199,6 @@
         			//var returned=eval("("+data+")");
         			for(var i = 0;i<returned.length;i++){
         				var n = returned[i];
-                        alert(n);
         				temphtml += "<tr><td>" + n.id + "</td>";
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
@@ -212,15 +208,13 @@
                     $("#rightTable").append(temphtml);
 				}
 			});
-			/*
+			
 			$.ajax({
 				type:"get",
 				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/review/watch/" + getCookie("username"),
 				async:false,
-				dataType : "text",
-				success : function(data){
-					var tempHtml = "";
-        			var returned=eval("("+data+")");
+				success : function(returned){
+					var temphtml = "";
         			for(var i = 0;i<returned.length;i++){
         				var n = returned[i];
         				temphtml += "<tr><td>" + n.id + "</td>";
@@ -229,7 +223,7 @@
 						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
 						temphtml += "<td><a href=review.html?reviewid=" + n.id + "></a></td></tr>";
         			}
-        			$("#rightTable").append(tempHtml);
+        			$("#rightTable").append(temphtml);
 				}
 			});
 			
@@ -237,10 +231,8 @@
 				type:"get",
 				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/pick/watch/" + getCookie("username"),
 				async:false,
-				dataType : "text",
-				success : function(data){
-					var tempHtml = "";
-        			var returned=eval("("+data+")");
+				success : function(returned){
+					var temphtml = "";
         			for(var i = 0;i<returned.length;i++){
         				var n = returned[i];
         				temphtml += "<tr><td>" + n.id + "</td>";
@@ -249,9 +241,9 @@
 						temphtml += "<td>" + n.project + "</td>";
 						temphtml += "<td><a href=pick.html?pickid=" + n.id + "></a></td></tr>";
         			}
-        			$("#rightTable").append(tempHtml);
+        			$("#rightTable").append(temphtml);
 				}
-			});*/
+			});
 			
 
 		})
