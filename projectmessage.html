@@ -228,7 +228,7 @@
 		$(".closeproject").click(function(){
 			$.ajax({//关闭项目，只有全部成果物都closed才可以关闭
 				type:"get",
-				url:"",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/close/" + pid,
 				async:false,
 				success : function(returned){
 					if(returned.status===200){
