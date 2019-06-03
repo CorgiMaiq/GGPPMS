@@ -224,7 +224,7 @@
 					if(returned.status === 200) {
 						var uname = $("#username").val();
 						setCookie("username", uname, 5);
-						setCookie("level",0,5);
+						setCookie("level",1,5);
 						location.href = "welcome.html";
 					} else if(returned.status === 400) {
 						alert("用户名或密码错误!");

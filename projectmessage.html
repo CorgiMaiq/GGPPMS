@@ -144,7 +144,8 @@
 					项目信息
 				</div>
 				<div class="addproject">
-					<a class="addnewproject">增加成果物</a>
+					<a class="addnewproject">增加成果物</a>&nbsp;
+					<a class="closeproject">|&nbsp;关闭项目</a>
 				</div>
 				<div class="mainbox">
 					<table class="tablemain" border="1px solid rgb(221,221,221)">
@@ -223,6 +224,21 @@
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
 		}
+		
+		$(".closeproject").click(function(){
+			$.ajax({//关闭项目，只有全部成果物都closed才可以关闭
+				type:"get",
+				url:"",
+				async:false,
+				success : function(returned){
+					if(returned.status===200){
+						alert("关闭成功");
+					}else{
+						alert("关闭失败，或许是该项目下有成果物尚未被关闭");
+					}
+				}
+			});
+		})
 
 		var pid = getUrlParam("pid");
 		$(document).ready(function() {
@@ -273,7 +289,7 @@
 			var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
 			Y = date.getFullYear() + '-';
 			M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-			D = date.getDate() < 10 ? '0' + date.getDate() + ' ' : date.getDate()+' ';
+			D = date.getDate() < 10 ? '0' + date.getDate() + ' ' : date.getDate() + ' ';
 			h = date.getHours() + ':';
 			m = date.getMinutes() + ':';
 			s = date.getSeconds();

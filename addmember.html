@@ -98,7 +98,7 @@
         <button class="search">查找</button>
     </div>
     <div class="tablebox">
-        <table class="maintable" border="1px">
+        <table class="maintable" id="maintable" border="1px">
             <tr id="basetr">
                 <td>工号</td>
                 <td>姓名</td>
@@ -157,7 +157,7 @@
             "username": $("#username").val(),
             "nickname": $("#nickname").val()
         };
-        var tempHtml;
+        
 
         // 根据输入信息查找人
         $.ajax({
@@ -166,14 +166,18 @@
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (res) {
-                $.each(res, function (i, n) {
-                    tempHtml += "<tr><td>" + n.username + "</td>";
+            	var tempHtml = "";
+            	$(".apptd").remove();
+            	for (var i = 0;i<res.length;i++) {
+            		var n = res[i];
+            		tempHtml += "<tr class='apptd'><td>" + n.email + "</td>";
                     tempHtml += "<td>" + n.nickname + "</td>";
-                    tempHtml += "<td>" + n.group + "</td>";
-                    tempHtml += "<td>" + n.level + "</td>";
+                    tempHtml += "<td>" + n.usergroupname + "</td>";
+                    tempHtml += "<td>" + n.usertype + "</td>";
                     tempHtml += "<td><button onclick='addmember(" + n.username + ")'>指派</button>" + "</td></tr>";
-                });
-                $("#basetr").append(tempHtml);
+            	}
+
+                $("#maintable").append(tempHtml);
             }
         })
     });

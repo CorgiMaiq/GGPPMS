@@ -301,8 +301,8 @@
         </div>
         <div class="edit">
             <a class="edittext" id="editreview">编辑</a> &nbsp;| &nbsp;
-            <a class="watch" style="cursor: pointer;" id="watch">关注</a>&nbsp;| &nbsp;
-            <a class="delete" style="cursor: pointer;">删除</a>
+            <a class="watch" style="cursor: pointer;" id="watch">关注</a>&nbsp;
+            <a class="delete" style="cursor: pointer;">| &nbsp;删除</a>
         </div>
         <div class="midbox">
             <div class="midboxtitle" id="reviewTitle">
@@ -535,6 +535,9 @@
     });
 
     $(document).ready(function () {
+    	if(getCookie("level")!=1){
+    		$(".delete").hide();
+    	}
         var dataA = {
             "id": getUrlParam("reviewid"),
             "username": getCookie("username"),

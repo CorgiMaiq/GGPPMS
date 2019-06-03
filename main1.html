@@ -513,6 +513,7 @@
                 success: function (returned) {
                     if (returned.status === 200) {
                         alert("关注成功");
+                         location.href="main1.html?resultid=" + getUrlParam("resultid") + "&pid=" + getUrlParam("pid");
                     } else {
                         alert("关注失败，或许是已经关注过了");
                     }
@@ -532,6 +533,7 @@
                 success: function (returned) {
                     if (returned.status === 200) {
                         alert("取消成功");
+                        location.href="main1.html?resultid=" + getUrlParam("resultid") + "&pid=" + getUrlParam("pid");
                     } else {
                         alert("取消失败");
                     }
@@ -553,6 +555,9 @@
     });
 
     $(document).ready(function () {
+    	if(getCookie("level")!=1){
+    		$(".delete").hide();
+    	}
         var data = {
             "id": getUrlParam("resultid"),
             "username": getCookie("username"),
@@ -564,8 +569,9 @@
             url: "http://www.polarbear.pub:8080/GGPPMS/api/user/query/uo/result", //查询关注状态，如果已关注，把关注按钮改成取消关注
             async: false,
             success: function (result) {
-                if (result.watched) {
-                    $("#watch").html("取消关注");
+            	alert(result.watcher);
+                if (result.watcher) {
+                    $(".watch").html("取消关注");
                 }
             }
         });
@@ -580,15 +586,13 @@
             url: "http://www.polarbear.pub:8080/GGPPMS/api/review/getByResult/" + resultID,
             async: false,
             contentType: "application/json; charset=UTF-8",
-            dataType: "text",
-            success: function (ttttt) {
-                var dataObj = eval("(" + ttttt + ")");
+            success: function (dataObj) {
                 var href = " 'review.html?reviewid="
                 for (var i = 0; i < dataObj.length; i++) {
                     var n = dataObj[i];
                     tempHtml += "<tr><td>" + n.id + "</td>";
                     tempHtml += "<td>" + n.state + "</td>"
-                    tempHtml += "<td><a href=" + href + n.reviewid + "'>" + n.reviewtitle + "</a></td></tr>";
+                    tempHtml += "<td><a href=" + href + n.id + "'>" + n.reviewtitle + "</a></td></tr>";
                 }
                 alert(tempHtml);
                 $("#sontable").append(tempHtml);

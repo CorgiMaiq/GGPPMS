@@ -265,8 +265,8 @@
         </div>
         <div class="edit">
             <a class="edittext" id="editpick">编辑</a> &nbsp;| &nbsp;
-            <a class="watch" style="cursor: pointer;">关注</a>&nbsp;| &nbsp;
-            <a class="delete" style="cursor: pointer;">删除</a>
+            <a class="watch" style="cursor: pointer;">关注</a>&nbsp;
+            <a class="delete" style="cursor: pointer;">| &nbsp;删除</a>
         </div>
         <div class="midbox">
             <div class="midboxtitle" id="picktitle">
@@ -465,6 +465,9 @@
     });
 
     $(document).ready(function () {
+    	if(getCookie("level")!=1){
+    		$(".delete").hide();
+    	}
         var data = {
             "id": getUrlParam("pickid"),
             "username": getCookie("username"),
@@ -476,7 +479,9 @@
             url: "http://www.polarbear.pub:8080/GGPPMS/api/user/query/uo/pick", //查询关注状态，如果已关注，把关注按钮改成取消关注
             async: false,
             success: function (result) {
+            	
                 if (result.watched) {
+                	
                     $("#watch").html("取消关注");
                 }
             }
