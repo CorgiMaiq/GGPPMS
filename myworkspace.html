@@ -146,7 +146,7 @@
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
 						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
-						temphtml += "<td><a href=main1.html?resultid=" + n.id + "></a></td></tr>";
+                        temphtml += "<td><a href=main1.html?resultid=" + n.id + ">" + n.title + "</a></td></tr>";
 						alert(temphtml);
         			}
         			$("#leftTable").append(temphtml);
@@ -165,7 +165,7 @@
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物Review" + "</td>";
 						temphtml += "<td>" + n.project + "</td>";
-						temphtml += "<td><a href=review.html?reviewid=" + n.id + "></a></td></tr>";
+                        temphtml += "<td><a href=review.html?reviewid=" + n.id + ">" + n.title + "</a></td></tr>";
         			}
         			$("#leftTable").append(temphtml);
 				}
@@ -182,7 +182,7 @@
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物指摘" + "</td>";
 						temphtml += "<td>" + n.project + "</td>";
-						temphtml += "<td><a href=pick.html?pickid=" + n.id + "></a></td></tr>";
+                        temphtml += "<td><a href=pick.html?pickid=" + n.id + ">" + n.title + "</a></td></tr>";
         			}
         			$("#leftTable").append(temphtml);
 				}
@@ -203,7 +203,7 @@
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
 						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
-						temphtml += "<td><a href=main1.html?resultid=" + n.id + "></a></td></tr>"
+                        temphtml += "<td><a href=main1.html?resultid=" + n.id + ">" + n.title + "</a></td></tr>"
         			}
                     $("#rightTable").append(temphtml);
 				}
@@ -221,7 +221,7 @@
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物Review" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
 						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
-						temphtml += "<td><a href=review.html?reviewid=" + n.id + "></a></td></tr>";
+                        temphtml += "<td><a href=review.html?reviewid=" + n.id + ">" + n.title + "</a></td></tr>";
         			}
         			$("#rightTable").append(temphtml);
 				}
@@ -239,7 +239,7 @@
 						temphtml += "<td>" + n.status + "</td>";
 						temphtml += "<td>" + "成果物指摘" + "</td>";
 						temphtml += "<td>" + n.project + "</td>";
-						temphtml += "<td><a href=pick.html?pickid=" + n.id + "></a></td></tr>";
+                        temphtml += "<td><a href=pick.html?pickid=" + n.id + ">" + n.title + "</a></td></tr>";
         			}
         			$("#rightTable").append(temphtml);
 				}
