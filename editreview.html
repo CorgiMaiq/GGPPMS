@@ -575,7 +575,7 @@
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
 		}
-		
+
 		function timestampToTime(timestamp) {
 			if(timestamp > 1) {
 				var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
@@ -592,6 +592,47 @@
 
 		}
 
+		function checkcheck() {
+			var flag = true;
+			if($("#check1").val() === "1") {
+				flag = false;
+			}
+			if($("#check2").val() === "1") {
+				flag = false;
+			}
+			if($("#check3").val() === "1") {
+				flag = false;
+			}
+			if($("#check4").val() === "1") {
+				flag = false;
+			}
+			if($("#check5").val() === "1") {
+				flag = false;
+			}
+			if($("#check6").val() === "1") {
+				flag = false;
+			}
+			if($("#rcheck1").val() === "1") {
+				flag = false;
+			}
+			if($("#rcheck2").val() === "1") {
+				flag = false;
+			}
+			if($("#rcheck3").val() === "1") {
+				flag = false;
+			}
+			if($("#rcheck4").val() === "1") {
+				flag = false;
+			}
+			if($("#rcheck5").val() === "1") {
+				flag = false;
+			}
+			if($("#rcheck6").val() === "1") {
+				flag = false;
+			}
+			return flag;
+		}
+
 		function optionValue(id, value) {
 			var numbers = id.find("option"); //获取select下拉框的所有值
 			for(var j = 1; j < numbers.length; j++) {
@@ -602,55 +643,63 @@
 		}
 
 		$("#submitbut").click(function() {
-			if($("#assign").val() === "0" || $("#reviewer").val() === "0" || $("#reviewee").val() === "0") {
-				alert("请全部填写");
+			if(getCookie("level") != 0 && $("#state") === "4") {
+				alert("您无权关闭此成果物");
 			} else {
-				var data = {
-					"updatetime": mytime,
-					"updateman": getCookie("username"),
-					"reviewid": getUrlParam("reviewid"),
-					"resultid": getUrlParam("resultid"),
-					"reviewTitle": $("#reviewTitle").val(),
-					"state": $("#state").val(),
-					"startdate": $("#startdate").val(),
-					"advanced": $("#advanced").val(),
-					"plandate": $("#plandate").val(),
-					"assign": $("#assign").val(),
-					"picknum": $("#picknum").val(),
-					"pagenum": $("#pagenum").val(),
-					"changenum": $("#changenum").val(),
-					"reviewer": $("#reviewer").val(),
-					"riviewee": $("#riviewee").val(),
-					"reviewplace": $("#reviewplace").val(),
-					"reviewtime": $("#reviewtime").val(),
-					"reviewVersion": $("#reviewVersion").val(),
-					"reviewDate": $("#reviewDate").val(),
-					"aboutlink": $("#aboutlink").val(),
-					"check1": $("#check1").val(),
-					"check2": $("#check2").val(),
-					"check3": $("#check3").val(),
-					"check4": $("#check4").val(),
-					"check5": $("#check5").val(),
-					"check6": $("#check6").val(),
-					"rcheck1": $("#rcheck1").val(),
-					"rcheck2": $("#rcheck2").val(),
-					"rcheck3": $("#rcheck3").val(),
-					"rcheck4": $("#rcheck4").val(),
-					"rcheck5": $("#rcheck5").val(),
-					"rcheck6": $("#rcheck6").val()
-				};
-				$.ajax({ //增加成果物
-					type: "post",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/review",
-					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(data),
-					success: function(returned) {
-						if(returned.status === 200) {
-							alert("增加成功");
-							location.href = "review.html?reviewid=" + getUrlParam("reviewid");
-						}
+				if((!checkcheck())&&$("#state").val() === "4") {
+					alert("checklist需要全部为ok");
+				} else {
+					if($("#assign").val() === "0" || $("#reviewer").val() === "0" || $("#reviewee").val() === "0") {
+						alert("请全部填写");
+					} else {
+						var data = {
+							"updatetime": mytime,
+							"updateman": getCookie("username"),
+							"reviewid": getUrlParam("reviewid"),
+							"resultid": getUrlParam("resultid"),
+							"reviewTitle": $("#reviewTitle").val(),
+							"state": $("#state").val(),
+							"startdate": $("#startdate").val(),
+							"advanced": $("#advanced").val(),
+							"plandate": $("#plandate").val(),
+							"assign": $("#assign").val(),
+							"picknum": $("#picknum").val(),
+							"pagenum": $("#pagenum").val(),
+							"changenum": $("#changenum").val(),
+							"reviewer": $("#reviewer").val(),
+							"riviewee": $("#riviewee").val(),
+							"reviewplace": $("#reviewplace").val(),
+							"reviewtime": $("#reviewtime").val(),
+							"reviewVersion": $("#reviewVersion").val(),
+							"reviewDate": $("#reviewDate").val(),
+							"aboutlink": $("#aboutlink").val(),
+							"check1": $("#check1").val(),
+							"check2": $("#check2").val(),
+							"check3": $("#check3").val(),
+							"check4": $("#check4").val(),
+							"check5": $("#check5").val(),
+							"check6": $("#check6").val(),
+							"rcheck1": $("#rcheck1").val(),
+							"rcheck2": $("#rcheck2").val(),
+							"rcheck3": $("#rcheck3").val(),
+							"rcheck4": $("#rcheck4").val(),
+							"rcheck5": $("#rcheck5").val(),
+							"rcheck6": $("#rcheck6").val()
+						};
+						$.ajax({ //增加成果物
+							type: "post",
+							url: "http://www.polarbear.pub:8080/GGPPMS/api/review",
+							contentType: "application/json; charset=UTF-8",
+							data: JSON.stringify(data),
+							success: function(returned) {
+								if(returned.status === 200) {
+									alert("增加成功");
+									location.href = "review.html?reviewid=" + getUrlParam("reviewid");
+								}
+							}
+						});
 					}
-				});
+				}
 			}
 
 		});
@@ -698,7 +747,6 @@
 				dataType: "text",
 				success: function(data) {
 					var dataObj = eval("(" + data + ")");
-					alert(dataObj)
 					var tempHtml = "";
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
