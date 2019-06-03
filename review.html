@@ -483,6 +483,7 @@
 					success: function(returned) {
 						if(returned.status === 200) {
 							alert("关注成功");
+							location.href = "review.html?reviewid=" + getUrlParam("reviewid");
 						} else {
 							alert("关注失败");
 						}
@@ -501,7 +502,8 @@
 					data: JSON.stringify(data),
 					success: function(returned) {
 						if(returned.status === 200) {
-							alert("取消成功");
+							alert("取消成功");							
+							location.href = "review.html?reviewid=" + getUrlParam("reviewid");
 						} else {
 							alert("取消失败");
 						}
@@ -564,7 +566,7 @@
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/query/uo/review", //查询关注状态，如果已关注，把关注按钮改成取消关注
 				async: false,
 				success: function(result) {
-					if(result.watched) {
+					if(result.watcher) {
 						$("#watch").html("取消关注");
 					}
 				}

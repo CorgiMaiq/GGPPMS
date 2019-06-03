@@ -569,7 +569,6 @@
             url: "http://www.polarbear.pub:8080/GGPPMS/api/user/query/uo/result", //查询关注状态，如果已关注，把关注按钮改成取消关注
             async: false,
             success: function (result) {
-            	alert(result.watcher);
                 if (result.watcher) {
                     $(".watch").html("取消关注");
                 }
@@ -594,7 +593,6 @@
                     tempHtml += "<td>" + n.state + "</td>"
                     tempHtml += "<td><a href=" + href + n.id + "'>" + n.reviewtitle + "</a></td></tr>";
                 }
-                alert(tempHtml);
                 $("#sontable").append(tempHtml);
             }
         });

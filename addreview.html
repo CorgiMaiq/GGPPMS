@@ -628,8 +628,9 @@
 					var tempHtml = "";
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
-						tempHtml += "<option value=" + n.email + ">" + n.nickname + "</option>";
+						tempHtml += "<option value='" + n.email + "'>" + n.nickname + "</option>";
 					}
+					alert(tempHtml);
 					$("#reviewee").append(tempHtml);
 				}
 			});
@@ -674,7 +675,6 @@
 					"updateman": getCookie("username"),
 					"updatetime": mytime
 				};
-				alert("hehe");
 				$.ajax({ //增加成果物
 					type: "put",
 					url: "http://www.polarbear.pub:8080/GGPPMS/api/review",

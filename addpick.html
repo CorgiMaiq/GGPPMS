@@ -407,14 +407,22 @@
 		}
 
 		$(document).ready(function() {
-            $.get("\"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/\" + getUrlParam(\"projectid\")", //查出项目中的所有人
-                function (data) {
-				var res = $.parseJSON(data);
-				$.each(res, function(i, n) {
-					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-				});
+			$.ajax({
+				type:"get",
+				url:"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"),
+				async:false,
+				success : function(returned){
+					var tempHtml = "";
+					for(var i = 0;i<returned.length;i++){
+						var n = returned[i];
+						tempHtml += "<option value='" + n.id + "'>" + n.nickname + "</option>";
+					}
+					$("#assign").append(tempHtml);
+				}
 			});
         });
+        
+        
 
 		$("#submitpick").click(function() {
 			if($("#assign").val() === "0") {
