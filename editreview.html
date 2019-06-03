@@ -1,646 +1,662 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8"/>
-    <title></title>
-</head>
-<style>
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#head {
+			width: 100%;
+			height: 30px;
+			background: black;
+			font-size: 13px;
+			line-height: 30px;
+			color: rgb(140, 145, 148);
+		}
+		
+		.headnavi {
+			margin-left: 30px;
+		}
+		
+		.headleft {
+			width: 85%;
+			float: left;
+		}
+		
+		.headright {
+			width: 15%;
+			float: left;
+		}
+		
+		.loginwith,
+		.headright {
+			float: left;
+		}
+		
+		.headnaviright {
+			margin-left: 15px;
+		}
+		
+		.loginwith {
+			color: white;
+		}
+		
+		.headmid {
+			height: 70px;
+			width: 100%;
+			background: rgb(44, 54, 60);
+		}
+		
+		.headbottom {
+			color: rgb(224, 224, 224);
+			width: 100%;
+			height: 50px;
+			background: rgb(63, 71, 77);
+		}
+		
+		.bottomnavi {
+			color: rgb(156, 157, 164);
+			font-size: 16px;
+			line-height: 50px;
+			display: inline-block;
+			margin-right: 30px;
+		}
+		
+		.sign {
+			margin: 0px 20px;
+		}
+		
+		.bzy {
+			display: inline;
+			height: 60px;
+			margin-left: 23px;
+			margin-top: 5px;
+		}
+		
+		.bzyimg {
+			width: auto;
+			height: 100%;
+			float: left;
+		}
+		
+		.pms {
+			line-height: 70px;
+			margin-left: 7px;
+			width: 30%;
+			float: left;
+			color: rgb(248, 248, 248);
+			font-size: 14px;
+		}
+		
+		.mainn {
+			width: 100%;
+			height: 1200px;
+		}
+		
+		.foot {
+			display: block;
+			height: 20px;
+			width: 100%;
+			font-size: 12px;
+			line-height: 20px;
+			text-align: center;
+			color: rgb(222, 234, 217);
+		}
+		
+		.productNum {
+			float: left;
+			width: auto;
+			height: auto;
+			color: rgb(86, 86, 86);
+			font-size: 25px;
+			margin: 15px 30px 0px;
+		}
+		
+		.edit {
+			float: right;
+			margin: 15px 30px 0px;
+			color: rgb(82, 167, 210);
+		}
+		
+		.mainleft {
+			height: auto;
+			width: 80%;
+			float: left;
+		}
+		
+		.mainright {
+			float: right;
+			width: 19%;
+			height: 1200px;
+			background: rgb(250, 250, 250);
+			border-left-color: rgb(220, 220, 220);
+			border-left-width: 1px;
+			border-left-style: solid;
+			border-bottom-color: rgb(220, 220, 220);
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+		
+		.midbox {
+			height: 450px;
+			width: 1500px;
+			background: rgb(246, 246, 246);
+			margin-top: 70px;
+			margin-left: 30px;
+		}
+		
+		.midboxtitle {
+			font-size: 25px;
+			margin-left: 30px;
+			width: auto;
+			height: auto;
+			padding-top: 15px;
+			color: rgb(86, 86, 86);
+		}
+		
+		.beizhu {
+			margin-left: 30px;
+			width: auto;
+			height: auto;
+			padding-top: 10px;
+			color: rgb(86, 86, 86);
+		}
+		
+		.table {
+			margin-left: 30px;
+			margin-top: 30px;
+			color: rgb(69, 76, 81);
+		}
+		
+		table {
+			table-layout: fixed;
+		}
+		
+		.tdmain,
+		.tdmain1 {
+			padding-top: 10px;
+		}
+		
+		.tdmain1 {
+			width: 200px;
+			overflow: hidden;
+		}
+		
+		.hr1 {
+			margin-top: 30px;
+			width: 95%;
+			margin-left: 30px;
+			margin-bottom: 20px;
+		}
+		
+		.sonMission {
+			margin-top: 40px;
+			margin-left: 30px;
+			color: rgb(69, 76, 81);
+			height: auto;
+			font-size: 22px;
+		}
+		
+		.sonMission>a {
+			font-size: 8px;
+			color: rgb(96, 180, 208);
+		}
+		
+		.history {
+			width: 99%;
+			height: 200px;
+			margin-top: 20px;
+			margin-left: 30px;
+			font-size: 22px;
+			color: rgb(69, 76, 81);
+			overflow: scroll;
+		}
+		
+		.tableright {
+			margin-left: 15px;
+			margin-top: 20px;
+			font-size: 10px;
+		}
+		
+		.explain {
+			margin-left: 15px;
+			font-size: 22px;
+			color: rgb(102, 102, 102);
+			margin-top: 30px;
+		}
+		
+		.test {
+			width: 490px;
+			overflow-x: scroll;
+		}
+		
+		select {
+			width: 470px;
+		}
+		
+		.titletext {
+			width: 470px;
+		}
+		
+		.checktable {
+			margin-left: 300px;
+			border-collapse: collapse;
+		}
+		
+		.td1 {
+			width: 60px;
+		}
+		
+		.td2 {
+			width: 170px;
+		}
+		
+		.td3,
+		.td4 {
+			width: 250px;
+		}
+		
+		.td1,
+		.td2,
+		.td3,
+		.td4 {
+			word-break: break-all;
+			word-wrap: break-word;
+			padding: 5px;
+		}
+		
+		.checkselect {
+			width: 80%;
+			margin-left: 5px;
+		}
+		
+		.checklisthead {
+			font-size: 22px;
+			margin-left: 720px;
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+		
+		.edittext {
+			cursor: pointer;
+		}
+	</style>
 
-    #head {
-        width: 100%;
-        height: 30px;
-        background: black;
-        font-size: 13px;
-        line-height: 30px;
-        color: rgb(140, 145, 148);
-    }
+	<body>
+		<div class="public"></div>
+		<div class="headbottom">
+			<span class="sign">+</span>
+			<a class="bottomnavi">概述</a>
+			<a class="bottomnavi">活动</a>
+			<a class="bottomnavi">问题</a>
+		</div>
+		<div class="mainn">
+			<div class="mainleft">
+				<div class="productNum">
+					修改成果物Review
+				</div>
+				<div class="edit">
+					<a class="edittext" id="submitbut">完成</a>
+				</div>
+				<div class="midbox">
+					<div class="midboxtitle">
+						Review详情
+					</div>
+					<table class="table">
+						<tr>
+							<th style="width: 200px;"></th>
+							<th style="width: 490px;"></th>
+							<th style="width: 200px;"></th>
+							<th style="width: 490px;"></th>
+						</tr>
+						<tr>
+							<td class="tdmain1">成果物Review标题：</td>
+							<td class="tdmain">
+								<input type="text" class="titletext" id="reviewTitle" />
+							</td>
+						</tr>
+						<tr>
+							<td class="tdmain1">状态：</td>
+							<td class="tdmain">
+								<select id="state">
+									<option value="0">New Creation</option>
+									<option value="1">In Prograss</option>
+									<option value="2">Resolved</option>
+									<option value="3">Checked</option>
+									<option value="4">Closed</option>
+								</select>
+							</td>
+							<td class="tdmain1">开始日期：</td>
+							<td class="tdmain"><input type="text" class="sthinput" onclick="WdatePicker()" id="startdate"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">优先级：</td>
+							<td class="tdmain">
+								<select id="advanced">
+									<option value="0">低</option>
+									<option value="1">中</option>
+									<option value="2">高</option>
+								</select>
+							</td>
+							<td class="tdmain1">计划完成日期：</td>
+							<td class="tdmain"><input type="text" class="sthinput" onclick="WdatePicker()" id="plandate"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">指派给：</td>
+							<td class="tdmain">
+								<select id="assign">
+									<option id="baseAssign" value="0">请选择指派用户</option>
+								</select>
+							</td>
+							</td>
+							<td class="tdmain1">指摘数：</td>
+							<td class="tdmain">
+								<input type="number" class="sthinput" id="picknum">
+							</td>
+						</tr>
+						<tr>
+							<td class="tdmain1">总页数：</td>
+							<td class="tdmain"><input type="number" class="sthinput" id="pagenum"></td>
+							<td class="tdmain1">变更量：</td>
+							<td class="tdmain"><input type="number" class="sthinput" id="changenum"></td>
+						</tr>
+						<tr>
+							<td class="tdmain1">Riviewer：</td>
+							<td class="tdmain">
+								<select id="reviewer">
+									<option id="basereviewer" value="0">--请选择--</option>
+								</select>
+							</td>
+							<td class="tdmain1">Riviewee：</td>
+							<td class="tdmain">
+								<select id="reviewee">
+									<option id="baserivewee" value="0">--请选择--</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="tdmain1">Review场所：</td>
+							<td class="tdmain">
+								<input type="text" class="titletext" id="reviewplace" />
+							</td>
+							<td class="tdmain1">Review耗时：</td>
+							<td class="tdmain">
+								<input type="text" class="titletext" id="reviewtime" />
+							</td>
+						</tr>
+						<tr>
+							<td class="tdmain1">Review版本：</td>
+							<td class="tdmain">
+								<input type="text" class="titletext" id="reviewVersion" />
+							</td>
+							<td class="tdmain1">Review日期：</td>
+							<td class="tdmain">
+								<input type="text" class="sthinput" onclick="WdatePicker()" id="reviewDate">
+							</td>
+						</tr>
+						<tr>
+							<td class="tdmain1" id="link">相关链接：</td>
+							<td class="tdmain"><input type="text" class="titletext" id="aboutlink" /></td>
+						</tr>
+					</table>
+				</div>
+				<div class="checklisthead">CheckList</div>
+				<table class="checktable" border="1px solid black">
+					<tr>
+						<th width="60px">分类</th>
+						<th width="170px">判断项目</th>
+						<th width="250px">判断基准</th>
+						<th width="250px">确认方法</th>
+						<th width="80px">担当确认</th>
+						<th width="80px">Review确认</th>
+					</tr>
+					<tr>
+						<td class="td1">资料</td>
+						<td class="td2">成果物</td>
+						<td class="td3">有前工程的成果物，Review结束</td>
+						<td class="td4">确认：如果有前工程的成果物，必须确保参考了前工程的成果物内容</td>
+						<td class="td5">
+							<select class="checkselect" id="check1">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+						<td class="td5">
+							<select class="checkselect" id="rcheck1">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td1">参加者</td>
+						<td class="td2">有相关管理者参加的确认</td>
+						<td class="td3">有确认与本成果物相关的参加者，并且有PL级别的人参加</td>
+						<td class="td4">确认：需要由可以承认本次Review的人参与，至少应为GL级别的的员工参入出席</td>
+						<td class="td5">
+							<select class="checkselect" id="check2">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+						<td class="td5">
+							<select class="checkselect" id="rcheck2">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td1">制成样式</td>
+						<td class="td2">体裁</td>
+						<td class="td3">成果物体裁应正确</td>
+						<td class="td4">确认：成果物的体裁应该按照公司相关要求，用语记号是否前后统一？文章参考是否有误？需要记载的问题是否已经记载？</td>
+						<td class="td5">
+							<select class="checkselect" id="check3">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+						<td class="td5">
+							<select class="checkselect" id="rcheck3">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td1" rowspan="3">环境</td>
+						<td class="td2" rowspan="3">环境</td>
+						<td class="td3" rowspan="3">明确相关的环境</td>
+						<td class="td4">确认：如果有实验部分，是否明确了实验环境准确无误？</td>
+						<td class="td5">
+							<select class="checkselect" id="check4">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+						<td class="td5">
+							<select class="checkselect" id="rcheck4">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td4">确认：如果有和其他机器的连接，是否排除了偶然性，只可以在其机器上连接？</td>
+						<td class="td5">
+							<select class="checkselect" id="check5">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+						<td class="td5">
+							<select class="checkselect" id="rcheck5">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td4">确认：必要运行的环境是否已经明确？</td>
+						<td class="td5">
+							<select class="checkselect" id="check6">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+						<td class="td5">
+							<select class="checkselect" id="rcheck6">
+								<option value="0">OK</option>
+								<option selected="selected" value="1">NO</option>
+							</select>
+						</td>
+					</tr>
+				</table>
 
-    .headnavi {
-        margin-left: 30px;
-    }
+			</div>
+			<div class="mainright">
+				<div class="explain">
+					成果物阶段状态说明
+				</div>
+				<table border="1" class="tableright">
+					<tr>
+						<th style="width: 70px;">状态名称</th>
+						<th style="width: 240px;">使用方法</th>
+					</tr>
+					<tr>
+						<td>New Creation</td>
+						<td>处于新建状态，是刚由管理者指派过来，且尚未开发的状态，此状态下进度应为0%</td>
+					</tr>
+					<tr>
+						<td>In progress</td>
+						<td>正在开发中，且尚未Review，在此阶段请不要将完成度置于100%，Review结束之后，且无NG部分，再将完成度置于100%</td>
+					</tr>
+					<tr>
+						<td>Resolved</td>
+						<td>本阶段已经开发完毕，并且Review结束且无特殊问题，可以转发给管理者</td>
+					</tr>
+					<tr>
+						<td>Checked</td>
+						<td>由GL检查完毕，可以转发给PL，由PL来承认成果物</td>
+					</tr>
+					<tr>
+						<td>Closed</td>
+						<td>已经由相关管理者检查完毕，关闭此成果物，完成</td>
+					</tr>
+				</table>
+			</div>
 
-    .headleft {
-        width: 85%;
-        float: left;
-    }
+		</div>
+		<div class="foot">
+			Designed By ZhangHan
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/WdatePicker.js"></script>
+	<script type="application/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+		});
 
-    .headright {
-        width: 15%;
-        float: left;
-    }
+		var myDate = new Date();
+		var mytime = myDate.toLocaleTimeString();
 
-    .loginwith,
-    .headright {
-        float: left;
-    }
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
+		
+		function timestampToTime(timestamp) {
+			if(timestamp > 1) {
+				var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				Y = date.getFullYear() + '-';
+				M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+				D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+				h = date.getHours() + ':';
+				m = date.getMinutes() + ':';
+				s = date.getSeconds();
+				return Y + M + D;
+			} else {
+				return "";
+			}
 
-    .headnaviright {
-        margin-left: 15px;
-    }
+		}
 
-    .loginwith {
-        color: white;
-    }
+		function optionValue(id, value) {
+			var numbers = id.find("option"); //获取select下拉框的所有值
+			for(var j = 1; j < numbers.length; j++) {
+				if($(numbers[j]).val() == value) {
+					$(numbers[j]).attr("selected", "selected");
+				}
+			}
+		}
 
-    .headmid {
-        height: 70px;
-        width: 100%;
-        background: rgb(44, 54, 60);
-    }
+		$("#submitbut").click(function() {
+			if($("#assign").val() === "0" || $("#reviewer").val() === "0" || $("#reviewee").val() === "0") {
+				alert("请全部填写");
+			} else {
+				var data = {
+					"updatetime": mytime,
+					"updateman": getCookie("username"),
+					"reviewid": getUrlParam("reviewid"),
+					"resultid": getUrlParam("resultid"),
+					"reviewTitle": $("#reviewTitle").val(),
+					"state": $("#state").val(),
+					"startdate": $("#startdate").val(),
+					"advanced": $("#advanced").val(),
+					"plandate": $("#plandate").val(),
+					"assign": $("#assign").val(),
+					"picknum": $("#picknum").val(),
+					"pagenum": $("#pagenum").val(),
+					"changenum": $("#changenum").val(),
+					"reviewer": $("#reviewer").val(),
+					"riviewee": $("#riviewee").val(),
+					"reviewplace": $("#reviewplace").val(),
+					"reviewtime": $("#reviewtime").val(),
+					"reviewVersion": $("#reviewVersion").val(),
+					"reviewDate": $("#reviewDate").val(),
+					"aboutlink": $("#aboutlink").val(),
+					"check1": $("#check1").val(),
+					"check2": $("#check2").val(),
+					"check3": $("#check3").val(),
+					"check4": $("#check4").val(),
+					"check5": $("#check5").val(),
+					"check6": $("#check6").val(),
+					"rcheck1": $("#rcheck1").val(),
+					"rcheck2": $("#rcheck2").val(),
+					"rcheck3": $("#rcheck3").val(),
+					"rcheck4": $("#rcheck4").val(),
+					"rcheck5": $("#rcheck5").val(),
+					"rcheck6": $("#rcheck6").val()
+				};
+				$.ajax({ //增加成果物
+					type: "post",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/review",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify(data),
+					success: function(returned) {
+						if(returned.status === 200) {
+							alert("增加成功");
+							location.href = "review.html?reviewid=" + getUrlParam("reviewid");
+						}
+					}
+				});
+			}
 
-    .headbottom {
-        color: rgb(224, 224, 224);
-        width: 100%;
-        height: 50px;
-        background: rgb(63, 71, 77);
-    }
+		});
 
-    .bottomnavi {
-        color: rgb(156, 157, 164);
-        font-size: 16px;
-        line-height: 50px;
-        display: inline-block;
-        margin-right: 30px;
-    }
-
-    .sign {
-        margin: 0px 20px;
-    }
-
-    .bzy {
-        display: inline;
-        height: 60px;
-        margin-left: 23px;
-        margin-top: 5px;
-    }
-
-    .bzyimg {
-        width: auto;
-        height: 100%;
-        float: left;
-    }
-
-    .pms {
-        line-height: 70px;
-        margin-left: 7px;
-        width: 30%;
-        float: left;
-        color: rgb(248, 248, 248);
-        font-size: 14px;
-    }
-
-    .mainn {
-        width: 100%;
-        height: 1200px;
-    }
-
-    .foot {
-        display: block;
-        height: 20px;
-        width: 100%;
-        font-size: 12px;
-        line-height: 20px;
-        text-align: center;
-        color: rgb(222, 234, 217);
-    }
-
-    .productNum {
-        float: left;
-        width: auto;
-        height: auto;
-        color: rgb(86, 86, 86);
-        font-size: 25px;
-        margin: 15px 30px 0px;
-    }
-
-    .edit {
-        float: right;
-        margin: 15px 30px 0px;
-        color: rgb(82, 167, 210);
-    }
-
-    .mainleft {
-        height: auto;
-        width: 80%;
-        float: left;
-    }
-
-    .mainright {
-        float: right;
-        width: 19%;
-        height: 1200px;
-        background: rgb(250, 250, 250);
-        border-left-color: rgb(220, 220, 220);
-        border-left-width: 1px;
-        border-left-style: solid;
-        border-bottom-color: rgb(220, 220, 220);
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-    }
-
-    .midbox {
-        height: 450px;
-        width: 1500px;
-        background: rgb(246, 246, 246);
-        margin-top: 70px;
-        margin-left: 30px;
-    }
-
-    .midboxtitle {
-        font-size: 25px;
-        margin-left: 30px;
-        width: auto;
-        height: auto;
-        padding-top: 15px;
-        color: rgb(86, 86, 86);
-    }
-
-    .beizhu {
-        margin-left: 30px;
-        width: auto;
-        height: auto;
-        padding-top: 10px;
-        color: rgb(86, 86, 86);
-    }
-
-    .table {
-        margin-left: 30px;
-        margin-top: 30px;
-        color: rgb(69, 76, 81);
-    }
-
-    table {
-        table-layout: fixed;
-    }
-
-    .tdmain,
-    .tdmain1 {
-        padding-top: 10px;
-    }
-
-    .tdmain1 {
-        width: 200px;
-        overflow: hidden;
-    }
-
-    .hr1 {
-        margin-top: 30px;
-        width: 95%;
-        margin-left: 30px;
-        margin-bottom: 20px;
-    }
-
-    .sonMission {
-        margin-top: 40px;
-        margin-left: 30px;
-        color: rgb(69, 76, 81);
-        height: auto;
-        font-size: 22px;
-    }
-
-    .sonMission > a {
-        font-size: 8px;
-        color: rgb(96, 180, 208);
-    }
-
-    .history {
-        width: 99%;
-        height: 200px;
-        margin-top: 20px;
-        margin-left: 30px;
-        font-size: 22px;
-        color: rgb(69, 76, 81);
-        overflow: scroll;
-    }
-
-    .tableright {
-        margin-left: 15px;
-        margin-top: 20px;
-        font-size: 10px;
-    }
-
-    .explain {
-        margin-left: 15px;
-        font-size: 22px;
-        color: rgb(102, 102, 102);
-        margin-top: 30px;
-    }
-
-    .test {
-        width: 490px;
-        overflow-x: scroll;
-    }
-
-    select {
-        width: 470px;
-    }
-
-    .titletext {
-        width: 470px;
-    }
-
-    .checktable {
-        margin-left: 300px;
-        border-collapse: collapse;
-    }
-
-    .td1 {
-        width: 60px;
-    }
-
-    .td2 {
-        width: 170px;
-    }
-
-    .td3,
-    .td4 {
-        width: 250px;
-    }
-
-    .td1,
-    .td2,
-    .td3,
-    .td4 {
-        word-break: break-all;
-        word-wrap: break-word;
-        padding: 5px;
-    }
-
-    .checkselect {
-        width: 80%;
-        margin-left: 5px;
-    }
-
-    .checklisthead {
-        font-size: 22px;
-        margin-left: 720px;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-
-    .edittext {
-        cursor: pointer;
-    }
-</style>
-
-<body>
-<div class="public"></div>
-<div class="headbottom">
-    <span class="sign">+</span>
-    <a class="bottomnavi">概述</a>
-    <a class="bottomnavi">活动</a>
-    <a class="bottomnavi">问题</a>
-</div>
-<div class="mainn">
-    <div class="mainleft">
-        <div class="productNum">
-            修改成果物Review
-        </div>
-        <div class="edit">
-            <a class="edittext" id="submitbut">完成</a>
-        </div>
-        <div class="midbox">
-            <div class="midboxtitle">
-                Review详情
-            </div>
-            <table class="table">
-                <tr>
-                    <th style="width: 200px;"></th>
-                    <th style="width: 490px;"></th>
-                    <th style="width: 200px;"></th>
-                    <th style="width: 490px;"></th>
-                </tr>
-                <tr>
-                    <td class="tdmain1">成果物Review标题：</td>
-                    <td class="tdmain">
-                        <input type="text" class="titletext" id="reviewTitle"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">状态：</td>
-                    <td class="tdmain">
-                        <select id="state">
-                            <option value="0">New Creation</option>
-                            <option value="1">In Prograss</option>
-                            <option value="2">Resolved</option>
-                            <option value="3">Checked</option>
-                            <option value="4">Closed</option>
-                        </select>
-                    </td>
-                    <td class="tdmain1">开始日期：</td>
-                    <td class="tdmain"><input type="text" class="sthinput" onclick="WdatePicker()" id="startdate"></td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">优先级：</td>
-                    <td class="tdmain">
-                        <select id="advanced">
-                            <option value="0">低</option>
-                            <option value="1">中</option>
-                            <option value="2">高</option>
-                        </select>
-                    </td>
-                    <td class="tdmain1">计划完成日期：</td>
-                    <td class="tdmain"><input type="text" class="sthinput" onclick="WdatePicker()" id="plandate"></td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">指派给：</td>
-                    <td class="tdmain">
-                        <select id="assign">
-                            <option id="baseAssign" value="0">请选择指派用户</option>
-                        </select>
-                    </td>
-                    </td>
-                    <td class="tdmain1">指摘数：</td>
-                    <td class="tdmain">
-                        <input type="number" class="sthinput" id="picknum">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">总页数：</td>
-                    <td class="tdmain"><input type="number" class="sthinput" id="pagenum"></td>
-                    <td class="tdmain1">变更量：</td>
-                    <td class="tdmain"><input type="number" class="sthinput" id="changenum"></td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">Riviewer：</td>
-                    <td class="tdmain">
-                        <select id="reviewer">
-                            <option id="basereviewer" value="0">--请选择--</option>
-                        </select>
-                    </td>
-                    <td class="tdmain1">Riviewee：</td>
-                    <td class="tdmain">
-                        <select id="reviewee">
-                            <option id="baserivewee" value="0">--请选择--</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">Review场所：</td>
-                    <td class="tdmain">
-                        <input type="text" class="titletext" id="reviewplace"/>
-                    </td>
-                    <td class="tdmain1">Review耗时：</td>
-                    <td class="tdmain">
-                        <input type="text" class="titletext" id="reviewtime"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdmain1">Review版本：</td>
-                    <td class="tdmain">
-                        <input type="text" class="titletext" id="reviewVersion"/>
-                    </td>
-                    <td class="tdmain1">Review日期：</td>
-                    <td class="tdmain">
-                        <input type="text" class="sthinput" onclick="WdatePicker()" id="reviewDate">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdmain1" id="link">相关链接：</td>
-                    <td class="tdmain"><input type="text" class="titletext" id="aboutlink"/></td>
-                </tr>
-            </table>
-        </div>
-        <div class="checklisthead">CheckList</div>
-        <table class="checktable" border="1px solid black">
-            <tr>
-                <th width="60px">分类</th>
-                <th width="170px">判断项目</th>
-                <th width="250px">判断基准</th>
-                <th width="250px">确认方法</th>
-                <th width="80px">担当确认</th>
-                <th width="80px">Review确认</th>
-            </tr>
-            <tr>
-                <td class="td1">资料</td>
-                <td class="td2">成果物</td>
-                <td class="td3">有前工程的成果物，Review结束</td>
-                <td class="td4">确认：如果有前工程的成果物，必须确保参考了前工程的成果物内容</td>
-                <td class="td5">
-                    <select class="checkselect" id="check1">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-                <td class="td5">
-                    <select class="checkselect" id="rcheck1">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="td1">参加者</td>
-                <td class="td2">有相关管理者参加的确认</td>
-                <td class="td3">有确认与本成果物相关的参加者，并且有PL级别的人参加</td>
-                <td class="td4">确认：需要由可以承认本次Review的人参与，至少应为GL级别的的员工参入出席</td>
-                <td class="td5">
-                    <select class="checkselect" id="check2">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-                <td class="td5">
-                    <select class="checkselect" id="rcheck2">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="td1">制成样式</td>
-                <td class="td2">体裁</td>
-                <td class="td3">成果物体裁应正确</td>
-                <td class="td4">确认：成果物的体裁应该按照公司相关要求，用语记号是否前后统一？文章参考是否有误？需要记载的问题是否已经记载？</td>
-                <td class="td5">
-                    <select class="checkselect" id="check3">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-                <td class="td5">
-                    <select class="checkselect" id="rcheck3">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="td1" rowspan="3">环境</td>
-                <td class="td2" rowspan="3">环境</td>
-                <td class="td3" rowspan="3">明确相关的环境</td>
-                <td class="td4">确认：如果有实验部分，是否明确了实验环境准确无误？</td>
-                <td class="td5">
-                    <select class="checkselect" id="check4">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-                <td class="td5">
-                    <select class="checkselect" id="rcheck4">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="td4">确认：如果有和其他机器的连接，是否排除了偶然性，只可以在其机器上连接？</td>
-                <td class="td5">
-                    <select class="checkselect" id="check5">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-                <td class="td5">
-                    <select class="checkselect" id="rcheck5">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="td4">确认：必要运行的环境是否已经明确？</td>
-                <td class="td5">
-                    <select class="checkselect" id="check6">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-                <td class="td5">
-                    <select class="checkselect" id="rcheck6">
-                        <option value="0">OK</option>
-                        <option selected="selected" value="1">NO</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-
-    </div>
-    <div class="mainright">
-        <div class="explain">
-            成果物阶段状态说明
-        </div>
-        <table border="1" class="tableright">
-            <tr>
-                <th style="width: 70px;">状态名称</th>
-                <th style="width: 240px;">使用方法</th>
-            </tr>
-            <tr>
-                <td>New Creation</td>
-                <td>处于新建状态，是刚由管理者指派过来，且尚未开发的状态，此状态下进度应为0%</td>
-            </tr>
-            <tr>
-                <td>In progress</td>
-                <td>正在开发中，且尚未Review，在此阶段请不要将完成度置于100%，Review结束之后，且无NG部分，再将完成度置于100%</td>
-            </tr>
-            <tr>
-                <td>Resolved</td>
-                <td>本阶段已经开发完毕，并且Review结束且无特殊问题，可以转发给管理者</td>
-            </tr>
-            <tr>
-                <td>Checked</td>
-                <td>由GL检查完毕，可以转发给PL，由PL来承认成果物</td>
-            </tr>
-            <tr>
-                <td>Closed</td>
-                <td>已经由相关管理者检查完毕，关闭此成果物，完成</td>
-            </tr>
-        </table>
-    </div>
-
-</div>
-<div class="foot">
-    Designed By ZhangHan
-</div>
-</body>
-<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-<script src="js/WdatePicker.js"></script>
-<script type="application/javascript">
-    $(".public").load("public.html", function () {
-        loadcookie();
-        quitpage();
-    });
-
-    var myDate = new Date();
-    var mytime = myDate.toLocaleTimeString();
-
-    function getUrlParam(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg); //匹配目标参数
-        if (r != null) return unescape(r[2]);
-        return null; //返回参数值
-    }
-
-    function optionValue(id, value) {
-        var numbers = id.find("option"); //获取select下拉框的所有值
-        for (var j = 1; j < numbers.length; j++) {
-            if ($(numbers[j]).val() == value) {
-                $(numbers[j]).attr("selected", "selected");
-            }
-        }
-    }
-
-    $("#submitbut").click(function () {
-        if ($("#assign").val() === "0" || $("#reviewer").val() === "0" || $("#reviewee").val() === "0") {
-            alert("请全部填写");
-        } else {
-            var data = {
-                "updatetime": mytime,
-                "updateman": getCookie("username"),
-                "reviewid": getUrlParam("reviewid"),
-                "resultid": getUrlParam("resultid"),
-                "reviewTitle": $("#reviewTitle").val(),
-                "state": $("#state").val(),
-                "startdate": $("#startdate").val(),
-                "advanced": $("#advanced").val(),
-                "plandate": $("#plandate").val(),
-                "assign": $("#assign").val(),
-                "picknum": $("#picknum").val(),
-                "pagenum": $("#pagenum").val(),
-                "changenum": $("#changenum").val(),
-                "reviewer": $("#reviewer").val(),
-                "riviewee": $("#riviewee").val(),
-                "reviewplace": $("#reviewplace").val(),
-                "reviewtime": $("#reviewtime").val(),
-                "reviewVersion": $("#reviewVersion").val(),
-                "reviewDate": $("#reviewDate").val(),
-                "aboutlink": $("#aboutlink").val(),
-                "check1": $("#check1").val(),
-                "check2": $("#check2").val(),
-                "check3": $("#check3").val(),
-                "check4": $("#check4").val(),
-                "check5": $("#check5").val(),
-                "check6": $("#check6").val(),
-                "rcheck1": $("#rcheck1").val(),
-                "rcheck2": $("#rcheck2").val(),
-                "rcheck3": $("#rcheck3").val(),
-                "rcheck4": $("#rcheck4").val(),
-                "rcheck5": $("#rcheck5").val(),
-                "rcheck6": $("#rcheck6").val()
-            };
-            $.ajax({//增加成果物
-                type: "post",
-                url: "http://www.polarbear.pub:8080/GGPPMS/api/review",
-                contentType: "application/json; charset=UTF-8",
-                data: JSON.stringify(data),
-                success: function (returned) {
-                    if (returned.status === 200) {
-                        alert("增加成功");
-                        location.href = "review.html?reviewid=" + getUrlParam("reviewid");
-                    }
-                }
-            });
-        }
-
-    });
-
-    $(document).ready(function () {
-       $.ajax({
+		$(document).ready(function() {
+			$.ajax({
 				type: "get",
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"),
 				async: false,
@@ -664,7 +680,7 @@
 				dataType: "text",
 				success: function(data) {
 					var dataObj = eval("(" + data + ")");
-				
+
 					var tempHtml = "";
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
@@ -691,46 +707,46 @@
 					$("#reviewee").append(tempHtml);
 				}
 			});
-        var data = {
-            "reviewid": getUrlParam("reviewid")
-        };
-        $.ajax({
-            type: "get",
-            url: "http://www.polarbear.pub:8080/GGPPMS/api/review" + getUrlParam("reviewid"),
-            contentType: "application/json; charset=UTF-8",
-            success: function (returned) {
-                $("#reviewTitle").val(returned.reviewTitle)
-                optionValue($("#state"), returned.state);
-                $("#startdate").val(returned.startdate);
-                optionValue($("#advanced"), returned.advanced);
-                $("#plandate").val(returned.plandate);
-                optionValue($("#assign"), returned.assign);
-                $("#picknum").val(returned.picknum);
-                $("#pagenum").val(returned.pagenum);
-                $("#changenum").val(returned.changenum);
-                optionValue($("#reviewer"), returned.reviewer);
-                optionValue($("#reviewee"), returned.reviewee);
-                $("#reviewplace").val(returned.reviewplace);
-                $("#reviewtime").val(returned.reviewtime);
-                $("#reviewVersion").val(returned.reviewVersion);
-                $("#reviewDate").val(returned.reviewDate);
-                $("#aboutlink").val(returned.aboutlink);
-                optionValue($("#check1"), returned.check1);
-                optionValue($("#check2"), returned.check2);
-                optionValue($("#check3"), returned.check3);
-                optionValue($("#check4"), returned.check4);
-                optionValue($("#check5"), returned.check5);
-                optionValue($("#check6"), returned.check6);
-                optionValue($("#rcheck1"), returned.rcheck1);
-                optionValue($("#rcheck2"), returned.rcheck2);
-                optionValue($("#rcheck3"), returned.rcheck3);
-                optionValue($("#rcheck4"), returned.rcheck4);
-                optionValue($("#rcheck5"), returned.rcheck5);
-                optionValue($("#rcheck6"), returned.rcheck6);
-            }
-        });
+			var data = {
+				"reviewid": getUrlParam("reviewid")
+			};
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/review/" + getUrlParam("reviewid"),
+				contentType: "application/json; charset=UTF-8",
+				success: function(returned) {
+					$("#reviewTitle").val(returned.reviewtitle)
+					optionValue($("#state"), returned.state);
+					$("#startdate").val(timestampToTime(returned.startdate));
+					optionValue($("#advanced"), returned.advanced);
+					$("#plandate").val(timestampToTime(returned.plandate));
+					optionValue($("#assign"), returned.assign);
+					$("#picknum").val(returned.picknum);
+					$("#pagenum").val(returned.pagenum);
+					$("#changenum").val(returned.changenum);
+					optionValue($("#reviewer"), returned.reviewer);
+					optionValue($("#reviewee"), returned.reviewee);
+					$("#reviewplace").val(returned.reviewplace);
+					$("#reviewtime").val(returned.reviewtime);
+					$("#reviewVersion").val(returned.reviewversion);
+					$("#reviewDate").val(timestampToTime(returned.reviewdate));
+					$("#aboutlink").val(returned.aboutlink);
+					optionValue($("#check1"), returned.check1);
+					optionValue($("#check2"), returned.check2);
+					optionValue($("#check3"), returned.check3);
+					optionValue($("#check4"), returned.check4);
+					optionValue($("#check5"), returned.check5);
+					optionValue($("#check6"), returned.check6);
+					optionValue($("#rcheck1"), returned.rcheck1);
+					optionValue($("#rcheck2"), returned.rcheck2);
+					optionValue($("#rcheck3"), returned.rcheck3);
+					optionValue($("#rcheck4"), returned.rcheck4);
+					optionValue($("#rcheck5"), returned.rcheck5);
+					optionValue($("#rcheck6"), returned.rcheck6);
+				}
+			});
 
-    });
-</script>
+		});
+	</script>
 
 </html>

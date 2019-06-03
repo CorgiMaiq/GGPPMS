@@ -192,7 +192,7 @@
 							</select>
 						</td>
 					</tr>
-					<tr>
+					<tr id="tr4">
 						<td class="td1">级别</td>
 						<td class="td2">
 							<select class="level">
@@ -242,67 +242,98 @@
 			} 
 		}
 
+		function checkPermission(id) {
+			var check = false;
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + id,
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				success: function(returned) {
+					if(returned.usertype === 2) {
+						check = true;
+					} else {
+						check = false;
+					}
+				}
+			});
+			return check;
+		}
+
+		function getusergroupid(id) {
+			var groupid = "";
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + id,
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				success: function(returned) {
+					groupid = returned.usergroupid;
+				}
+			});
+			return groupid;
+		}
+
 		$(document).ready(function() {
-			$("tr").eq(4).hide();
 
-				// 查询所有组
-				$.ajax({
-					type: "get",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/group",
-					async: false,
-					contentType: "application/json; charset=UTF-8",
-					success: function(returned) {
-						var temlHtml = "";
-						for(var i = 0; i < returned.length; i++) {
-							var n = returned[i];
-							temlHtml += "<option value='" + n.groupid + "'>" + n.groupname + "</option>";
-						}
-						$("#group").append(temlHtml);
+			// 查询所有组
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/group",
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				success: function(returned) {
+					var temlHtml = "";
+					for(var i = 0; i < returned.length; i++) {
+						var n = returned[i];
+						temlHtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>";
 					}
-				});
-				// 获取这个人的工号密码和姓名还有组别
-				$.ajax({
-					type: "get",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + getUrlParam("username"),
-					contentType: "application/json; charset=UTF-8",
-					success: function(returned) {
-						$("#username").html(returned.email);
-						$("#password").val(returned.password);
-						$("#nickname").val(returned.nickname);
-						optionValue($("#group"), returned.usergroupid);
-						if(getCookie("level") === "1") {
-							$("tr").eq(4).show();
-							var option1 = $("<option></option>").val(1).text("PL");
-							$(".level").append(option1);
-						} else {
-							$("tr").eq(4).show();
-							var option2 = $("<option></option>").val(2).text("GL");
-							var option3 = $("<option></option>").val(3).text("开发");
-							$(".level").append(option2);
-							$(".level").append(option3);
-						}
-					}
-				});
-
-				$("#group").change(function() {
-					/*				var index = $(this).get(0).selectedIndex;
-									$("tr").eq(4).show();
-									$(".level").hide().eq(index).show();
-									innd = index;*/
-					var index = $(this).get(0).selectedIndex;
-					$(".level").empty();
-					if(index === 1) {
+					$("#group").append(temlHtml);
+				}
+			});
+			// 获取这个人的工号密码和姓名还有组别
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + getUrlParam("username"),
+				contentType: "application/json; charset=UTF-8",
+				success: function(returned) {
+					$("#username").html(returned.email);
+					$("#password").val(returned.password);
+					$("#nickname").val(returned.nickname);
+					optionValue($("#group"), returned.usergroupid);
+					if(returned.usertype === "1") {
 						$("tr").eq(4).show();
 						var option1 = $("<option></option>").val(1).text("PL");
 						$(".level").append(option1);
-					} else if(index >= 1) {
+					} else {
 						$("tr").eq(4).show();
 						var option2 = $("<option></option>").val(2).text("GL");
 						var option3 = $("<option></option>").val(3).text("开发");
 						$(".level").append(option2);
 						$(".level").append(option3);
 					}
-				})
+				}
+			});
+
+			$("#group").change(function() {
+				/*				var index = $(this).get(0).selectedIndex;
+								$("tr").eq(4).show();
+								$(".level").hide().eq(index).show();
+								innd = index;*/
+				var index = $(this).get(0).selectedIndex;
+				$(".level").empty();
+				if(index === 1) {
+					$("tr").eq(4).show();
+					var option1 = $("<option></option>").val(1).text("PL");
+					$(".level").append(option1);
+				} else if(index >= 1) {
+					$("tr").eq(4).show();
+					var option2 = $("<option></option>").val(2).text("GL");
+					var option3 = $("<option></option>").val(3).text("开发");
+					$(".level").append(option2);
+					$(".level").append(option3);
+				}
+			})
 		});
 
 		function checkinput(b, c, d) {
@@ -319,35 +350,39 @@
 			var password1 = $("#password").val();
 			var nickname1 = $("#nickname").val();
 			var group1 = $("#group").val();
-
-			if(checkinput(password1, nickname1, group1)) {
-				var data = {
-
-					"username": $("#username").html(),
-					"password": $("#password").val(),
-					"nickname": $("#nickname").val(),
-					"group": $("#group").val(),
-					"level": $(".level").val()
-				};
-				// 修改用户
-				$.ajax({
-					type: "post",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update",
-					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(data),
-					success: function(returned) {
-						if(returned.status === 200) {
-							alert("修改成功");
-							location.href = "usercontrol.html";
-						} else if(returned.status === 500) {
-							alert("某种错误");
-						}
-					}
-				});
+			alert(group1);
+			alert(getusergroupid(getUrlParam("username")));
+			if(checkPermission(getUrlParam("username")) && (group1 != getusergroupid(getUrlParam("username")))) {
+				alert("此人已经是组长，如果需要更改其组别或者级别，请先指派他人为该组组长");
 			} else {
-				alert("请全部填写")
-			}
+				if(checkinput(password1, nickname1, group1)) {
+					var data = {
 
+						"username": $("#username").html(),
+						"password": $("#password").val(),
+						"nickname": $("#nickname").val(),
+						"group": $("#group").val(),
+						"level": $(".level").val()
+					};
+					// 修改用户
+					$.ajax({
+						type: "post",
+						url: "http://www.polarbear.pub:8080/GGPPMS/api/user/update",
+						contentType: "application/json; charset=UTF-8",
+						data: JSON.stringify(data),
+						success: function(returned) {
+							if(returned.status === 200) {
+								alert("修改成功");
+								location.href = "usercontrol.html";
+							} else if(returned.status === 500) {
+								alert("某种错误");
+							}
+						}
+					});
+				} else {
+					alert("请全部填写")
+				}
+			}
 		});
 	</script>
 

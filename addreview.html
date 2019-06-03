@@ -624,10 +624,7 @@
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/worker/" + getUrlParam("projectid"),
 				async: false,
 				contentType: "application/json; charset=UTF-8",
-				dataType: "text",
-				success: function(data) {
-					var dataObj = eval("(" + data + ")");
-					alert(dataObj)
+				success: function(dataObj) {
 					var tempHtml = "";
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
