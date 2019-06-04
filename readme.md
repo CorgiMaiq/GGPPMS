@@ -3,6 +3,7 @@
 
 傻吊前台
 
+sbws
 
 ### Buglist
 
@@ -51,3 +52,5 @@
 * review指派给的人应该显示nickname（指的是review.html显示的指派给的人）
 
 * addreview的reviewee没添加进去
+
+* 关闭项目没有考虑项目下全部成果物，应该是全部成果物都已经关闭的前提下，才可以关闭项目
