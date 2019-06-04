@@ -54,3 +54,7 @@ sbws
 * addreview的reviewee没添加进去
 
 * 关闭项目没有考虑项目下全部成果物，应该是全部成果物都已经关闭的前提下，才可以关闭项目
+
+* 新功能要求：查询一个成果物下全部review的状态（state）是否都为4,在editresult的417行。
+
+* 新功能要求：查询一个review下全部pick的状态（status）是否都为4

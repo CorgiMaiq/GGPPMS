@@ -592,31 +592,24 @@
 				type: "get",
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"),
 				async: false,
+				dataType : "json",
+				contentType: "application/json; charset=UTF-8",
 				success: function(result) {
 					var tempHtml = "";
 					var href = " 'pick.html?pickid=";
+					alert(result.length);
 					for(var i = 0; i < result.length; i++) {
-						tempHtml += "<tr><td>" + n.pickid + "</td>";
+						var n = result[i];
+						tempHtml += "<tr><td>" + n.pickId + "</td>";
 						tempHtml += "<td>" + n.status + "</td>"
-						tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
+						tempHtml += "<td><a href=" + href + n.pickId + "'>" + n.title + "</a></td></tr>"
 					}
 					$("#sontable").append(tempHtml);
 
 				}
+
 			});
-
-			// 查询该review下的全部指摘
-			$.get("http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/" + getUrlParam("reviewid"), function(result) {
-				var res = $.parseJSON(result);
-
-				var href = " 'pick.html?pickid=";
-				$.each(res, function(i, n) {
-					tempHtml += "<tr><td>" + n.pickid + "</td>";
-					tempHtml += "<td>" + n.status + "</td>"
-					tempHtml += "<td><a href=" + href + n.pickid + "'>" + n.pickname + "</a></td></tr>"
-				});
-			});
-
+			
 			var data = {
 				"reviewid": getUrlParam("reviewid")
 			};

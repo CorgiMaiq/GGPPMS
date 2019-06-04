@@ -414,57 +414,79 @@
 			}
 		}
 
-		$("#edittext").click(function() {
-			if($("#NGnum").val() != 0 && $("#state").val() === "4") {
-				alert("NG数为0才可以关闭成果物");
-			} else if($("#state").val() === "4" && getCookie("level") != 1) {
-				alert("您无权关闭此成果物");
-			} else {
-				var submitdata = {
-					"creator": getCookie("username"),
-					"id": getUrlParam("resultID"),
-					"pid": getUrlParam("pid"),
-					"title": $("#title").val(),
-					"startdate": $("#startdate").val(),
-
-					"state": $("#state").val(),
-					"advanced": $("#advanced").val(),
-					"assign": $("#assign").val(),
-					"picknum": $("#picknum").val(),
-					"plandate": $("#plandate").val(),
-					"pagenum": $("#pagenum").val(),
-					"changenum": $("#changenum").val(),
-					"preworknum": $("#preworknum").val(),
-
-					"actworknum": $("#actworknum").val(),
-					"reviewplan": $("#reviewplantime").val(),
-					"reviewendtime": $("#reviewendtime").val(),
-					"resultversion": $("#resultversion").val(),
-					"resultlink": $("#resultlink").val(),
-
-					"NGnum": $("#NGnum").val(),
-					"completepercent": $("#completepercent").val(),
-					"resulttype": $("#resulttype").val(),
-					"endtime": $("#endtime").val()
-				};
-				$.ajax({
-					type: "post",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/result/update",
-					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(submitdata),
-					async: false,
-					dataType: "json",
-					success: function(returned) {
-						alert()
-						if(returned.status === 200) {
-							alert($("#assign").val());
-							alert("修改成功");
-							location.href = "main1.html?resultid=" + getUrlParam("resultID") + "&pid=" + getUrlParam("pid")
-						} else {
-							alert("修改失败");
-						}
+		function checkson(id) {
+			var check = false;
+			$.ajax({
+				type: "get",
+				url: "",
+				async: false,
+				success: function(returned) {
+					if(retuened.check) { //如果全部关闭，返回true
+						check = true;
 					}
-				});
+				}
+			});
+			return check;
+		}
+
+		$("#edittext").click(function() {
+			if((!checkson(getUrlParam("resultID")))&&$("#state").val() === "4") {
+				alert("此成果物下还有review没有关闭");
+			} else {
+				if($("#NGnum").val() != 0 && $("#state").val() === "4") {
+					alert("NG数为0才可以关闭成果物");
+				} else {
+					if($("#state").val() === "4" && getCookie("level") != 1) {
+						alert("您无权关闭此成果物");
+					} else {
+						var submitdata = {
+							"creator": getCookie("username"),
+							"id": getUrlParam("resultID"),
+							"pid": getUrlParam("pid"),
+							"title": $("#title").val(),
+							"startdate": $("#startdate").val(),
+
+							"state": $("#state").val(),
+							"advanced": $("#advanced").val(),
+							"assign": $("#assign").val(),
+							"picknum": $("#picknum").val(),
+							"plandate": $("#plandate").val(),
+							"pagenum": $("#pagenum").val(),
+							"changenum": $("#changenum").val(),
+							"preworknum": $("#preworknum").val(),
+
+							"actworknum": $("#actworknum").val(),
+							"reviewplan": $("#reviewplantime").val(),
+							"reviewendtime": $("#reviewendtime").val(),
+							"resultversion": $("#resultversion").val(),
+							"resultlink": $("#resultlink").val(),
+
+							"NGnum": $("#NGnum").val(),
+							"completepercent": $("#completepercent").val(),
+							"resulttype": $("#resulttype").val(),
+							"endtime": $("#endtime").val()
+						};
+						$.ajax({
+							type: "post",
+							url: "http://www.polarbear.pub:8080/GGPPMS/api/result/update",
+							contentType: "application/json; charset=UTF-8",
+							data: JSON.stringify(submitdata),
+							async: false,
+							dataType: "json",
+							success: function(returned) {
+								alert()
+								if(returned.status === 200) {
+									alert($("#assign").val());
+									alert("修改成功");
+									location.href = "main1.html?resultid=" + getUrlParam("resultID") + "&pid=" + getUrlParam("pid")
+								} else {
+									alert("修改失败");
+								}
+							}
+						});
+					}
+				}
+
 			}
 
 		});

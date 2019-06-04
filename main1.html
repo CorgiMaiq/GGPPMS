@@ -629,7 +629,17 @@
                 for (var i = 0; i < dataObj.length; i++) {
                     var n = dataObj[i];
                     tempHtml += "<tr><td>" + n.id + "</td>";
-                    tempHtml += "<td>" + n.state + "</td>"
+                    if(n.state===0){
+                    	tempHtml += "<td>" + "New Creation" + "</td>";
+                    }else if(n.state===1){
+                    	tempHtml += "<td>" + "In progress" + "</td>";
+                    }else if(n.state===2){
+                    	tempHtml += "<td>" + "Resolved" + "</td>";
+                    }else if(n.state===3){
+                    	tempHtml += "<td>" + "Checked" + "</td>";
+                    }else if(n.state===4){
+                    	tempHtml += "<td>" + "Closed" + "</td>";
+                    }
                     tempHtml += "<td><a href=" + href + n.id + "'>" + n.reviewtitle + "</a></td></tr>";
                 }
                 $("#sontable").append(tempHtml);
