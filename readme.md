@@ -48,6 +48,6 @@
 
 * 指派给的人除包括本项目GL和开发以外，应包括PL（创建者）
 
-* review指派给的人应该显示nickname
+* review指派给的人应该显示nickname（指的是review.html显示的指派给的人）
 
 * addreview的reviewee没添加进去
