@@ -417,7 +417,7 @@
 		$("#edittext").click(function() {
 			if($("#NGnum").val() != 0 && $("#state").val() === "4") {
 				alert("NG数为0才可以关闭成果物");
-			} else if($("#state").val() === "4" && getCookie("level") != 0) {
+			} else if($("#state").val() === "4" && getCookie("level") != 1) {
 				alert("您无权关闭此成果物");
 			} else {
 				var submitdata = {

@@ -414,13 +414,21 @@
 				}
 			} 
 		}
-
-		$(d$.get("\"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/\" + getUrlParam(\"projectid\")", //查出项目中的所有人
-				function (data) {
-				var res = $.parseJSON(data);
-				$.each(res, function(i, n) {
-					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-				});
+		
+		$(document).ready(function(){
+			$.ajax({
+				type:"get",
+				url:"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/"+getUrlParam("projectid"),
+				async:false,
+				success : function(data){
+					var tempHtml = "";
+					for (var i = 0;i<data.length;i++) {
+						var n = data[i];
+						tempHtml += "<option value='" + n.id + "'>" + n.nickname + "</option>";
+					}
+					$("#assign").append(tempHtml);
+				}
+					
 			});
 			var data = {
 				"pickid": getUrlParam("pickid")
@@ -444,11 +452,14 @@
 					$("#pickintro").val(returned.pickintro);
 				}
 			});
-			
 		});
 
+
 		$("#submitpick").click(function() {
-			if($("#assign").val() === "0") {
+			if($("#state").val()==="4" && getCookie("level")!=1){
+				alert("您无权关闭该指摘");
+			}else{
+				if($("#assign").val() === "0") {
 				alert("请选择指派给谁");
 			} else {
 				var data = {
@@ -482,6 +493,9 @@
 					}
 				});
 			}
+			}
+			
+			
 
 		})
 	</script>

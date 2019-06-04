@@ -12,7 +12,7 @@
 				border-bottom-style: solid;
 				border-bottom-width: 2px;
 			}
-
+			
 			.foot {
 				display: block;
 				height: 20px;
@@ -22,28 +22,31 @@
 				text-align: center;
 				color: rgb(222, 234, 217);
 			}
-			.title{
+			
+			.title {
 				font-size: 22px;
 				width: 100%;
 				text-align: center;
-				color: rgb(77,77,77);
+				color: rgb(77, 77, 77);
 				margin-top: 15px;
 			}
-			.tablebox{
+			
+			.tablebox {
 				width: 100%;
 				height: 500px;
-
 			}
-			.maintable{
+			
+			.maintable {
 				position: absolute;
 				left: 50%;
 				margin-left: -700px;
-				border-collapse:collapse ;
-				border-color: rgb(221,221,221);
+				border-collapse: collapse;
+				border-color: rgb(221, 221, 221);
 				text-align: center;
 				margin-top: 30px;
 			}
-			td{
+			
+			td {
 				width: 250px;
 				max-width: 250px;
 				padding: 3px;
@@ -81,6 +84,26 @@
 			quitpage();
 		});
 
+		function checkPermission(id) {
+			var check = false;
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + id,
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				success: function(returned) {
+					if(returned.usertype === 2) {
+						check = true;
+					} else {
+						check = false;
+					}
+				}
+			});
+			alert(check);
+			return check;
+			
+		}
+
 		function getUrlParam(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -88,47 +111,51 @@
 			return null; //返回参数值
 		}
 
-		function deletesomeone(id){
-			var deleteid = {
-				"username" : id,
-				"groupid" : getUrlParam("groupid")
-            };
-            // 把某个人从某个组删除出去
-            $.ajax({
-				type:"post",
-                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/removeGroup",
-				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify(deleteid),
-				async:false,
-				success: function(returned) {
-					if(returned.status===200){
-						alert("删除成功");
-						location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
-					}else{
-						alert("删除失败");
-						location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
+		function deletesomeone(id) {
+			if(checkPermission(id)) { //这个人是组长，则不可以被删除
+				alert("组长不可以被删除");
+			} else {
+				var deleteid = {
+					"username": id,
+					"groupid": getUrlParam("groupid")
+				};
+				// 把某个人从某个组删除出去
+				$.ajax({
+					type: "post",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/removeGroup",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify(deleteid),
+					async: false,
+					success: function(returned) {
+						if(returned.status === 200) {
+							alert("删除成功");
+							location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
+						} else {
+							alert("删除失败");
+							location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
+						}
 					}
-				}
-			});
+				});
+			}
 		}
 
-		function assign(id){
+		function assign(id) {
 			var assignid = {
-				"username" : id,
-				"groupid" : getUrlParam("groupid")
-            };
-            // 把某个人指派为组长
-            $.ajax({
-				type:"post",
-                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/setGroupLeader",
+				"username": id,
+				"groupid": getUrlParam("groupid")
+			};
+			// 把某个人指派为组长
+			$.ajax({
+				type: "post",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/setGroupLeader",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(assignid),
-				async:false,
+				async: false,
 				success: function(returned) {
-					if(returned.status===200){
+					if(returned.status === 200) {
 						alert("指派成功");
 						location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
-					}else{
+					} else {
 						alert("指派失败");
 						location.href = "controlmember.html?groupid=" + getUrlParam("groupid");
 					}
@@ -136,40 +163,47 @@
 			});
 		}
 
-        $(document).ready(function(){
+		$(document).ready(function() {
 			var data = {
-				"groupid" : getUrlParam("groupid")
-            };
-            $.ajax({
-            	type:"get",
-            	url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"),
-            	async:false,
-                dataType: "json",
-                success: function (returned) {
-            		var tempHtml = "";
-            		for (var i = 0;i<returned.length;i++) {
-                        var n = returned[i];
-            			tempHtml += "<tr><td>" + n.email + "</td>";
+				"groupid": getUrlParam("groupid")
+			};
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"),
+				async: false,
+				dataType: "json",
+				success: function(returned) {
+					var tempHtml = "";
+					for(var i = 0; i < returned.length; i++) {
+						var n = returned[i];
+						tempHtml += "<tr><td>" + n.email + "</td>";
 						tempHtml += "<td>" + n.nickname + "</td>";
-	                    tempHtml += "<td>" + n.usertype + "</td>";
+						if(n.usertype === 1) {
+							tempHtml += "<td>" + "项目管理员" + "</td>";
+						} else if(n.usertype === 2) {
+							tempHtml += "<td>" + "组长" + "</td>";
+						} else {
+							tempHtml += "<td>" + "组员" + "</td>";
+						}
+
 						tempHtml += "<td><button onclick='deletesomeone(\"" + n.email + "\")'>删除</button>" + "</td>";
 						tempHtml += "<td><button onclick='assign(\"" + n.email + "\")'>指派</button>" + "</td></tr>";
-            		}
-            		$("#maintable").append(tempHtml);
-            	}
-            });
-            // 拼接裙成员
-/*            $.get("http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"), function (returned) {
-				var tempHtml = "";
-				$.each(res, function(i,n) {
-                    tempHtml += "<tr><td>" + n.email + "</td>";
-					tempHtml += "<td>" + n.nickname + "</td>";
-                    tempHtml += "<td>" + n.usertype + "</td>";
-					tempHtml += "<td><button onclick='deletesomeone(" + n.username + ")'>删除</button>"+"</td>";
-					tempHtml += "<td><button onclick='assign(" + n.username + ")'>指派</button>"+"</td></tr>";
-				});
-				$("#basetr").append(tempHtml);
-			})*/
+					}
+					$("#maintable").append(tempHtml);
+				}
+			});
+			// 拼接裙成员
+			/*            $.get("http://www.polarbear.pub:8080/GGPPMS/api/user/getByGroup/" + getUrlParam("groupid"), function (returned) {
+							var tempHtml = "";
+							$.each(res, function(i,n) {
+			                    tempHtml += "<tr><td>" + n.email + "</td>";
+								tempHtml += "<td>" + n.nickname + "</td>";
+			                    tempHtml += "<td>" + n.usertype + "</td>";
+								tempHtml += "<td><button onclick='deletesomeone(" + n.username + ")'>删除</button>"+"</td>";
+								tempHtml += "<td><button onclick='assign(" + n.username + ")'>指派</button>"+"</td></tr>";
+							});
+							$("#basetr").append(tempHtml);
+						})*/
 		})
 	</script>
 

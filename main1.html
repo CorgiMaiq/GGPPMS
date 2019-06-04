@@ -464,6 +464,41 @@
         }
 
     }
+    
+    function timestampToTimefull(timestamp) {
+        if (timestamp > 1) {
+            var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            Y = date.getFullYear() + '-';
+            M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+            D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+            h = " " + date.getHours() + ':';
+            m = date.getMinutes() + ':';
+            s = date.getSeconds();
+            return Y + M + D + h + m + s;
+        } else {
+            return "";
+        }
+
+    }
+    
+    function checkPermission(id) {
+			var check = false;
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + id,
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				success: function(returned) {
+					if(returned.usertype === 1) {
+						check = true;
+					} else {
+						check = false;
+					}
+				}
+			});
+			return check;
+		}
+
 
     function del() {
         var msg = "您真的确定要删除吗？将删除所有下关联活动\n\n请确认！";
@@ -545,9 +580,13 @@
 
     var resultID = getUrlParam("resultid");
     $(".edittext").click(function () {
-        var pid = getUrlParam("pid");
-        var edithref = "editresult.html?resultID=" + resultID + "&pid=" + pid;
-        location.href = edithref;
+    	if(($("#state").html()==="Closed") && getCookie("level")!=0){
+    		alert("成果物已经关闭，您无权修改");
+    	}else{
+    		var pid = getUrlParam("pid");
+	        var edithref = "editresult.html?resultID=" + resultID + "&pid=" + pid;
+	        location.href = edithref;
+    	}
     });
 
     $("#addreview").click(function () {
@@ -569,7 +608,6 @@
             url: "http://www.polarbear.pub:8080/GGPPMS/api/user/query/uo/result", //查询关注状态，如果已关注，把关注按钮改成取消关注
             async: false,
             success: function (result) {
-            	alert(result.watcher);
                 if (result.watcher) {
                     $(".watch").html("取消关注");
                 }
@@ -594,7 +632,6 @@
                     tempHtml += "<td>" + n.state + "</td>"
                     tempHtml += "<td><a href=" + href + n.id + "'>" + n.reviewtitle + "</a></td></tr>";
                 }
-                alert(tempHtml);
                 $("#sontable").append(tempHtml);
             }
         });
@@ -618,6 +655,8 @@
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(data),
             success: function (returned) {
+            	var textin = "最后更新于" + timestampToTimefull(returned.lastUpdateDate);
+            	$(".beizhu").html(textin);
                 $(".productNum").html(resultID + "号成果物");
                 $("#midboxtitle").html(returned.resultName);
                 if (returned.status === "0") {

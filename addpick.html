@@ -290,8 +290,6 @@
 									<option value="0">New Creation</option>
 									<option value="1">In Prograss</option>
 									<option value="2">Resolved</option>
-									<option value="3">Checked</option>
-									<option value="4">Closed</option>
 								</select>
 							</td>
 							<td class="tdmain1">开始日期：</td>
@@ -407,21 +405,28 @@
 		}
 
 		$(document).ready(function() {
-            $.get("\"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/\" + getUrlParam(\"projectid\")", //查出项目中的所有人
-                function (data) {
-				var res = $.parseJSON(data);
-				$.each(res, function(i, n) {
-					$("#baseAssign").append("<option value=" + n.id + ">" + n.nickname + "</option>")
-				});
+			$.ajax({
+				type:"get",
+				url:"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"),
+				async:false,
+				success : function(returned){
+					var tempHtml = "";
+					for(var i = 0;i<returned.length;i++){
+						var n = returned[i];
+						tempHtml += "<option value='" + n.id + "'>" + n.nickname + "</option>";
+					}
+					$("#assign").append(tempHtml);
+				}
 			});
         });
+        
+        
 
 		$("#submitpick").click(function() {
 			if($("#assign").val() === "0") {
 				alert("请选择指派给谁");
 			} else {
 				var data = {
-					"updatetime": mytime,
 					"updateman" : getCookie("username"),
 					"projectid": getUrlParam("projectid"),
 					"reviewid": getUrlParam("reviewid"),

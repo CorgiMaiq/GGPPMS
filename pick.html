@@ -461,7 +461,11 @@
     });
 
     $("#editpick").click(function () {
-        location.href = "editpick.html?pickid=" + $("#pickid").html();
+    	if($("#state").html()==="Closed" && getCookie("level")!=1){
+    		alert("该pick已关闭");
+    	}else{
+    		location.href = "editpick.html?pickid=" + $("#pickid").html();
+    	}
     });
 
     $(document).ready(function () {
@@ -480,7 +484,7 @@
             async: false,
             success: function (result) {
             	
-                if (result.watched) {
+                if (result.watcher) {
                 	
                     $("#watch").html("取消关注");
                 }
