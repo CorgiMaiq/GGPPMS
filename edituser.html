@@ -213,6 +213,7 @@
 		$(".public").load("public.html", function() {
 			loadcookie();
 			quitpage();
+			mywork();
 		});
 		var innd = 0;
 		var levelnum = 0;
@@ -307,9 +308,7 @@
 						$(".level").append(option1);
 					} else {
 						$("tr").eq(4).show();
-						var option2 = $("<option></option>").val(2).text("GL");
 						var option3 = $("<option></option>").val(3).text("开发");
-						$(".level").append(option2);
 						$(".level").append(option3);
 					}
 				}
@@ -328,9 +327,7 @@
 					$(".level").append(option1);
 				} else if(index >= 1) {
 					$("tr").eq(4).show();
-					var option2 = $("<option></option>").val(2).text("GL");
 					var option3 = $("<option></option>").val(3).text("开发");
-					$(".level").append(option2);
 					$(".level").append(option3);
 				}
 			})

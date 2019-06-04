@@ -45,6 +45,8 @@ sbws
 
 * ~~pick无法insert~~
 
+* assign在main1，review和pick页面要显示人名，但是返回的json里还是要返回assign_to这段！！！！！！！！！！！！！！！！！！重要！！！！！！！！！！！！！！！！！
+
 * edituser没有修改组别成功（usertype和usergropupid）/*PL可以指定usergroupid为0*/
 
 * 指派给的人除包括本项目GL和开发以外，应包括PL（创建者）
@@ -58,3 +60,24 @@ sbws
 * 新功能要求：查询一个成果物下全部review的状态（state）是否都为4,在editresult的417行。
 
 * 新功能要求：查询一个review下全部pick的状态（status）是否都为4
+
+* http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/ 接口返回id错误
+
+* pick.html指派给的人要显示nickname
+
+* pick.html的http://www.polarbear.pub:8080/GGPPMS/api/pick/load/接口，没有返回指摘内容和指摘描述
+
+* pick数据库表有问题，last-update-by应该是上次修改人，传过去的字段名应该叫updateman，字段pickcontent（数据库中叫pick_content）和pickintro（数据库中叫pick_introduction）没有传进去
+
+* editpick.html提交报500
+
+* mymessgae.html中的http://www.polarbear.pub:8080/GGPPMS/api/user/get接口404
+
+* http://www.polarbear.pub:8080/GGPPMS/api/result/load/ 在editresult.html中，json没有返回endtime
+
+* main1指派给的人显示nickname
+
+* addgroup.html的搜索请求404，http://www.polarbear.pub:8080/GGPPMS/api/user/get
+
+* addproject.html 没有传进来优先级/预计工数
+

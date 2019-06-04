@@ -213,6 +213,7 @@
 		$(".public").load("public.html", function() {
 			loadcookie();
 			quitpage();
+			mywork();
 		});
 		var innd = 0;
 		var levelnum = 0;
@@ -231,7 +232,7 @@
             $.get("http://www.polarbear.pub:8080/GGPPMS/api/group", function (returned) {
 				for(var i =0;i<returned.length;i++){
 					var n = returned[i];
-					temlHtml += "<option value='" + n.groupid + "'>" + n.groupname + "</option>";
+					temlHtml += "<option value='" + n.gid + "'>" + n.groupname + "</option>";
 				}
 
                 $("#group").append(temlHtml);
@@ -250,9 +251,7 @@
 					$(".level").append(option1);
 				} else if(index >= 1) {
 					$("tr").eq(4).show();
-					var option2 = $("<option></option>").val(2).text("GL");
 					var option3 = $("<option></option>").val(3).text("开发");
-					$(".level").append(option2);
 					$(".level").append(option3);
 				}
 			})

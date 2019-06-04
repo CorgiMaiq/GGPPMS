@@ -311,7 +311,7 @@
 					<div class="beizhu">
 						由xx更新于xx日
 					</div>
-					<input type="hidden" id="projectid">
+					<input type="hidden" id="projectid"/>
 					<input type="hidden" id="resultid" />
 					<table class="table">
 						<tr>
@@ -381,9 +381,6 @@
 						</tr>
 					</table>
 				</div>
-				<div class="history">
-					历史记录
-				</div>
 
 			</div>
 			<div class="mainright">
@@ -429,6 +426,7 @@
 		$(".public").load("public.html", function() {
 			loadcookie();
 			quitpage();
+			mywork();
 		});
 
 		function timestampToTime(timestamp) {

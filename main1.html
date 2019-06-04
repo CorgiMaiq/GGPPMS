@@ -383,10 +383,6 @@
                 </tr>
             </table>
         </div>
-        <div class="history">
-            历史记录
-
-        </div>
 
     </div>
     <div class="mainright">
@@ -438,6 +434,7 @@
     $(".public").load("public.html", function () {
         loadcookie();
         quitpage();
+        mywork();
     });
 
     function getCookie(name) {

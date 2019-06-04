@@ -1,185 +1,191 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <style>
-        .mainn {
-            width: 100%;
-            height: 700px;
-            border-bottom-color: rgb(223, 223, 223);
-            border-bottom-style: solid;
-            border-bottom-width: 2px;
-        }
 
-        .title {
-            font-size: 22px;
-            width: 100%;
-            text-align: center;
-            color: rgb(77, 77, 77);
-            margin-top: 15px;
-        }
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.mainn {
+				width: 100%;
+				height: 700px;
+				border-bottom-color: rgb(223, 223, 223);
+				border-bottom-style: solid;
+				border-bottom-width: 2px;
+			}
+			
+			.title {
+				font-size: 22px;
+				width: 100%;
+				text-align: center;
+				color: rgb(77, 77, 77);
+				margin-top: 15px;
+			}
+			
+			.foot {
+				display: block;
+				height: 20px;
+				width: 100%;
+				font-size: 12px;
+				line-height: 20px;
+				text-align: center;
+				color: rgb(222, 234, 217);
+			}
+			
+			.sizer {
+				width: 600px;
+				height: 100px;
+				background: rgb(235, 236, 237);
+				position: absolute;
+				left: 50%;
+				margin-left: -300px;
+			}
+			
+			.sizertable {
+				margin-left: 90px;
+			}
+			
+			.td1 {
+				width: 130px;
+				text-align: right;
+			}
+			
+			tr {
+				padding: 30px;
+			}
+			
+			.search {
+				margin-left: 500px;
+				padding: 4px 10px 4px 10px;
+			}
+			
+			.tablebox {
+				width: 100%;
+				height: 500px;
+				margin-top: 90px;
+			}
+			
+			.maintable {
+				position: absolute;
+				left: 50%;
+				margin-left: -700px;
+				border-collapse: collapse;
+				border-color: rgb(221, 221, 221);
+				text-align: center;
+				margin-top: 30px;
+			}
+			
+			td {
+				width: 250px;
+				max-width: 250px;
+				padding: 3px;
+			}
+		</style>
+	</head>
 
-        .foot {
-            display: block;
-            height: 20px;
-            width: 100%;
-            font-size: 12px;
-            line-height: 20px;
-            text-align: center;
-            color: rgb(222, 234, 217);
-        }
+	<body>
+		<div class="public"></div>
+		<div class="mainn">
+			<div class="title">组成员管理</div>
+			<div class="sizer">
+				<table class="sizertable">
+					<tr>
+						<td class="td1">工号：</td>
+						<td class="td2"><input type="text" id="username" /></td>
+					</tr>
+					<tr>
+						<td class="td1">姓名：</td>
+						<td class="td2"><input type="text" id="nickname" /></td>
+					</tr>
+				</table>
+				<button class="search">查找</button>
+			</div>
+			<div class="tablebox">
+				<table class="maintable" id="maintable" border="1px">
+					<tr id="basetr">
+						<td>工号</td>
+						<td>姓名</td>
+						<td>所在组</td>
+						<td>级别</td>
+						<td>指派到该组</td>
 
-        .sizer {
-            width: 600px;
-            height: 100px;
-            background: rgb(235, 236, 237);
-            position: absolute;
-            left: 50%;
-            margin-left: -300px;
-        }
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="foot">
+			Designed By ZhangHan
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="application/javascript">
+		$(".public").load("public.html", function() {
+			loadcookie();
+			quitpage();
+			mywork();
+		});
 
-        .sizertable {
-            margin-left: 90px;
-        }
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
 
-        .td1 {
-            width: 130px;
-            text-align: right;
-        }
+		function addmember(username) {
+			var groupdata = {
+				"username": username,
+				"groupid": getUrlParam("groupid")
+			};
+			// 添加某成员到该组
+			$.ajax({
+				type: "post",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/setGroup",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(groupdata),
+				success: function(returned) {
+					if(returned.status === 200) {
+						alert("添加成功");
+						location.href = "addmember.html?groupid=" + getUrlParam("groupid");
+					} else {
+						alert("添加失败");
+						location.href = "addmember.html?groupid=" + getUrlParam("groupid");
+					}
+				}
 
-        tr {
-            padding: 30px;
-        }
+			});
+		}
 
-        .search {
-            margin-left: 500px;
-            padding: 4px 10px 4px 10px;
-        }
+		$(".search").click(function() {
+			var data = {
+				"username": $("#username").val(),
+				"nickname": $("#nickname").val()
+			};
 
-        .tablebox {
-            width: 100%;
-            height: 500px;
-            margin-top: 90px;
-        }
+			// 根据输入信息查找人
+			$.ajax({
+				type: "post",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/filtered-list",
+				data: JSON.stringify(data),
+				contentType: "application/json",
+				success: function(res) {
+					var tempHtml = "";
+					$(".apptd").remove();
+					for(var i = 0; i < res.length; i++) {
+						var n = res[i];
+						if(n.usertype === 3) {
+							tempHtml += "<tr class='apptd'><td>" + n.email + "</td>";
+							tempHtml += "<td>" + n.nickname + "</td>";
+							tempHtml += "<td>" + n.usergroupname + "</td>";
+							tempHtml += "<td>" + "开发人员" + "</td>";
+							var kk = "'" + n.email + "'";
+							tempHtml += "<td><button onclick=\"addmember(" + kk + ")\">指派</button>" + "</td></tr>";
+						}
 
-        .maintable {
-            position: absolute;
-            left: 50%;
-            margin-left: -700px;
-            border-collapse: collapse;
-            border-color: rgb(221, 221, 221);
-            text-align: center;
-            margin-top: 30px;
-        }
+					}
+					$("#maintable").append(tempHtml);
+				}
+			})
+		});
+	</script>
 
-        td {
-            width: 250px;
-            max-width: 250px;
-            padding: 3px;
-        }
-    </style>
-</head>
-<body>
-<div class="public"></div>
-<div class="mainn">
-    <div class="title">组成员管理</div>
-    <div class="sizer">
-        <table class="sizertable">
-            <tr>
-                <td class="td1">工号：</td>
-                <td class="td2"><input type="text" id="username"/></td>
-            </tr>
-            <tr>
-                <td class="td1">姓名：</td>
-                <td class="td2"><input type="text" id="nickname"/></td>
-            </tr>
-        </table>
-        <button class="search">查找</button>
-    </div>
-    <div class="tablebox">
-        <table class="maintable" id="maintable" border="1px">
-            <tr id="basetr">
-                <td>工号</td>
-                <td>姓名</td>
-                <td>所在组</td>
-                <td>级别</td>
-                <td>指派到该组</td>
-
-            </tr>
-        </table>
-    </div>
-</div>
-<div class="foot">
-    Designed By ZhangHan
-</div>
-</body>
-<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-<script type="application/javascript">
-    $(".public").load("public.html", function () {
-        loadcookie();
-        quitpage();
-    });
-
-    function getUrlParam(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg); //匹配目标参数
-        if (r != null) return unescape(r[2]);
-        return null; //返回参数值
-    }
-
-    function addmember(username) {
-        var groupdata = {
-            "username": username,
-            "groupid": getUrlParam("groupid")
-        };
-        // 添加某成员到该组
-        $.ajax({
-            type: "post",
-            url: "http://www.polarbear.pub:8080/GGPPMS/api/user/setGroup",
-            contentType: "application/json; charset=UTF-8",
-            data: JSON.stringify(deleteid),
-            success: function (returned) {
-                if (returned.status === 200) {
-                    alert("添加成功");
-                    location.href = "addmember.html?groupid=" + getUrlParam("groipid");
-                } else {
-                    alert("添加失败");
-                    location.href = "addmember.html?groupid=" + getUrlParam("groipid");
-                }
-            }
-
-        });
-    }
-
-    $(".search").click(function () {
-        var data = {
-            "username": $("#username").val(),
-            "nickname": $("#nickname").val()
-        };
-        
-
-        // 根据输入信息查找人
-        $.ajax({
-            type: "post",
-            url: "http://www.polarbear.pub:8080/GGPPMS/api/user/filtered-list",
-            data: JSON.stringify(data),
-            contentType: "application/json",
-            success: function (res) {
-            	var tempHtml = "";
-            	$(".apptd").remove();
-            	for (var i = 0;i<res.length;i++) {
-            		var n = res[i];
-            		tempHtml += "<tr class='apptd'><td>" + n.email + "</td>";
-                    tempHtml += "<td>" + n.nickname + "</td>";
-                    tempHtml += "<td>" + n.usergroupname + "</td>";
-                    tempHtml += "<td>" + n.usertype + "</td>";
-                    tempHtml += "<td><button onclick='addmember(" + n.username + ")'>指派</button>" + "</td></tr>";
-            	}
-
-                $("#maintable").append(tempHtml);
-            }
-        })
-    });
-</script>
 </html>

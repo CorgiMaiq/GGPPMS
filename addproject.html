@@ -214,27 +214,6 @@
 	</style>
 
 	<body>
-		<!--		<div id="head">
-			<div class="headleft">
-				<a class="headnavi">主页</a>
-				<a class="headnavi">我的工作台</a>
-				<a class="headnavi">项目</a>
-				<a class="headnavi">组</a>
-				<a class="headnavi">关于</a>
-			</div>
-
-			<div class="headright">
-				<span class="loginwith">登录为：</span>
-				<a class="headnaviright">我的账号</a>
-				<a class="headnaviright">退出</a>
-			</div>
-		</div>
-		<div class="headmid">
-			<div class="bzyimg">
-				<img class="bzy" src="img/bzy3.png" />
-			</div>
-			<div class="pms">Project Management System</div>
-		</div>-->
 		<div class="public"></div>
 		<div class="headbottom">
 			<span class="sign">+</span>
@@ -357,6 +336,7 @@
 		$(".public").load("public.html", function() {
 			loadcookie();
 			quitpage();
+			mywork();
 		});
 
 		function getUrlParam(name) {
@@ -384,26 +364,13 @@
 				async: false,
 				success: function(data) {
 					var temphtml = "";
-					alert("test");
 					for(var i = 0; i < data.length; i++) {
 						var n = data[i];
 						temphtml += "<option value='" + n.email + "'>" + n.nickname + "</option>";
 					}
 					$("#assign").append(temphtml);
-					alert(temphtml);
 				}
 			});
-
-			/*	$.get("http://www.polarbear.pub:8080/GGPPMS/api/project/member/" + fatherID,{}, function(data) {
-					var temphtml = "";
-					alert("test");
-					for(var i = 0; i < data.length; i++) {
-						var n = data[i];
-						temphtml += "<option value='" + n.email + "'>" + n.nickname + "</option>";
-					}
-					$("#assign").append(temphtml);
-					alert(temphtml);
-				});*/
 		})
 		// 获取该组所有用户
 
@@ -444,10 +411,10 @@
 							alert("添加成功");
 							location.href = "main1.html";
 						} else if(dataObj.status === 400) {
-							alert("用户名或密码错误!");
+							alert("错误!");
 						} else {
 							if(dataObj.status === 500) {
-								alert("请输入用户名和密码!");
+								alert("服务器出错");
 							}
 
 						}

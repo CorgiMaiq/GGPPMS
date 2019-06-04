@@ -395,6 +395,7 @@
 		$(".public").load("public.html", function() {
 			loadcookie();
 			quitpage();
+			mywork();
 		});
 		var myDate = new Date();
 		var mytime = myDate.toLocaleTimeString();
@@ -404,6 +405,22 @@
 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
+		}
+		
+		function timestampToTime(timestamp) {
+			if(timestamp > 1) {
+				var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				Y = date.getFullYear() + '-';
+				M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+				D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+				h = date.getHours() + ':';
+				m = date.getMinutes() + ':';
+				s = date.getSeconds();
+				return Y + M + D;
+			} else {
+				return "";
+			}
+
 		}
 		
 		function optionValue(id, value) {
@@ -424,7 +441,7 @@
 					var tempHtml = "";
 					for (var i = 0;i<data.length;i++) {
 						var n = data[i];
-						tempHtml += "<option value='" + n.id + "'>" + n.nickname + "</option>";
+						tempHtml += "<option value='" + n.userID + "'>" + n.nickname + "</option>";
 					}
 					$("#assign").append(tempHtml);
 				}
@@ -440,14 +457,14 @@
 				data: JSON.stringify(data),
 				success: function(returned) {
 					$("#title").val(returned.title);
-					optionValue($("#state"),returned.state);
-					$("#startdate").val(returned.startdate);
-					optionValue($("#advanced"),returned.advanced);
-					$("#plandate").val(returned.plandate);
-					optionValue($("#assign"),returned.assign);
-					$("#actworknum").val(returned.actworknum);
-					$("#pickdate").val(returned.pickdate);
-					optionValue($("#completepercent"),returned.completepercent);
+					optionValue($("#state"),returned.status);
+					$("#startdate").val(timestampToTime(returned.startDate));
+					optionValue($("#advanced"),returned.advancement);
+					$("#plandate").val(timestampToTime(returned.planEndDate));
+					optionValue($("#assign"),returned.assignTo);
+					$("#actworknum").val(returned.actualManDay);
+					$("#pickdate").val(timestampToTime(returned.pickDate));
+					optionValue($("#completepercent"),returned.completePercent);
 					$("#pickcontent").val(returned.pickcontent);
 					$("#pickintro").val(returned.pickintro);
 				}
@@ -463,7 +480,6 @@
 				alert("请选择指派给谁");
 			} else {
 				var data = {
-					"updatetime": mytime,
 					"updateman" : getCookie("username"),
 					"pickid": getUrlParam("pickid"),
 					"title": $("#title").val(),

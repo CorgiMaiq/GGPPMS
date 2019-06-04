@@ -393,6 +393,7 @@
 		$(".public").load("public.html", function() {
 			loadcookie();
 			quitpage();
+			mywork();
 		});
 		var myDate = new Date();
 		var mytime = myDate.toLocaleTimeString();
@@ -450,7 +451,7 @@
 					success: function(returned) {
 						if(returned.status===200){
 							alert("添加成功");
-                            location.href = "pick.html?reviewid=" + getUrlParam("reviewid");
+                            location.href = "review.html?reviewid=" + getUrlParam("reviewid");
 						}else{
 							alert("添加出现了一些问题");
 						}
