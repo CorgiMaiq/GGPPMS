@@ -154,7 +154,7 @@
 			// 根据ID获得该成员等级
 			$.ajax({
 				type: "post",
-				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get",
+                url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + gleadernum,
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(human),
 				async: false,
@@ -199,20 +199,20 @@
 
 		$("#searchbut").click(function() {
 			var searchUserID = {
-				"id": $("#search").val()
+                "username": $("#search").val()
 			};
 			if($("#search").val() === "") {
 				alert("搜索框不能为空");
 			} else {
 				$.ajax({
 					type: "post",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get",
+                    url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + $("#search").val(),
 					contentType: "application/json; charset=UTF-8",
 					data: JSON.stringify(searchUserID),
 					success: function(returned) {
 						$("#userid").html(returned.email);
 						$("#username").html(returned.nickname);
-						$("#usergroup").html(returned.usergroupid); //name
+                        $("#usergroup").html(returned.usergroupname); //name
 					}
 				});
 			}

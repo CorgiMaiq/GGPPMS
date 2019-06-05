@@ -321,7 +321,7 @@
 			};
 			$.ajax({
 				type:"post",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + username,
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify(data),
 				async: false,

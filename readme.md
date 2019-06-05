@@ -45,13 +45,13 @@ sbws
 
 * ~~pick无法insert~~
 
-* assign在main1，review和pick页面要显示人名，但是返回的json里还是要返回assign_to这段！！！！！！！！！！！！！！！！！！重要！！！！！！！！！！！！！！！！！
+* ~~assign在main1，review和pick页面要显示人名，但是返回的json里还是要返回assign_to这段！！！！！！！！！！！！！！！！！！重要！！！！！！！！！！！！！！！！！~~
 
 * edituser没有修改组别成功（usertype和usergropupid）/*PL可以指定usergroupid为0*/
 
-* 指派给的人除包括本项目GL和开发以外，应包括PL（创建者）
+* ~~指派给的人除包括本项目GL和开发以外，应包括PL（创建者）~~
 
-* review指派给的人应该显示nickname（指的是review.html显示的指派给的人）
+* ~~review指派给的人应该显示nickname（指的是review.html显示的指派给的人）~~
 
 * addreview的reviewee没添加进去
 
@@ -63,7 +63,7 @@ sbws
 
 * http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/ 接口返回id错误
 
-* pick.html指派给的人要显示nickname
+* ~~pick.html指派给的人要显示nickname~~
 
 * pick.html的http://www.polarbear.pub:8080/GGPPMS/api/pick/load/接口，没有返回指摘内容和指摘描述
 
@@ -71,13 +71,13 @@ sbws
 
 * editpick.html提交报500
 
-* mymessgae.html中的http://www.polarbear.pub:8080/GGPPMS/api/user/get接口404
+* ~~mymessgae.html中的http://www.polarbear.pub:8080/GGPPMS/api/user/get接口404~~
 
 * http://www.polarbear.pub:8080/GGPPMS/api/result/load/ 在editresult.html中，json没有返回endtime
 
-* main1指派给的人显示nickname
+* ~~main1指派给的人显示nickname~~
 
-* addgroup.html的搜索请求404，http://www.polarbear.pub:8080/GGPPMS/api/user/get
+* ~~addgroup.html的搜索请求404，http://www.polarbear.pub:8080/GGPPMS/api/user/get~~
 
 * addproject.html 没有传进来优先级/预计工数
 
