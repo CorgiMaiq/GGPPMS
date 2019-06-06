@@ -130,121 +130,179 @@
 		}
 		$(document).ready(function() {
 			var data = {
-				"username":getCookie("username")
+				"username": getCookie("username")
 			};
 			$.ajax({
-				type:"get",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/result/assign/" + getCookie("username"),
-				async:false,
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/result/assign/" + getCookie("username"),
+				async: false,
 				dataType: "json",
-				success : function(returned){
+				success: function(returned) {
 					var temphtml = "";
-        			for(var i = 0;i<returned.length;i++){
-        				var n = returned[i];
-        				alert(n.id);
-        				temphtml += "<tr><td>" + n.id + "</td>";
-						temphtml += "<td>" + n.status + "</td>";
-						temphtml += "<td>" + "成果物" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
-						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
-                        temphtml += "<td><a href=main1.html?resultid=" + n.id + ">" + n.title + "</a></td></tr>";
+					for(var i = 0; i < returned.length; i++) {
+						var n = returned[i];
+						temphtml += "<tr><td>" + n.id + "</td>";
+						if(n.status === 0) {
+							temphtml += "<td>" + "New Creation" + "</td>";
+						} else if(n.status === 1) {
+							temphtml += "<td>" + "In progress" + "</td>";
+						} else if(n.status === 2) {
+							temphtml += "<td>" + "Resolved" + "</td>";
+						} else if(n.status === 3) {
+							temphtml += "<td>" + "Checked" + "</td>";
+						} else if(n.status === 4) {
+							temphtml += "<td>" + "Closed" + "</td>";
+						}
+						temphtml += "<td>" + "成果物" + "</td>"; //要求返回的为中文类型，成果物，Review，或者指摘
+						temphtml += "<td>" + n.project + "</td>"; //要求返回的为所属项目的名称
+						temphtml += "<td><a href=main1.html?resultid=" + n.id + ">" + n.title + "</a></td></tr>";
 						alert(temphtml);
-        			}
-        			$("#leftTable").append(temphtml);
+					}
+					$("#leftTable").append(temphtml);
 				}
 			});
-			
+
 			$.ajax({
-				type:"get",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/review/assign/" + getCookie("username"),
-				async:false,
-				success : function(returned){
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/review/assign/" + getCookie("username"),
+				async: false,
+				success: function(returned) {
 					var temphtml = "";
-        			for(var i = 0;i<returned.length;i++){
-        				var n = returned[i];
-        				temphtml += "<tr><td>" + n.id + "</td>";
-						temphtml += "<td>" + n.status + "</td>";
+					for(var i = 0; i < returned.length; i++) {
+						var n = returned[i];
+						temphtml += "<tr><td>" + n.id + "</td>";
+						if(n.status === 0) {
+							temphtml += "<td>" + "New Creation" + "</td>";
+						} else if(n.status === 1) {
+							temphtml += "<td>" + "In progress" + "</td>";
+						} else if(n.status === 2) {
+							temphtml += "<td>" + "Resolved" + "</td>";
+						} else if(n.status === 3) {
+							temphtml += "<td>" + "Checked" + "</td>";
+						} else if(n.status === 4) {
+							temphtml += "<td>" + "Closed" + "</td>";
+						}
 						temphtml += "<td>" + "成果物Review" + "</td>";
 						temphtml += "<td>" + n.project + "</td>";
-                        temphtml += "<td><a href=review.html?reviewid=" + n.id + ">" + n.title + "</a></td></tr>";
-        			}
-        			$("#leftTable").append(temphtml);
+						temphtml += "<td><a href=review.html?reviewid=" + n.id + ">" + n.title + "</a></td></tr>";
+					}
+					$("#leftTable").append(temphtml);
 				}
 			});
 			$.ajax({
-				type:"get",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/pick/assign/" + getCookie("username"),
-				async:false,
-				success : function(returned){
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/pick/assign/" + getCookie("username"),
+				async: false,
+				success: function(returned) {
 					var temphtml = "";
-        			for(var i = 0;i<returned.length;i++){
-        				var n = returned[i];
-        				temphtml += "<tr><td>" + n.id + "</td>";
-						temphtml += "<td>" + n.status + "</td>";
+					for(var i = 0; i < returned.length; i++) {
+						var n = returned[i];
+						temphtml += "<tr><td>" + n.id + "</td>";
+						if(n.status === 0) {
+							temphtml += "<td>" + "New Creation" + "</td>";
+						} else if(n.status === 1) {
+							temphtml += "<td>" + "In progress" + "</td>";
+						} else if(n.status === 2) {
+							temphtml += "<td>" + "Resolved" + "</td>";
+						} else if(n.status === 3) {
+							temphtml += "<td>" + "Checked" + "</td>";
+						} else if(n.status === 4) {
+							temphtml += "<td>" + "Closed" + "</td>";
+						}
 						temphtml += "<td>" + "成果物指摘" + "</td>";
 						temphtml += "<td>" + n.project + "</td>";
-                        temphtml += "<td><a href=pick.html?pickid=" + n.id + ">" + n.title + "</a></td></tr>";
-        			}
-        			$("#leftTable").append(temphtml);
+						temphtml += "<td><a href=pick.html?pickid=" + n.id + ">" + n.title + "</a></td></tr>";
+					}
+					$("#leftTable").append(temphtml);
 				}
 			});
-			
+
 			$.ajax({
-				type:"get",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/result/watch/" + getCookie("username"),
-				async:false,
-                dataType: "json",
-                success: function (returned) {
-                    // alert(JSON.stringify(returned));
-                    var temphtml = "";
-        			//var returned=eval("("+data+")");
-        			for(var i = 0;i<returned.length;i++){
-        				var n = returned[i];
-        				temphtml += "<tr><td>" + n.id + "</td>";
-						temphtml += "<td>" + n.status + "</td>";
-						temphtml += "<td>" + "成果物" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
-						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
-                        temphtml += "<td><a href=main1.html?resultid=" + n.id + ">" + n.title + "</a></td></tr>"
-        			}
-                    $("#rightTable").append(temphtml);
-				}
-			});
-			
-			$.ajax({
-				type:"get",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/review/watch/" + getCookie("username"),
-				async:false,
-				success : function(returned){
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/result/watch/" + getCookie("username"),
+				async: false,
+				dataType: "json",
+				success: function(returned) {
+					// alert(JSON.stringify(returned));
 					var temphtml = "";
-        			for(var i = 0;i<returned.length;i++){
-        				var n = returned[i];
-        				temphtml += "<tr><td>" + n.id + "</td>";
-						temphtml += "<td>" + n.status + "</td>";
-						temphtml += "<td>" + "成果物Review" + "</td>";//要求返回的为中文类型，成果物，Review，或者指摘
-						temphtml += "<td>" + n.project + "</td>";//要求返回的为所属项目的名称
-                        temphtml += "<td><a href=review.html?reviewid=" + n.id + ">" + n.title + "</a></td></tr>";
-        			}
-        			$("#rightTable").append(temphtml);
+					//var returned=eval("("+data+")");
+					for(var i = 0; i < returned.length; i++) {
+						var n = returned[i];
+						temphtml += "<tr><td>" + n.id + "</td>";
+						if(n.status === "0") {
+							temphtml += "<td>" + "New Creation" + "</td>";
+						} else if(n.status === "1") {
+							temphtml += "<td>" + "In progress" + "</td>";
+						} else if(n.status === "2") {
+							temphtml += "<td>" + "Resolved" + "</td>";
+						} else if(n.status === "3") {
+							temphtml += "<td>" + "Checked" + "</td>";
+						} else if(n.status === "4") {
+							temphtml += "<td>" + "Closed" + "</td>";
+						}
+						temphtml += "<td>" + "成果物" + "</td>"; //要求返回的为中文类型，成果物，Review，或者指摘
+						temphtml += "<td>" + n.project + "</td>"; //要求返回的为所属项目的名称
+						temphtml += "<td><a href=main1.html?resultid=" + n.id + ">" + n.title + "</a></td></tr>"
+					}
+					$("#rightTable").append(temphtml);
 				}
 			});
-			
+
 			$.ajax({
-				type:"get",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/pick/watch/" + getCookie("username"),
-				async:false,
-				success : function(returned){
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/review/watch/" + getCookie("username"),
+				async: false,
+				success: function(returned) {
 					var temphtml = "";
-        			for(var i = 0;i<returned.length;i++){
-        				var n = returned[i];
-        				temphtml += "<tr><td>" + n.id + "</td>";
-						temphtml += "<td>" + n.status + "</td>";
+					for(var i = 0; i < returned.length; i++) {
+						var n = returned[i];
+						temphtml += "<tr><td>" + n.id + "</td>";
+						if(n.status === 0) {
+							temphtml += "<td>" + "New Creation" + "</td>";
+						} else if(n.status === 1) {
+							temphtml += "<td>" + "In progress" + "</td>";
+						} else if(n.status === 2) {
+							temphtml += "<td>" + "Resolved" + "</td>";
+						} else if(n.status === 3) {
+							temphtml += "<td>" + "Checked" + "</td>";
+						} else if(n.status === 4) {
+							temphtml += "<td>" + "Closed" + "</td>";
+						}
+						temphtml += "<td>" + "成果物Review" + "</td>"; //要求返回的为中文类型，成果物，Review，或者指摘
+						temphtml += "<td>" + n.project + "</td>"; //要求返回的为所属项目的名称
+						temphtml += "<td><a href=review.html?reviewid=" + n.id + ">" + n.title + "</a></td></tr>";
+					}
+					$("#rightTable").append(temphtml);
+				}
+			});
+
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/getUserObject/pick/watch/" + getCookie("username"),
+				async: false,
+				success: function(returned) {
+					var temphtml = "";
+					for(var i = 0; i < returned.length; i++) {
+						var n = returned[i];
+						temphtml += "<tr><td>" + n.id + "</td>";
+						if(n.status === 0) {
+							temphtml += "<td>" + "New Creation" + "</td>";
+						} else if(n.status === 1) {
+							temphtml += "<td>" + "In progress" + "</td>";
+						} else if(n.status === 2) {
+							temphtml += "<td>" + "Resolved" + "</td>";
+						} else if(n.status === 3) {
+							temphtml += "<td>" + "Checked" + "</td>";
+						} else if(n.status === 4) {
+							temphtml += "<td>" + "Closed" + "</td>";
+						}
 						temphtml += "<td>" + "成果物指摘" + "</td>";
 						temphtml += "<td>" + n.project + "</td>";
-                        temphtml += "<td><a href=pick.html?pickid=" + n.id + ">" + n.title + "</a></td></tr>";
-        			}
-        			$("#rightTable").append(temphtml);
+						temphtml += "<td><a href=pick.html?pickid=" + n.id + ">" + n.title + "</a></td></tr>";
+					}
+					$("#rightTable").append(temphtml);
 				}
 			});
-			
 
 		})
 	</script>

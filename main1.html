@@ -665,7 +665,7 @@
             	var textin = "最后更新于" + timestampToTimefull(returned.lastUpdateDate);
             	$(".beizhu").html(textin);
                 $(".productNum").html(resultID + "号成果物");
-                $("#midboxtitle").html(returned.resultName);
+                $(".midboxtitle").html(returned.resultName);
                 if (returned.status === "0") {
                     $("#state").html("new Creation");
                 } else if (returned.status === "1") {
@@ -687,7 +687,7 @@
                 }
 
                 $("#plandate").html(timestampToTime(returned.planEndDate));
-                $("#assign").html(returned.assignTo);
+                $("#assign").html(returned.assign);
                 $("#picknum").html(returned.pickNum);
                 $("#pagenum").html(returned.pageNum);
                 $("#changenum").html(returned.changeNum);

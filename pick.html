@@ -530,7 +530,7 @@
 				success: function(returned) {
 					var textin = "由" + returned.lastUpdateBy + "更新于" + timestampToTimefull(returned.lastUpdateDate);
 					$(".beizhu").html(textin);
-					$("#pickid").html(returned.id);
+					$("#pickid").html(returned.pickId + "号指摘");
 					$("#projectid").val(returned.projectId);
 					$("#picktitle").html(returned.title);
 					if(returned.status === 0) {
