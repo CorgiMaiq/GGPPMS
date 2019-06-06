@@ -9,9 +9,9 @@ sbws
 
 * 点编辑pick完成之后再编辑 projectid就会变成0
 
-* 新功能要求：查询一个成果物下全部review的状态（state）是否都为4,在editresult的417行。
+* ~~新功能要求：查询一个成果物下全部review的状态（state）是否都为4,在editresult的417行。~~
 
-* 新功能要求：查询一个review下全部pick的状态（status）是否都为4
+* ~~新功能要求：查询一个review下全部pick的状态（status）是否都为4~~
 
 * ~~http://www.polarbear.pub:8080/GGPPMS/api/pick/loadByResult/ 接口返回id错误~~
 
