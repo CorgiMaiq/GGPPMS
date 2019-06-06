@@ -643,6 +643,22 @@
 			}
 		}
 
+		function checkson(id) {
+			var check = false;
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/query/closeable/review/" + id,
+				async: false,
+				success: function (returned) {
+					if (returned.status) { //如果全部关闭，返回true
+						check = true;
+					}
+				}
+			});
+			return check;
+		}
+
+
 		$("#submitbut").click(function() {
 			if(getCookie("level") != 0 && $("#state") === "4") {
 				alert("您无权关闭此成果物");

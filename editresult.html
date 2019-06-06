@@ -419,10 +419,10 @@
 			var check = false;
 			$.ajax({
 				type: "get",
-				url: "",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/query/closeable/result/" + id,
 				async: false,
 				success: function(returned) {
-					if(returned.check) { //如果全部关闭，返回true
+					if (returned.status) { //如果全部关闭，返回true
 						check = true;
 					}
 				}
