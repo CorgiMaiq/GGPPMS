@@ -142,6 +142,26 @@
 			mywork();
 		});
 
+		function checkPermission(id) {
+			var check = false;
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + id,
+				async: false,
+				contentType: "application/json; charset=UTF-8",
+				success: function(returned) {
+					if(returned.usertype === 2) {
+						check = true;
+					} else {
+						check = false;
+					}
+				}
+			});
+			alert(check);
+			return check;
+
+		}
+
 		$("#addleader").click(function() {
 			$("#groupleader").html($("#username").html());
 			gleadernum = $("#userid").html();
@@ -159,7 +179,7 @@
 				data: JSON.stringify(human),
 				async: false,
 				success: function(returned) {
-					if(returned.usertype === 2 && $("#groupname").val() != "" && $("#groupintro").val() != "") {
+					if(returned.usertype === 2 || $("#groupname").val() != "" || $("#groupintro").val() != "") {
 						levelcheck = true;
 					} else {
 						levelcheck = false;

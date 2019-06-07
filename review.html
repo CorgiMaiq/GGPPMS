@@ -599,7 +599,18 @@
 					for(var i = 0; i < result.length; i++) {
 						var n = result[i];
 						tempHtml += "<tr><td>" + n.pickId + "</td>";
-						tempHtml += "<td>" + n.status + "</td>"
+						//tempHtml += "<td>" + n.status + "</td>"
+						if(n.status===0){
+							tempHtml += "<td>" + "New Creation" + "</td>";
+						}else if(n.status===1){
+							tempHtml += "<td>" + "In progress" + "</td>";
+						}else if(n.status===2){
+							tempHtml += "<td>" + "Resolved" + "</td>";
+						}else if(n.status===3){
+							tempHtml += "<td>" + "Checked" + "</td>";
+						}else if(n.status===4){
+							tempHtml += "<td>" + "Closed" + "</td>";
+						}
 						tempHtml += "<td><a href=" + href + n.pickId + "'>" + n.title + "</a></td></tr>"
 					}
 					$("#sontable").append(tempHtml);

@@ -91,3 +91,4 @@ sbws
 
 * reviewer和reviewee也要显示人名，不知道哪里直接问我，写不明白
 
+* editpick.html改完之后没有项目和所属review了，应该是后台接了但是前台没有传。
