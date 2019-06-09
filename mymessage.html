@@ -280,11 +280,6 @@
 			window.location.href = "usercontrol.html";
 		});
 		var permission = getCookie("level");
-		if(permission!=0){
-			$("#controlAllUser").hide();
-		}else{
-			//location.href = "usercontrol.html";
-		}
 		$("#submitbut").click(function(){
 			alert("hehe");
 		})
@@ -319,6 +314,10 @@
 			var data = {
 				"id" : username
 			};
+			alert(permission);
+			if (permission!=0){
+				$("#controlAllUser").hide();
+			}
 			$.ajax({
 				type:"post",
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/user/get/" + username,

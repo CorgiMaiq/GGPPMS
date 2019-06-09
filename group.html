@@ -97,11 +97,23 @@
 				mywork();
 			});
 
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
+
 		function getLocalTime(s) {
 			var unixTimestamp = new Date(s) ;
 			return unixTimestamp.toLocaleString();
 		} // 获取所有组的信息
 		$(document).ready(function() {
+			if (getCookie("level")!=0){
+				$(".addgroup").hide();
+			}
 			$.ajax({
 				type: "get",
 				url: "http://www.polarbear.pub:8080/GGPPMS/api/group",

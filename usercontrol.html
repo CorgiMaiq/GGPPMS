@@ -228,6 +228,22 @@
 			quitpage();
 			mywork();
 		});
+
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
+
+		$(document).ready(function(){
+			if (getCookie("level")!=0){
+				$(".adduser").hide();
+			}
+		})
+
 		$(".sizersubmit").click(function() {
 			var data = {
 				"username": $("#username").val(),
@@ -247,18 +263,30 @@
 				success: function(returned) {
 					var tempHtml = "";
 					for(var i = 0; i < returned.length; i++) {
+
 						var n = returned[i];
-						tempHtml += "<tr class='addtr'><td>" + n.email + "</td>";
-						tempHtml += "<td><a href='edituser.html?username=" + n.email + "'>" + n.nickname + "</td>";
-						tempHtml += "<td>" + n.usergroupname + "</td>";
-						if(n.usertype===1){
-							tempHtml += "<td>" + "PL" + "</td></tr>";
-						}else if(n.usertype===2){
-							tempHtml += "<td>" + "GL" + "</td></tr>";
-						}else if(n.usertype===3){
-							tempHtml += "<td>" + "开发" + "</td></tr>";
-						}else{
-							tempHtml += "<td>" +" " + "</td></tr>";
+
+						if (!(n.usertype===0)){
+							tempHtml += "<tr class='addtr'><td>" + n.email + "</td>";
+							tempHtml += "<td><a href='edituser.html?username=" + n.email + "'>" + n.nickname + "</td>";
+							if (n.usergroupid===1){
+								tempHtml += "<td>" +"管理组"+ "</td>";
+							}else {
+								if (n.usergroupname==undefined){
+									tempHtml += "<td>" +" "+ "</td>";
+								} else {
+									tempHtml += "<td>" + n.usergroupname + "</td>";
+								}
+							}
+							if(n.usertype===1){
+								tempHtml += "<td>" + "PL" + "</td></tr>";
+							}else if(n.usertype===2){
+								tempHtml += "<td>" + "GL" + "</td></tr>";
+							}else if(n.usertype===3){
+								tempHtml += "<td>" + "开发" + "</td></tr>";
+							}else{
+								tempHtml += "<td>" +" " + "</td></tr>";
+							}
 						}
 					}
 					$("#basetable").append(tempHtml);

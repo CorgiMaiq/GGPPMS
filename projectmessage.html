@@ -219,11 +219,25 @@
 			mywork();
 		});
 
+		var pid = getUrlParam("pid");
 		function getUrlParam(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
 			if(r != null) return unescape(r[2]);
 			return null; //返回参数值
+		}
+
+		function checkProjectState(id){
+			var status = "";
+			$.ajax({
+				type: "get",
+				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/" + id,
+				async:false,
+				success: function(returned) {
+					status = returned.status;//如果关闭应该返回0
+				}
+			});
+			return status;
 		}
 		
 		$(".closeproject").click(function(){
@@ -241,8 +255,9 @@
 			});
 		})
 
-		var pid = getUrlParam("pid");
+
 		$(document).ready(function() {
+
 
 			$.ajax({
 				type: "get",
@@ -272,7 +287,17 @@
 					for(var i = 0; i < dataObj.length; i++) {
 						var n = dataObj[i];
 						tempHtml += "<tr><td>" + n.resultId + "</td>";
-						tempHtml += "<td>" + n.status + "</td>";
+						if(n.status==="0"){
+							tempHtml += "<td>" + "New Creation" + "</td>";
+						}else if(n.status==="1"){
+							tempHtml += "<td>" + "In progress" + "</td>";
+						}else if(n.status==="2"){
+							tempHtml += "<td>" + "Resolved" + "</td>";
+						}else if(n.status==="3"){
+							tempHtml += "<td>" + "Checked" + "</td>";
+						}else if(n.status==="4"){
+							tempHtml += "<td>" + "Closed" + "</td>";
+						}
 						tempHtml += "<td><a href=" + href + n.resultId + href2 + pid + "'>" + n.resultName + "</a></td></tr>"
 					}
 					$("#resulttable").append(tempHtml);
@@ -281,9 +306,17 @@
 
 		});
 		$(".addnewproject").click(function() {
-			var id = $("#projectid").html();
-			var href = "addproject.html?projectid=" + id;
-			location.href = href;
+			if (getCookie("level")!=1){
+				alert("您没有相关权限，请咨询项目管理员");
+			} else {
+				if (checkProjectState(pid)===0){//如果项目状态是0，也就是关闭，进入这个分支
+					alert("此项目已经关闭，请咨询系统管理员");
+				} else {
+					var id = $("#projectid").html();
+					var href = "addproject.html?projectid=" + id;
+					location.href = href;
+				}
+			}
 		});
 
 		function timestampToTime(timestamp) {

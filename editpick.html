@@ -1,519 +1,528 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-	</head>
-	<style>
-		* {
-			margin: 0px;
-			padding: 0px;
-		}
-		
-		#head {
-			width: 100%;
-			height: 30px;
-			background: black;
-			font-size: 13px;
-			line-height: 30px;
-			color: rgb(140, 145, 148);
-		}
-		
-		.headnavi {
-			margin-left: 30px;
-		}
-		
-		.headleft {
-			width: 85%;
-			float: left;
-		}
-		
-		.headright {
-			width: 15%;
-			float: left;
-		}
-		
-		.loginwith,
-		.headright {
-			float: left;
-		}
-		
-		.headnaviright {
-			margin-left: 15px;
-		}
-		
-		.loginwith {
-			color: white;
-		}
-		
-		.headmid {
-			height: 70px;
-			width: 100%;
-			background: rgb(44, 54, 60);
-		}
-		
-		.headbottom {
-			color: rgb(224, 224, 224);
-			width: 100%;
-			height: 50px;
-			background: rgb(63, 71, 77);
-		}
-		
-		.bottomnavi {
-			color: rgb(156, 157, 164);
-			font-size: 16px;
-			line-height: 50px;
-			display: inline-block;
-			margin-right: 30px;
-		}
-		
-		.sign {
-			margin: 0px 20px;
-		}
-		
-		.bzy {
-			display: inline;
-			height: 60px;
-			margin-left: 23px;
-			margin-top: 5px;
-		}
-		
-		.bzyimg {
-			width: auto;
-			height: 100%;
-			float: left;
-		}
-		
-		.pms {
-			line-height: 70px;
-			margin-left: 7px;
-			width: 30%;
-			float: left;
-			color: rgb(248, 248, 248);
-			font-size: 14px;
-		}
-		
-		.mainn {
-			width: 100%;
-			height: 1000px;
-		}
-		
-		.foot {
-			display: block;
-			height: 20px;
-			width: 100%;
-			font-size: 12px;
-			line-height: 20px;
-			text-align: center;
-			color: rgb(222, 234, 217);
-		}
-		
-		.productNum {
-			float: left;
-			width: auto;
-			height: auto;
-			color: rgb(86, 86, 86);
-			font-size: 25px;
-			margin: 15px 30px 0px;
-		}
-		
-		.edit {
-			float: right;
-			margin: 15px 30px 0px;
-			color: rgb(82, 167, 210);
-		}
-		
-		.mainleft {
-			height: auto;
-			width: 80%;
-			float: left;
-		}
-		
-		.mainright {
-			float: right;
-			width: 19%;
-			height: 1000px;
-			background: rgb(250, 250, 250);
-			border-left-color: rgb(220, 220, 220);
-			border-left-width: 1px;
-			border-left-style: solid;
-			border-bottom-color: rgb(220, 220, 220);
-			border-bottom-width: 1px;
-			border-bottom-style: solid;
-		}
-		
-		.midbox {
-			height: 410px;
-			width: 1500px;
-			background: rgb(246, 246, 246);
-			margin-top: 70px;
-			margin-left: 30px;
-		}
-		
-		.midboxtitle {
-			font-size: 25px;
-			margin-left: 30px;
-			width: auto;
-			height: auto;
-			padding-top: 15px;
-			color: rgb(86, 86, 86);
-		}
-		
-		.beizhu {
-			margin-left: 30px;
-			width: auto;
-			height: auto;
-			padding-top: 10px;
-			color: rgb(86, 86, 86);
-		}
-		
-		.table {
-			margin-left: 30px;
-			margin-top: 30px;
-			color: rgb(69, 76, 81);
-		}
-		
-		table {
-			table-layout: fixed;
-		}
-		
-		.tdmain,
-		.tdmain1 {
-			padding-top: 10px;
-		}
-		
-		.tdmain1 {
-			width: 200px;
-			overflow: hidden;
-		}
-		
-		.hr1 {
-			margin-top: 30px;
-			width: 95%;
-			margin-left: 30px;
-			margin-bottom: 20px;
-		}
-		
-		.sonMission {
-			margin-top: 40px;
-			margin-left: 30px;
-			color: rgb(69, 76, 81);
-			height: auto;
-			font-size: 22px;
-		}
-		
-		.sonMission>a {
-			font-size: 8px;
-			color: rgb(96, 180, 208);
-		}
-		
-		.history {
-			width: 99%;
-			height: 200px;
-			margin-top: 20px;
-			margin-left: 30px;
-			font-size: 22px;
-			color: rgb(69, 76, 81);
-			overflow: scroll;
-		}
-		
-		.tableright {
-			margin-left: 15px;
-			margin-top: 20px;
-			font-size: 10px;
-		}
-		
-		.explain {
-			margin-left: 15px;
-			font-size: 22px;
-			color: rgb(102, 102, 102);
-			margin-top: 30px;
-		}
-		
-		.test {
-			width: 490px;
-			overflow-x: scroll;
-		}
-		
-		select {
-			width: 470px;
-		}
-		
-		.titletext {
-			width: 470px;
-		}
-		
-		#submitpick {
-			cursor: pointer;
-		}
-	</style>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
 
-	<body>
-		<div class="public"></div>
-		<div class="headbottom">
-			<span class="sign">+</span>
-			<a class="bottomnavi">概述</a>
-			<a class="bottomnavi">活动</a>
-			<a class="bottomnavi">问题</a>
-		</div>
-		<div class="mainn">
-			<div class="mainleft">
-				<div class="productNum">
-					修改Review指摘
-				</div>
-				<div class="edit">
-					<a class="edittext" id="submitpick">完成</a>
-				</div>
-				<div class="midbox">
-					<div class="midboxtitle">
-						Review指摘信息
-					</div>
-					<table class="table">
-						<tr>
-							<th style="width: 200px;"></th>
-							<th style="width: 490px;"></th>
-							<th style="width: 200px;"></th>
-							<th style="width: 490px;"></th>
-						</tr>
-						<tr>
-							<td class="tdmain1">指摘标题：</td>
-							<td class="tdmain">
-								<input type="text" class="titletext" id="title" />
-							</td>
-						</tr>
-						<tr>
+    #head {
+        width: 100%;
+        height: 30px;
+        background: black;
+        font-size: 13px;
+        line-height: 30px;
+        color: rgb(140, 145, 148);
+    }
 
-							<td class="tdmain1">状态：</td>
-							<td class="tdmain">
-								<select id="state">
-									<option value="0">New Creation</option>
-									<option value="1">In Prograss</option>
-									<option value="2">Resolved</option>
-									<option value="3">Checked</option>
-									<option value="4">Closed</option>
-								</select>
-							</td>
-							<td class="tdmain1">开始日期：</td>
-							<td class="tdmain"><input type="text" class="sthinput" id="startdate" onclick="WdatePicker()"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">优先级：</td>
-							<td class="tdmain">
-								<select id="advanced">
-									<option value="0">低</option>
-									<option value="1">中</option>
-									<option value="2">高</option>
-								</select>
-							</td>
-							<td class="tdmain1">计划完成日期：</td>
-							<td class="tdmain"><input type="text" class="sthinput" id="plandate"  onclick="WdatePicker()"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">指派给：</td>
-							<td class="tdmain">
-								<select id="assign">
-									<option id="baseAssign" value="0">请选择指派用户</option>
-								</select>
-							</td>
+    .headnavi {
+        margin-left: 30px;
+    }
 
-						</tr>
-						<tr>
-							<td class="tdmain1">实际工数：</td>
-							<td class="tdmain"><input type="number" class="sthinput" id="actworknum"></td>
-							<td class="tdmain1">指摘日期：</td>
-							<td class="tdmain"><input type="text" class="sthinput" id="pickdate"  onclick="WdatePicker()"></td>
-						</tr>
-						<tr>
-							<td class="tdmain1">完成度%：</td>
-							<td class="tdmain">
-								<select id="completepercent">
-									<option value="0">0%</option>
-									<option value="1">20%</option>
-									<option value="2">40%</option>
-									<option value="3">60%</option>
-									<option value="4">80%</option>
-									<option value="5">100%</option>
-								</select>
-							</td>
-							<td class="tdmain1">指摘内容：</td>
-							<td class="tdmain">
-								<input type="text" class="titletext" id="pickcontent" />
-							</td>
-						</tr>
+    .headleft {
+        width: 85%;
+        float: left;
+    }
 
-						<tr>
-							<td class="tdmain1">指摘描述：</td>
-							<td class="tdmain">
-								<input type="text" class="titletext" id="pickintro" />
-							</td>
-						</tr>
-					</table>
-				</div>
+    .headright {
+        width: 15%;
+        float: left;
+    }
 
-			</div>
-			<div class="mainright">
-				<div class="explain">
-					成果物阶段状态说明
-				</div>
-				<table border="1" class="tableright">
-					<tr>
-						<th style="width: 70px;">状态名称</th>
-						<th style="width: 240px;">使用方法</th>
-					</tr>
-					<tr>
-						<td>New Creation</td>
-						<td>处于新建状态，是刚由管理者指派过来，且尚未开发的状态，此状态下进度应为0%</td>
-					</tr>
-					<tr>
-						<td>In progress</td>
-						<td>正在开发中，且尚未Review，在此阶段请不要将完成度置于100%，Review结束之后，且无NG部分，再将完成度置于100%</td>
-					</tr>
-					<tr>
-						<td>Resolved</td>
-						<td>本阶段已经开发完毕，并且Review结束且无特殊问题，可以转发给管理者</td>
-					</tr>
-					<tr>
-						<td>Checked</td>
-						<td>由GL检查完毕，可以转发给PL，由PL来承认成果物</td>
-					</tr>
-					<tr>
-						<td>Closed</td>
-						<td>已经由相关管理者检查完毕，关闭此成果物，完成</td>
-					</tr>
-				</table>
-			</div>
+    .loginwith,
+    .headright {
+        float: left;
+    }
 
-		</div>
-		<div class="foot">
-			Designed By ZhangHan
-		</div>
-	</body>
-	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-	<script src="js/WdatePicker.js"></script>
-	<script type="text/javascript">
-		$(".public").load("public.html", function() {
-			loadcookie();
-			quitpage();
-			mywork();
-		});
-		var myDate = new Date();
-		var mytime = myDate.toLocaleTimeString();
+    .headnaviright {
+        margin-left: 15px;
+    }
 
-		function getUrlParam(name) {
-			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-			var r = window.location.search.substr(1).match(reg); //匹配目标参数
-			if(r != null) return unescape(r[2]);
-			return null; //返回参数值
-		}
-		
-		function timestampToTime(timestamp) {
-			if(timestamp > 1) {
-				var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-				Y = date.getFullYear() + '-';
-				M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-				D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-				h = date.getHours() + ':';
-				m = date.getMinutes() + ':';
-				s = date.getSeconds();
-				return Y + M + D;
-			} else {
-				return "";
-			}
+    .loginwith {
+        color: white;
+    }
 
-		}
-		
-		function optionValue(id, value) {
-			var numbers = id.find("option"); //获取select下拉框的所有值
-			for(var j = 1; j < numbers.length; j++) {
-				if($(numbers[j]).val() == value) {
-					$(numbers[j]).attr("selected", "selected");
-				}
-			} 
-		}
-		
-		$(document).ready(function(){
-			$.ajax({
-				type:"get",
-				url:"http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/"+getUrlParam("projectid"),
-				async:false,
-				success : function(data){
-					var tempHtml = "";
-					for (var i = 0;i<data.length;i++) {
-						var n = data[i];
-						tempHtml += "<option value='" + n.userID + "'>" + n.nickname + "</option>";
-					}
-					$("#assign").append(tempHtml);
-				}
-					
-			});
-			var data = {
-				"pickid": getUrlParam("pickid")
-			}
-			$.ajax({
-				type:"post",
-				url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/load/" + getUrlParam("pickid"),
-				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify(data),
-				success: function(returned) {
-					$("#title").val(returned.title);
-					optionValue($("#state"),returned.status);
-					$("#startdate").val(timestampToTime(returned.startDate));
-					optionValue($("#advanced"),returned.advancement);
-					$("#plandate").val(timestampToTime(returned.planEndDate));
-					optionValue($("#assign"),returned.assignTo);
-					$("#actworknum").val(returned.actualManDay);
-					$("#pickdate").val(timestampToTime(returned.pickDate));
-					optionValue($("#completepercent"),returned.completePercent);
-					$("#pickcontent").val(returned.pickContent);
-					$("#pickintro").val(returned.pickIntroduction);
-				}
-			});
-		});
+    .headmid {
+        height: 70px;
+        width: 100%;
+        background: rgb(44, 54, 60);
+    }
+
+    .headbottom {
+        color: rgb(224, 224, 224);
+        width: 100%;
+        height: 50px;
+        background: rgb(63, 71, 77);
+    }
+
+    .bottomnavi {
+        color: rgb(156, 157, 164);
+        font-size: 16px;
+        line-height: 50px;
+        display: inline-block;
+        margin-right: 30px;
+    }
+
+    .sign {
+        margin: 0px 20px;
+    }
+
+    .bzy {
+        display: inline;
+        height: 60px;
+        margin-left: 23px;
+        margin-top: 5px;
+    }
+
+    .bzyimg {
+        width: auto;
+        height: 100%;
+        float: left;
+    }
+
+    .pms {
+        line-height: 70px;
+        margin-left: 7px;
+        width: 30%;
+        float: left;
+        color: rgb(248, 248, 248);
+        font-size: 14px;
+    }
+
+    .mainn {
+        width: 100%;
+        height: 1000px;
+    }
+
+    .foot {
+        display: block;
+        height: 20px;
+        width: 100%;
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        color: rgb(222, 234, 217);
+    }
+
+    .productNum {
+        float: left;
+        width: auto;
+        height: auto;
+        color: rgb(86, 86, 86);
+        font-size: 25px;
+        margin: 15px 30px 0px;
+    }
+
+    .edit {
+        float: right;
+        margin: 15px 30px 0px;
+        color: rgb(82, 167, 210);
+    }
+
+    .mainleft {
+        height: auto;
+        width: 80%;
+        float: left;
+    }
+
+    .mainright {
+        float: right;
+        width: 19%;
+        height: 1000px;
+        background: rgb(250, 250, 250);
+        border-left-color: rgb(220, 220, 220);
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-bottom-color: rgb(220, 220, 220);
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+    }
+
+    .midbox {
+        height: 410px;
+        width: 1500px;
+        background: rgb(246, 246, 246);
+        margin-top: 70px;
+        margin-left: 30px;
+    }
+
+    .midboxtitle {
+        font-size: 25px;
+        margin-left: 30px;
+        width: auto;
+        height: auto;
+        padding-top: 15px;
+        color: rgb(86, 86, 86);
+    }
+
+    .beizhu {
+        margin-left: 30px;
+        width: auto;
+        height: auto;
+        padding-top: 10px;
+        color: rgb(86, 86, 86);
+    }
+
+    .table {
+        margin-left: 30px;
+        margin-top: 30px;
+        color: rgb(69, 76, 81);
+    }
+
+    table {
+        table-layout: fixed;
+    }
+
+    .tdmain,
+    .tdmain1 {
+        padding-top: 10px;
+    }
+
+    .tdmain1 {
+        width: 200px;
+        overflow: hidden;
+    }
+
+    .hr1 {
+        margin-top: 30px;
+        width: 95%;
+        margin-left: 30px;
+        margin-bottom: 20px;
+    }
+
+    .sonMission {
+        margin-top: 40px;
+        margin-left: 30px;
+        color: rgb(69, 76, 81);
+        height: auto;
+        font-size: 22px;
+    }
+
+    .sonMission > a {
+        font-size: 8px;
+        color: rgb(96, 180, 208);
+    }
+
+    .history {
+        width: 99%;
+        height: 200px;
+        margin-top: 20px;
+        margin-left: 30px;
+        font-size: 22px;
+        color: rgb(69, 76, 81);
+        overflow: scroll;
+    }
+
+    .tableright {
+        margin-left: 15px;
+        margin-top: 20px;
+        font-size: 10px;
+    }
+
+    .explain {
+        margin-left: 15px;
+        font-size: 22px;
+        color: rgb(102, 102, 102);
+        margin-top: 30px;
+    }
+
+    .test {
+        width: 490px;
+        overflow-x: scroll;
+    }
+
+    select {
+        width: 470px;
+    }
+
+    .titletext {
+        width: 470px;
+    }
+
+    #submitpick {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+<div class="public"></div>
+<div class="headbottom">
+    <span class="sign">+</span>
+    <a class="bottomnavi">概述</a>
+    <a class="bottomnavi">活动</a>
+    <a class="bottomnavi">问题</a>
+</div>
+<div class="mainn">
+    <div class="mainleft">
+        <div class="productNum">
+            修改Review指摘
+        </div>
+        <div class="edit">
+            <a class="edittext" id="submitpick">完成</a>
+        </div>
+        <div class="midbox">
+            <div class="midboxtitle">
+                Review指摘信息
+            </div>
+            <table class="table">
+                <tr>
+                    <th style="width: 200px;"></th>
+                    <th style="width: 490px;"></th>
+                    <th style="width: 200px;"></th>
+                    <th style="width: 490px;"></th>
+                </tr>
+                <tr>
+                    <td class="tdmain1">指摘标题：</td>
+                    <td class="tdmain">
+                        <input type="text" class="titletext" id="title"/>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="tdmain1">状态：</td>
+                    <td class="tdmain">
+                        <select id="state">
+                            <option value="0">New Creation</option>
+                            <option value="1">In Prograss</option>
+                            <option value="2">Resolved</option>
+                            <option value="3">Checked</option>
+                            <option value="4">Closed</option>
+                        </select>
+                    </td>
+                    <td class="tdmain1">开始日期：</td>
+                    <td class="tdmain"><input type="text" class="sthinput" id="startdate" onclick="WdatePicker()"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">优先级：</td>
+                    <td class="tdmain">
+                        <select id="advanced">
+                            <option value="0">低</option>
+                            <option value="1">中</option>
+                            <option value="2">高</option>
+                        </select>
+                    </td>
+                    <td class="tdmain1">计划完成日期：</td>
+                    <td class="tdmain"><input type="text" class="sthinput" id="plandate" onclick="WdatePicker()"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">指派给：</td>
+                    <td class="tdmain">
+                        <select id="assign">
+                            <option id="baseAssign" value="0">请选择指派用户</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="tdmain1">实际工数：</td>
+                    <td class="tdmain"><input type="number" class="sthinput" id="actworknum"></td>
+                    <td class="tdmain1">指摘日期：</td>
+                    <td class="tdmain"><input type="text" class="sthinput" id="pickdate" onclick="WdatePicker()"></td>
+                </tr>
+                <tr>
+                    <td class="tdmain1">完成度%：</td>
+                    <td class="tdmain">
+                        <select id="completepercent">
+                            <option value="0">0%</option>
+                            <option value="1">20%</option>
+                            <option value="2">40%</option>
+                            <option value="3">60%</option>
+                            <option value="4">80%</option>
+                            <option value="5">100%</option>
+                        </select>
+                    </td>
+                    <td class="tdmain1">指摘内容：</td>
+                    <td class="tdmain">
+                        <input type="text" class="titletext" id="pickcontent"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tdmain1">指摘描述：</td>
+                    <td class="tdmain">
+                        <input type="text" class="titletext" id="pickintro"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div class="mainright">
+        <div class="explain">
+            成果物阶段状态说明
+        </div>
+        <table border="1" class="tableright">
+            <tr>
+                <th style="width: 70px;">状态名称</th>
+                <th style="width: 240px;">使用方法</th>
+            </tr>
+            <tr>
+                <td>New Creation</td>
+                <td>处于新建状态，是刚由管理者指派过来，且尚未开发的状态，此状态下进度应为0%</td>
+            </tr>
+            <tr>
+                <td>In progress</td>
+                <td>正在开发中，且尚未Review，在此阶段请不要将完成度置于100%，Review结束之后，且无NG部分，再将完成度置于100%</td>
+            </tr>
+            <tr>
+                <td>Resolved</td>
+                <td>本阶段已经开发完毕，并且Review结束且无特殊问题，可以转发给管理者</td>
+            </tr>
+            <tr>
+                <td>Checked</td>
+                <td>由GL检查完毕，可以转发给PL，由PL来承认成果物</td>
+            </tr>
+            <tr>
+                <td>Closed</td>
+                <td>已经由相关管理者检查完毕，关闭此成果物，完成</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<div class="foot">
+    Designed By ZhangHan
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/WdatePicker.js"></script>
+<script type="text/javascript">
+    $(".public").load("public.html", function () {
+        loadcookie();
+        quitpage();
+        mywork();
+    });
+    var myDate = new Date();
+    var mytime = myDate.toLocaleTimeString();
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
+    function timestampToTime(timestamp) {
+        if (timestamp > 1) {
+            var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            Y = date.getFullYear() + '-';
+            M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+            D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+            h = date.getHours() + ':';
+            m = date.getMinutes() + ':';
+            s = date.getSeconds();
+            return Y + M + D;
+        } else {
+            return "";
+        }
+
+    }
+
+    function optionValue(id, value) {
+        var numbers = id.find("option"); //获取select下拉框的所有值
+        for (var j = 1; j < numbers.length; j++) {
+            if ($(numbers[j]).val() == value) {
+                $(numbers[j]).attr("selected", "selected");
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "get",
+            url: "http://www.polarbear.pub:8080/GGPPMS/api/project/member/all/" + getUrlParam("projectid"),
+            async: false,
+            success: function (data) {
+                var tempHtml = "";
+                for (var i = 0; i < data.length; i++) {
+                    var n = data[i];
+                    tempHtml += "<option value='" + n.email + "'>" + n.nickname + "</option>";
+                }
+                $("#assign").append(tempHtml);
+            }
+
+        });
+        var data = {
+            "pickid": getUrlParam("pickid")
+        }
+        $.ajax({
+            type: "post",
+            url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/load/" + getUrlParam("pickid"),
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(data),
+            success: function (returned) {
+                $("#title").val(returned.title);
+                optionValue($("#state"), returned.status);
+                $("#startdate").val(timestampToTime(returned.startDate));
+                optionValue($("#advanced"), returned.advancement);
+                $("#plandate").val(timestampToTime(returned.planEndDate));
+                optionValue($("#assign"), returned.assign);
+                $("#actworknum").val(returned.actualManDay);
+                $("#pickdate").val(timestampToTime(returned.pickDate));
+                optionValue($("#completepercent"), returned.completePercent);
+                $("#pickcontent").val(returned.pickContent);
+                $("#pickintro").val(returned.pickIntroduction);
+            }
+        });
+    });
 
 
-		$("#submitpick").click(function() {
-			if($("#state").val()==="4" && getCookie("level")!=1){
-				alert("您无权关闭该指摘");
-			}else{
-				if($("#assign").val() === "0") {
-				alert("请选择指派给谁");
-			} else {
-				var data = {
-					"updateman" : getCookie("username"),
-					"pickid": getUrlParam("pickid"),
-					"title": $("#title").val(),
-					"state": $("#state").val(),
-					"startdate": $("#startdate").val(),
-					"advanced": $("#advanced").val(),
-					"plandate": $("#plandate").val(),
-					"assign": $("#assign").val(),
-					"actworknum": $("#actworknum").val(),
-					"pickdate": $("#pickdate").val(),
-					"completepercent": $("#completepercent").val(),
-					"pickcontent": $("#pickcontent").val(),
-					"pickintro": $("#pickintro").val()
-				};
-				$.ajax({//提交修改
-					type: "post",
-					url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/update",
-					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify(data),
-					success: function(returned) {
-						if(returned.status===200){
-							alert("添加成功");
-							location.href = "pick.html?pickid=" + getUrlParam("pickid");
-						}else{
-							alert("添加出现了一些问题");
-						}
-					}
-				});
-			}
-			}
-			
-			
+    $("#submitpick").click(function () {
+        if ($("#state").val() === "4" && getCookie("level") != 1) {
+            alert("您无权关闭该指摘");
+        } else {
+            if ($("#assign").val() === "0") {
+                alert("请选择指派给谁");
+            } else {
+                var percent = $("#completepercent").val();
+                var state = $("#state").val();
+                alert("percent="+  percent);
+                alert("state=" + state);
+                if ((percent != 5) && (state === "4")) {
+                    alert("完成度需要有100%才可以关闭");
+                } else {
+                    var data = {
+                        "updateman": getCookie("username"),
+                        "pickid": getUrlParam("pickid"),
+                        "title": $("#title").val(),
+                        "state": $("#state").val(),
+                        "startdate": $("#startdate").val(),
+                        "advanced": $("#advanced").val(),
+                        "plandate": $("#plandate").val(),
+                        "assign": $("#assign").val(),
+                        "actworknum": $("#actworknum").val(),
+                        "pickdate": $("#pickdate").val(),
+                        "completepercent": $("#completepercent").val(),
+                        "pickcontent": $("#pickcontent").val(),
+                        "pickintro": $("#pickintro").val()
+                    };
+                    $.ajax({//提交修改
+                        type: "post",
+                        url: "http://www.polarbear.pub:8080/GGPPMS/api/pick/update",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify(data),
+                        success: function (returned) {
+                            if (returned.status === 200) {
+                                alert("添加成功");
+                                location.href = "pick.html?pickid=" + getUrlParam("pickid");
+                            } else {
+                                alert("添加出现了一些问题");
+                            }
+                        }
+                    });
+                }
 
-		})
-	</script>
+
+            }
+        }
+
+
+    })
+</script>
 
 </html>

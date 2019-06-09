@@ -143,15 +143,15 @@
 					for(var i = 0; i < returned.length; i++) {
 						var n = returned[i];
 						temphtml += "<tr><td>" + n.id + "</td>";
-						if(n.status === 0) {
+						if(n.status === "0") {
 							temphtml += "<td>" + "New Creation" + "</td>";
-						} else if(n.status === 1) {
+						} else if(n.status === "1") {
 							temphtml += "<td>" + "In progress" + "</td>";
-						} else if(n.status === 2) {
+						} else if(n.status === "2") {
 							temphtml += "<td>" + "Resolved" + "</td>";
-						} else if(n.status === 3) {
+						} else if(n.status === "3") {
 							temphtml += "<td>" + "Checked" + "</td>";
-						} else if(n.status === 4) {
+						} else if(n.status === "4") {
 							temphtml += "<td>" + "Closed" + "</td>";
 						}
 						temphtml += "<td>" + "成果物" + "</td>"; //要求返回的为中文类型，成果物，Review，或者指摘

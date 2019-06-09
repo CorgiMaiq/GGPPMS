@@ -469,7 +469,11 @@
 		}
 
 		$("#addpick").click(function() {
-			location.href = "addpick.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
+			if ($("#state").html()==="Closed"){
+				alert("review已经关闭，请联系管理员");
+			} else {
+				location.href = "addpick.html?reviewid=" + getUrlParam("reviewid") + "&projectid=" + $("#projectid").val();
+			}
 		});
 
 		function getCookie(name) {

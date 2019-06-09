@@ -519,6 +519,7 @@
                     success: function (returned) {
                         if (returned.status === 200) {
                             alert("删除成功");
+                            location.href = "projectmessage.html?pid=" + $("#belong").html();
                         } else {
                             alert("删除失败");
                         }

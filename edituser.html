@@ -347,20 +347,32 @@
 			var password1 = $("#password").val();
 			var nickname1 = $("#nickname").val();
 			var group1 = $("#group").val();
-			alert(group1);
-			alert(getusergroupid(getUrlParam("username")));
 			if(checkPermission(getUrlParam("username")) && (group1 != getusergroupid(getUrlParam("username")))) {
 				alert("此人已经是组长，如果需要更改其组别或者级别，请先指派他人为该组组长");
 			} else {
 				if(checkinput(password1, nickname1, group1)) {
-					var data = {
+					var data = "";
+					alert("hgroup"+$("#group").val());
+					if($("#group").val()==="1"){
+						data = {
+							"username": $("#username").html(),
+							"password": $("#password").val(),
+							"nickname": $("#nickname").val(),
+							"group": 1,
+							"level": 1
+						};
+						alert("选的是管理组");
+					}else {
+						data = {
+							"username": $("#username").html(),
+							"password": $("#password").val(),
+							"nickname": $("#nickname").val(),
+							"group": $("#group").val(),
+							"level": $(".level").val()
+						};
+					}
 
-						"username": $("#username").html(),
-						"password": $("#password").val(),
-						"nickname": $("#nickname").val(),
-						"group": $("#group").val(),
-						"level": $(".level").val()
-					};
+
 					// 修改用户
 					$.ajax({
 						type: "post",

@@ -126,6 +126,15 @@
 			mywork();
 		});
 
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
+
 		function getUrlParam(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -135,6 +144,12 @@
 
 		var id = getUrlParam("groupid");
 		$(document).ready(function() {
+			if (getCookie("level")!=0){
+				$("#controlmember").hide();
+				$("#addmember").hide();
+			}
+
+
 			// get group info
 			//groupmember采用名字逗号分隔字符串
 			$.ajax({

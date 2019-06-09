@@ -669,51 +669,55 @@
 					if($("#assign").val() === "0" || $("#reviewer").val() === "0" || $("#reviewee").val() === "0") {
 						alert("请全部填写");
 					} else {
-						var data = {
-							"updatetime": mytime,
-							"updateman": getCookie("username"),
-							"reviewid": getUrlParam("reviewid"),
-							"reviewTitle": $("#reviewTitle").val(),
-							"state": $("#state").val(),
-							"startdate": $("#startdate").val(),
-							"advanced": $("#advanced").val(),
-							"plandate": $("#plandate").val(),
-							"assign": $("#assign").val(),
-							"picknum": $("#picknum").val(),
-							"pagenum": $("#pagenum").val(),
-							"changenum": $("#changenum").val(),
-							"reviewer": $("#reviewer").val(),
-							"reviewee": $("#reviewee").val(),
-							"reviewplace": $("#reviewplace").val(),
-							"reviewtime": $("#reviewtime").val(),
-							"reviewVersion": $("#reviewVersion").val(),
-							"reviewDate": $("#reviewDate").val(),
-							"aboutlink": $("#aboutlink").val(),
-							"check1": $("#check1").val(),
-							"check2": $("#check2").val(),
-							"check3": $("#check3").val(),
-							"check4": $("#check4").val(),
-							"check5": $("#check5").val(),
-							"check6": $("#check6").val(),
-							"rcheck1": $("#rcheck1").val(),
-							"rcheck2": $("#rcheck2").val(),
-							"rcheck3": $("#rcheck3").val(),
-							"rcheck4": $("#rcheck4").val(),
-							"rcheck5": $("#rcheck5").val(),
-							"rcheck6": $("#rcheck6").val()
-						};
-						$.ajax({ //增加成果物
-							type: "post",
-							url: "http://www.polarbear.pub:8080/GGPPMS/api/review",
-							contentType: "application/json; charset=UTF-8",
-							data: JSON.stringify(data),
-							success: function(returned) {
-								if(returned.status === 200) {
-									alert("增加成功");
-									location.href = "review.html?reviewid=" + getUrlParam("reviewid");
+						if ((!checkson(getUrlParam("reviewid"))) &&$("#state").val() === "4") {
+							alert("还有指摘没有被关闭");
+						}else {
+							var data = {
+								"updatetime": mytime,
+								"updateman": getCookie("username"),
+								"reviewid": getUrlParam("reviewid"),
+								"reviewTitle": $("#reviewTitle").val(),
+								"state": $("#state").val(),
+								"startdate": $("#startdate").val(),
+								"advanced": $("#advanced").val(),
+								"plandate": $("#plandate").val(),
+								"assign": $("#assign").val(),
+								"picknum": $("#picknum").val(),
+								"pagenum": $("#pagenum").val(),
+								"changenum": $("#changenum").val(),
+								"reviewer": $("#reviewer").val(),
+								"reviewee": $("#reviewee").val(),
+								"reviewplace": $("#reviewplace").val(),
+								"reviewtime": $("#reviewtime").val(),
+								"reviewVersion": $("#reviewVersion").val(),
+								"reviewDate": $("#reviewDate").val(),
+								"aboutlink": $("#aboutlink").val(),
+								"check1": $("#check1").val(),
+								"check2": $("#check2").val(),
+								"check3": $("#check3").val(),
+								"check4": $("#check4").val(),
+								"check5": $("#check5").val(),
+								"check6": $("#check6").val(),
+								"rcheck1": $("#rcheck1").val(),
+								"rcheck2": $("#rcheck2").val(),
+								"rcheck3": $("#rcheck3").val(),
+								"rcheck4": $("#rcheck4").val(),
+								"rcheck5": $("#rcheck5").val(),
+								"rcheck6": $("#rcheck6").val()
+							};
+							$.ajax({ //增加成果物
+								type: "post",
+								url: "http://www.polarbear.pub:8080/GGPPMS/api/review",
+								contentType: "application/json; charset=UTF-8",
+								data: JSON.stringify(data),
+								success: function(returned) {
+									if(returned.status === 200) {
+										alert("增加成功");
+										location.href = "review.html?reviewid=" + getUrlParam("reviewid");
+									}
 								}
-							}
-						});
+							});
+						}
 					}
 				}
 			}

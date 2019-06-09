@@ -188,8 +188,7 @@
 					项目
 				</div>
 				<div class="addproject">
-					<a href="addnewproject.html" class="addnewproject">增加项目</a> |
-					<a>查看全部项目</a>
+					<a href="addnewproject.html" class="addnewproject">增加项目</a> 
 				</div>
 				<table class="maintable" border="1">
 					<tr id="maintr">
@@ -231,8 +230,21 @@
 			quitpage();
 			mywork();
 		});
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
 
 		$(document).ready(function() {
+			if (getCookie("level")!=1){
+				$(".addnewproject").hide();
+			}
+			
+			
 			//返回所有项目信息
 			$.ajax({
 				type: "get",

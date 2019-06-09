@@ -257,7 +257,7 @@
 			})
 		});
 
-		function checkinput(a, b, c, d) {
+		function checkinput(a, b, c) {
 			if(a == "" || b == "" || c == "") {
 
 				return false;
@@ -274,13 +274,24 @@
 			if(username1.length<4 || username1.length>8 || password1.length<6 || password1.length>12){
 				alert("用户名需要在4-8位之间，密码需要在6-12位之间");
 			}else if(checkinput(username1, password1, nickname1)) {
-				var data = {
-					"username": $("#username").val(),
-					"password": $("#password").val(),
-					"nickname": $("#nickname").val(),
-					"group": $("#group").val(),
-					"level": $(".level").val()
-				};
+				var data = "";
+				if(group1==="0"){
+					data = {
+						"username": $("#username").val(),
+						"password": $("#password").val(),
+						"nickname": $("#nickname").val(),
+						"group": -1,
+						"level": 3
+					};
+				}else {
+					data = {
+						"username": $("#username").val(),
+						"password": $("#password").val(),
+						"nickname": $("#nickname").val(),
+						"group": $("#group").val(),
+						"level": $(".level").val()
+					};
+				}
 				// 新建user
 				$.ajax({
 					type: "put",
