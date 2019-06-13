@@ -281,10 +281,6 @@
 <body>
 <div class="public"></div>
 <div class="headbottom">
-    <span class="sign">+</span>
-    <a class="bottomnavi">概述</a>
-    <a class="bottomnavi">活动</a>
-    <a class="bottomnavi">问题</a>
 </div>
 <div class="mainn">
     <div class="mainleft">
@@ -699,7 +695,7 @@
                 $("#resultversion").html(returned.version);
                 $("#resultlink").html(returned.link);
                 $("#NGnum").html(returned.ngNum);
-                if (returned.completePct === "0") {
+                if (returned.completePct === 0) {
                     $("#completepercent").html("0%");
                 } else if (returned.completePct === 1) {
                     $("#completepercent").html("20%");

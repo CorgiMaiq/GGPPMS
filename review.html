@@ -289,10 +289,6 @@
 	<body>
 		<div class="public"></div>
 		<div class="headbottom">
-			<span class="sign">+</span>
-			<a class="bottomnavi">概述</a>
-			<a class="bottomnavi">活动</a>
-			<a class="bottomnavi">问题</a>
 		</div>
 		<div class="mainn">
 			<div class="mainleft">
@@ -599,7 +595,6 @@
 				success: function(result) {
 					var tempHtml = "";
 					var href = " 'pick.html?pickid=";
-					alert(result.length);
 					for(var i = 0; i < result.length; i++) {
 						var n = result[i];
 						tempHtml += "<tr><td>" + n.pickId + "</td>";

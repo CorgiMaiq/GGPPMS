@@ -198,7 +198,7 @@
 			margin-top: 40px;
 			margin-left: 30px;
 			color: rgb(69, 76, 81);
-			height: autopx;
+			height: auto;
 			font-size: 22px;
 		}
 		
@@ -255,10 +255,7 @@
 			
 		</div>
 		<div class="headbottom">
-			<span class="sign">+</span>
-			<a class="bottomnavi">概述</a>
-			<a class="bottomnavi">活动</a>
-			<a class="bottomnavi">问题</a>
+			
 		</div>
 		<div class="mainn">
 			<div class="mainleft">
@@ -494,7 +491,6 @@
 		});
 
 		$("#editpick").click(function() {
-			alert($("#projectid").val());
 			if($("#state").html() === "Closed" && getCookie("level") != 1) {
 				alert("该pick已关闭");
 			} else {

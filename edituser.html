@@ -352,7 +352,6 @@
 			} else {
 				if(checkinput(password1, nickname1, group1)) {
 					var data = "";
-					alert("hgroup"+$("#group").val());
 					if($("#group").val()==="1"){
 						data = {
 							"username": $("#username").html(),
@@ -361,7 +360,6 @@
 							"group": 1,
 							"level": 1
 						};
-						alert("选的是管理组");
 					}else {
 						data = {
 							"username": $("#username").html(),

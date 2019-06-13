@@ -212,10 +212,6 @@
 	<body>
 		<div class="public"></div>
 		<div class="headbottom">
-			<span class="sign">+</span>
-			<a class="bottomnavi">概述</a>
-			<a class="bottomnavi">活动</a>
-			<a class="bottomnavi">问题</a>
 		</div>
 		<div class="mainn">
 			<div class="mainleft">
@@ -479,7 +475,6 @@
 								dataType: "json",
 								success: function(returned) {
 									if(returned.status === 200) {
-										alert($("#assign").val());
 										alert("修改成功");
 										location.href = "main1.html?resultid=" + getUrlParam("resultID") + "&pid=" + getUrlParam("pid")
 									} else {

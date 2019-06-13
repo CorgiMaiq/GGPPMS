@@ -227,6 +227,15 @@
 			return null; //返回参数值
 		}
 
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+			if(arr = document.cookie.match(reg)) {
+				return unescape(arr[2]);
+			} else {
+				return null;
+			}
+		}
+
 		function checkProjectState(id){
 			var status = "";
 			$.ajax({
@@ -241,18 +250,22 @@
 		}
 		
 		$(".closeproject").click(function(){
-			$.ajax({//关闭项目，只有全部成果物都closed才可以关闭
-				type:"get",
-				url: "http://www.polarbear.pub:8080/GGPPMS/api/project/close/" + pid,
-				async:false,
-				success : function(returned){
-					if(returned.status===200){
-						alert("关闭成功");
-					}else{
-						alert("关闭失败，或许是该项目下有成果物尚未被关闭");
+			if (getCookie("level")!=1){
+				alert("您没有相关权限，请咨询项目管理员");
+			}else {
+				$.ajax({//关闭项目，只有全部成果物都closed才可以关闭
+					type:"get",
+					url: "http://www.polarbear.pub:8080/GGPPMS/api/project/close/" + pid,
+					async:false,
+					success : function(returned){
+						if(returned.status===200){
+							alert("关闭成功");
+						}else{
+							alert("关闭失败，或许是该项目下有成果物尚未被关闭");
+						}
 					}
-				}
-			});
+				});
+			}
 		})
 
 

@@ -157,14 +157,12 @@
                 }
             }
         });
-        alert(check);
         return check;
 
     }
 
     $("#addleader").click(function () {
         var check = $("#userid").html();
-        alert(check);
         if (checkPermission(check)) {
             alert("这个人已经是组长了");
         } else {
@@ -193,9 +191,9 @@
             success: function (returned) {
                 if (returned.status === 200) {
                     alert("新建成功");
-                    location.href = "addgroup.html";
+                    location.href = "group.html";
                 } else if (returned.status === 500) {
-                    alert("请全部填写，如果已全部填写，这个人可能已经是其他组的组长，如有需要，请先撤销他所在组的组长职位");
+                    alert("请全部填写，如果已全部填写，可能是组名重复了");
                 } else {
                     alert("服务器错误");
                 }

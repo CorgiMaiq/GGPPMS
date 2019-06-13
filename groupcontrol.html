@@ -135,6 +135,22 @@
 			}
 		}
 
+		function timestampToTime(timestamp) {
+			if (timestamp > 1) {
+				var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				Y = date.getFullYear() + '-';
+				M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+				D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+				h = date.getHours() + ':';
+				m = date.getMinutes() + ':';
+				s = date.getSeconds();
+				return Y + M + D;
+			} else {
+				return "";
+			}
+
+		}
+
 		function getUrlParam(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -159,7 +175,7 @@
 				async: false, 
 				success: function(returned) {
 					$("#groupid").html(returned.gid);
-					$("#groupdate").html(returned.gdate);
+					$("#groupdate").html(timestampToTime(returned.gdate));
 					$("#groupname").html(returned.groupname);
 					$("#groupleader").html(returned.leadername);
 					$("#groupmember").html(returned.groupmember);
