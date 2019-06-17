@@ -1,9 +1,5 @@
 # GGPPMS
-狗狗掌的工程流程管理系统-前台
 
-傻吊前台
-
-sbws
 
 ### Buglist
 
@@ -85,11 +81,11 @@ sbws
 
 * editresult预计工数没传进去
 
-* editreview传进去的项目id和resultid为0是因为前台没有传，不需要传，后台去掉一下吧
+* editreview传进去的项目id和resultid为0是因为前台没有传，不需要传
 
 * pick.html assign和assignTo返回的是一样的东西，需要返回一个nickname的
 
-* reviewer和reviewee也要显示人名，不知道哪里直接问我，写不明白
+* reviewer和reviewee也要显示人名
 
 * editpick.html改完之后没有项目和所属review了，应该是后台接了但是前台没有传。
 
